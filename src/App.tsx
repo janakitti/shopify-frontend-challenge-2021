@@ -1,25 +1,22 @@
 import React from "react";
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { AppProvider } from "@shopify/polaris";
+import enTranslations from "@shopify/polaris/locales/en.json";
+
+import HomePage from "./pages/HomePage/HomePage";
+import NominationsPage from "./pages/NominationsPage/NominationsPage";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppProvider i18n={enTranslations}>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/nominations" component={NominationsPage} />
+        </Switch>
+      </AppProvider>
+    </Router>
   );
 }
 
