@@ -1,5 +1,13 @@
+import SearchCol from "./SearchCol/SearchCol";
+import NominationsCol from "./NominationsCol/NominationsCol";
+
 const HomePage = () => {
-  return <h1>Home</h1>;
+  return (
+    <>
+      <SearchCol />
+      <NominationsCol />
+    </>
+  );
 };
 
 export default HomePage;
