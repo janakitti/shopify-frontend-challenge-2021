@@ -5,7 +5,9 @@ import enTranslations from "@shopify/polaris/locales/en.json";
 
 import HomePage from "./pages/HomePage/HomePage";
 import NominationsPage from "./pages/NominationsPage/NominationsPage";
+
 import "./App.css";
+import "./styles/main.scss";
 
 function App() {
   return (
