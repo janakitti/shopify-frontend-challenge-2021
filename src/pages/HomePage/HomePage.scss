@@ -1,7 +1,13 @@
 .home-wrapper {
   height: 100vh;
   display: grid;
-  grid-template-columns: 60% 1fr;
+  grid-template-columns: 1fr;
+  @include breakpoint-min($screen-width-lg) {
+    grid-template-columns: 70% 1fr;
+  }
+  @include breakpoint-min($screen-width-xl) {
+    grid-template-columns: 60% 1fr;
+  }
   .section {
     padding: $section-padding;
   }

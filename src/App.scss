@@ -1,4 +1,7 @@
 .app-wrapper {
-  padding: 0 10em;
+  padding: 0 1em;
   height: 100%;
+  @include breakpoint-min($screen-width-lg) {
+    padding: 0 10em;
+  }
 }
