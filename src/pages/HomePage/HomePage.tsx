@@ -1,5 +1,5 @@
-import SearchCol from "./SearchCol/SearchCol";
-import NominationsCol from "./NominationsCol/NominationsCol";
+import SearchCol from "../../components/SearchCol/SearchCol";
+import NominationsCol from "../../components/NominationsCol/NominationsCol";
 
 const HomePage = () => {
   return (
