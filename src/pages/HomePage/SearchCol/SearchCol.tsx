@@ -1,5 +1,5 @@
 const SearchCol = () => {
-  return <h1>Search Col</h1>;
+  return <p>Search</p>;
 };
 
 export default SearchCol;

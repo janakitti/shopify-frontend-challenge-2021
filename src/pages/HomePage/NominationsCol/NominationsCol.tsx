@@ -1,5 +1,5 @@
 const NominationsCol = () => {
-  return <h1>Nominations Col</h1>;
+  return <p>Nominations</p>;
 };
 
 export default NominationsCol;
