@@ -3,6 +3,6 @@
   display: grid;
   grid-template-columns: 60% 1fr;
   div {
-    padding: 3em;
+    padding: $section-padding;
   }
 }

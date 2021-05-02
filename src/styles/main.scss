@@ -1,7 +1,9 @@
-@import "../App.scss";
+@import "./variables";
 
-@import "../pages/HomePage/HomePage.scss";
-@import "../pages/HomePage/SearchCol/SearchCol.scss";
-@import "../pages/HomePage/NominationsCol/NominationsCol.scss";
+@import "../App";
 
-@import "../pages/NominationsPage/NominationsPage.scss";
+@import "../pages/HomePage/HomePage";
+@import "../pages/HomePage/SearchCol/SearchCol";
+@import "../pages/HomePage/NominationsCol/NominationsCol";
+
+@import "../pages/NominationsPage/NominationsPage";
