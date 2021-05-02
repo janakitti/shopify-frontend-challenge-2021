@@ -1,12 +1,20 @@
 .movie-card {
-  display: grid;
-  grid-template-columns: 10em 1fr;
+  display: flex;
+  flex-direction: row;
   div {
     padding: 1em;
   }
 }
 
 .movie-card__poster-col {
+  width: 10em;
+  @include breakpoint-max($screen-width-xl) {
+    display: none;
+  }
+}
+
+.movie-card__info-col {
+  width: auto;
 }
 
 .movie-card__poster {
