@@ -1,6 +1,6 @@
-import { TextField } from "@shopify/polaris";
-import { Icon } from "@shopify/polaris";
+import { TextField, Icon } from "@shopify/polaris";
 import { SearchMajor } from "@shopify/polaris-icons";
+import MovieCard from "./MovieCard/MovieCard";
 
 const SearchCol = () => {
   return (
@@ -13,6 +13,7 @@ const SearchCol = () => {
         onChange={() => {}}
         prefix={<Icon source={SearchMajor} color="base" />}
       />
+      <MovieCard />
     </div>
   );
 };
