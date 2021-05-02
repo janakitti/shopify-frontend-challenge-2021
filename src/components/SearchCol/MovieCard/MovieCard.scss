@@ -1,11 +1,20 @@
 .movie-card {
   display: grid;
-  grid-template-columns: 25% 1fr;
+  grid-template-columns: 10em 1fr;
+  div {
+    padding: 1em;
+  }
+}
+
+.movie-card__poster-col {
 }
 
 .movie-card__poster {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   background-color: grey;
-  height: 10em;
+  height: 11em;
   width: 8em;
   border-radius: $card-border-radius;
   box-shadow: $poster-shadow;
