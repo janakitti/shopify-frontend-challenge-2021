@@ -1,6 +1,11 @@
 import CustomCard from "../../Card/Card";
+import { IMovie } from "../../../shared/interfaces";
 
-const MovieCard = () => {
+interface IMovieCardProps {
+  movie: IMovie;
+}
+
+const MovieCard = ({ movie }: IMovieCardProps) => {
   return (
     <>
       <CustomCard>
