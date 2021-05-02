@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import NominationsPage from "./pages/NominationsPage/NominationsPage";
 
 import "./styles/main.scss";
+import "@shopify/polaris/dist/styles.css";
 
 function App() {
   return (
