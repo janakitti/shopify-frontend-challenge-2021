@@ -3,10 +3,10 @@ import NominationsCol from "./NominationsCol/NominationsCol";
 
 const HomePage = () => {
   return (
-    <>
+    <div className="home-wrapper">
       <SearchCol />
       <NominationsCol />
-    </>
+    </div>
   );
 };
 
