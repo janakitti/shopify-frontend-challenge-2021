@@ -1,18 +1,38 @@
-import { TextField, Icon } from "@shopify/polaris";
+import { TextField, Icon, Form } from "@shopify/polaris";
 import { SearchMajor } from "@shopify/polaris-icons";
+import { useState, useCallback } from "react";
 import MovieCard from "./MovieCard/MovieCard";
+import { IMovie } from "../../shared/interfaces";
+import { queryMovies } from "../../services/movieservice";
 
 const SearchCol = () => {
+  const [searchInput, setSearchInput] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<IMovie[]>([]);
+
+  const handleSearch = (input: string) => {
+    setSearchInput(input);
+  };
+
+  const handleSubmit = useCallback(
+    async (_event) => {
+      const results = await queryMovies(searchInput);
+      setSearchResults(results);
+    },
+    [searchInput]
+  );
+
   return (
     <div className="section search-col-wrapper">
       <h3>the shoppies</h3>
       <h1>Nominate</h1>
-      <TextField
-        label="Search movies"
-        value="hello"
-        onChange={() => {}}
-        prefix={<Icon source={SearchMajor} color="base" />}
-      />
+      <Form onSubmit={handleSubmit}>
+        <TextField
+          label="Search movies"
+          value={searchInput}
+          onChange={handleSearch}
+          prefix={<Icon source={SearchMajor} color="base" />}
+        />
+      </Form>
       <MovieCard />
     </div>
   );
