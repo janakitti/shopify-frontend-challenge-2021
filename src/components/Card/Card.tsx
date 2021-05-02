@@ -3,7 +3,7 @@ interface ICardProps {
 }
 
 const Card = ({ children }: ICardProps) => {
-  return <div className="movie-card">{children}</div>;
+  return <div className="card">{children}</div>;
 };
 
 export default Card;

@@ -3,7 +3,14 @@ import CustomCard from "../../Card/Card";
 const MovieCard = () => {
   return (
     <>
-      <CustomCard>Test</CustomCard>
+      <CustomCard>
+        <div className="movie-card">
+          <div className="movie-card__poster-col">
+            <div className="movie-card__poster"></div>
+          </div>
+          <div className="movie-card__info-col">Info</div>
+        </div>
+      </CustomCard>
     </>
   );
 };

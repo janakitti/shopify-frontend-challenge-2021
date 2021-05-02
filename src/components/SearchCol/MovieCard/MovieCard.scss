@@ -1,6 +1,12 @@
 .movie-card {
-  background-color: $card-bg-color;
-  box-shadow: $card-shadow;
+  display: grid;
+  grid-template-columns: 25% 1fr;
+}
+
+.movie-card__poster {
+  background-color: grey;
+  height: 10em;
+  width: 8em;
   border-radius: $card-border-radius;
-  padding: $card-padding;
+  box-shadow: $poster-shadow;
 }
