@@ -17,10 +17,6 @@
   }
 }
 
-.movie-card__info-col {
-  width: auto;
-}
-
 .movie-card__poster-container {
   display: block;
   margin-left: auto;
@@ -31,4 +27,16 @@
   border-radius: $card-border-radius;
   box-shadow: $poster-shadow;
   object-fit: fill;
+}
+
+.movie-card__info-col {
+  width: auto;
+}
+
+.movie-card__title {
+  @include header-text;
+}
+
+.movie-card__plot {
+  @include body-text;
 }

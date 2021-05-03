@@ -9,3 +9,15 @@
     @content;
   }
 }
+
+@mixin header-text {
+  font-size: $heading-font-size;
+  line-height: $heading-line-height;
+  font-weight: $heading-font-weight;
+}
+
+@mixin body-text {
+  font-size: $body-font-size;
+  line-height: $body-line-height;
+  font-weight: $body-font-weight;
+}
