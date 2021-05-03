@@ -33,3 +33,11 @@
   line-height: $body-line-height;
   font-weight: $body-font-weight;
 }
+
+@mixin hide-scrollbar {
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

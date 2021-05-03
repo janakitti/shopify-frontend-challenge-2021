@@ -1,4 +1,7 @@
 .search-col-wrapper {
+  height: 100vh;
+  overflow-y: scroll;
+  @include hide-scrollbar;
   .logo-text {
     margin-bottom: 2em;
   }
