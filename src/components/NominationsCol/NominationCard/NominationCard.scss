@@ -5,6 +5,9 @@
   .title {
     @include header-text;
     color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .subtitle {
     @include body-text;

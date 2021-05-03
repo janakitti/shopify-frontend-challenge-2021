@@ -2,5 +2,13 @@
   background-color: $card-bg-color;
   box-shadow: $card-shadow;
   border-radius: $card-border-radius;
-  padding: $card-padding;
+  overflow: hidden;
+  .inner-container {
+    height: 100%;
+    width: 100%;
+    padding: $card-padding;
+  }
+  .tint {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 }
