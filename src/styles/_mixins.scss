@@ -10,6 +10,18 @@
   }
 }
 
+@mixin display-lg-text {
+  font-size: $display-lg-font-size;
+  line-height: $display-lg-line-height;
+  font-weight: $display-lg-font-weight;
+}
+
+@mixin display-text {
+  font-size: $display-font-size;
+  line-height: $display-line-height;
+  font-weight: $display-font-weight;
+}
+
 @mixin header-text {
   font-size: $heading-font-size;
   line-height: $heading-line-height;
