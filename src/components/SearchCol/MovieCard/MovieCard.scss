@@ -39,4 +39,9 @@
 
 .movie-card__plot {
   @include body-text;
+  margin-bottom: 1em;
+}
+
+.movie-card__button-group {
+  float: right;
 }

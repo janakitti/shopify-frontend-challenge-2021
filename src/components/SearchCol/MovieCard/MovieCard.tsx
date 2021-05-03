@@ -1,3 +1,4 @@
+import { ButtonGroup, Button } from "@shopify/polaris";
 import CustomCard from "../../Card/Card";
 import { IMovieMeta } from "../../../shared/interfaces";
 
@@ -23,6 +24,12 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
               {movie.Year} &bull; {movie.Genre}
             </h2>
             <p className="movie-card__plot">{movie.Plot}</p>
+            <div className="movie-card__button-group">
+              <ButtonGroup>
+                <Button>View</Button>
+                <Button primary>Nominate</Button>
+              </ButtonGroup>
+            </div>
           </div>
         </div>
       </CustomCard>
