@@ -42,11 +42,13 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
             />
           </div>
           <div className="movie-card__info-col">
-            <h1 className="movie-card__title">{movie.Title}</h1>
-            <h2>
-              {movie.Year} &bull; {movie.Genre}
-            </h2>
-            <p className="movie-card__plot">{movie.Plot}</p>
+            <div className="movie-card__info-col-top">
+              <h1 className="movie-card__title">{movie.Title}</h1>
+              <h2>
+                {movie.Year} &bull; {movie.Genre}
+              </h2>
+              <p className="movie-card__plot">{movie.Plot}</p>
+            </div>
             <div className="movie-card__button-group">
               <ButtonGroup>
                 <Button>View</Button>
