@@ -1,4 +1,8 @@
 .home-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.home-wrapper__body {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;

@@ -1,4 +1,5 @@
 import React, { useReducer, createContext } from "react";
+import Header from "../../components/Header/Header";
 import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
 import { IMovieMeta } from "../../shared/interfaces";
@@ -57,8 +58,11 @@ const HomePage = () => {
   return (
     <NominationsContext.Provider value={{ nominations, dispatchNominations }}>
       <div className="home-wrapper">
-        <SearchCol />
-        <NominationsCol />
+        <Header />
+        <div className="home-wrapper__body">
+          <SearchCol />
+          <NominationsCol />
+        </div>
       </div>
     </NominationsContext.Provider>
   );
