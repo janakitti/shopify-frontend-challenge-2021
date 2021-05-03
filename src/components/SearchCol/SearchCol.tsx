@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react";
 import MovieCard from "./MovieCard/MovieCard";
 import { IMovieSearch, IMovieMeta } from "../../shared/interfaces";
 import { queryMovies, getMovieDetails } from "../../services/movieservice";
+import Header from "../Header/Header";
 
 const SearchCol = () => {
   const [searchInput, setSearchInput] = useState<string>("");
@@ -38,6 +39,10 @@ const SearchCol = () => {
 
   return (
     <div className="section search-col-wrapper">
+      <Header>
+        <img src="./shopify_logo.svg" className="header__logo" alt="logo" />
+        <h1 className="header__title">the shoppies</h1>
+      </Header>
       <h1 className="title">Nominate</h1>
       <p className="body">
         It is a long established fact that a reader will be distracted by the

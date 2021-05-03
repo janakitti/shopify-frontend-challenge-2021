@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import NominationCard from "../NominationsCol/NominationCard/NominationCard";
 import { IMovieMeta } from "../../shared/interfaces";
 import { NominationsContext } from "../../pages/HomePage/HomePage";
+import Header from "../Header/Header";
 
 const NominationsCol = () => {
   const { nominations } = useContext(NominationsContext);
@@ -16,7 +17,10 @@ const NominationsCol = () => {
   }, [nominations]);
 
   return (
-    <div className="section nomination-col-wrapper">{nominationCards}</div>
+    <div className="section nomination-col-wrapper">
+      <Header>the nommies</Header>
+      {nominationCards}
+    </div>
   );
 };
 

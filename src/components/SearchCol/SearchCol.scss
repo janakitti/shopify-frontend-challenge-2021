@@ -19,3 +19,10 @@
     margin-bottom: 1em;
   }
 }
+
+.header__logo {
+  margin-right: 1em;
+}
+.header__title {
+  @include header-text;
+}

@@ -1,11 +1,5 @@
 .header {
   display: flex;
   flex-direction: row;
-  padding: 4em $section-padding 0 $section-padding;
-  .logo {
-    margin-right: 1em;
-  }
-  .title {
-    @include header-text;
-  }
+  padding: 2em 0;
 }

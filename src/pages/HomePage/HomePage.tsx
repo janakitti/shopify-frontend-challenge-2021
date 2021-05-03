@@ -58,7 +58,6 @@ const HomePage = () => {
   return (
     <NominationsContext.Provider value={{ nominations, dispatchNominations }}>
       <div className="home-wrapper">
-        <Header />
         <div className="home-wrapper__body">
           <SearchCol />
           <NominationsCol />

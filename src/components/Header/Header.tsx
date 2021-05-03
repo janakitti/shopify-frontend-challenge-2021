@@ -1,10 +1,8 @@
-const Header = () => {
-  return (
-    <div className="header">
-      <img src="./shopify_logo.svg" className="logo" alt="logo" />
-      <h1 className="title">the shoppies</h1>
-    </div>
-  );
+interface IHeaderProps {
+  children: React.ReactNode;
+}
+const Header = ({ children }: IHeaderProps) => {
+  return <div className="header">{children}</div>;
 };
 
 export default Header;
