@@ -1,8 +1,8 @@
 import CustomCard from "../../Card/Card";
-import { IMovie } from "../../../shared/interfaces";
+import { IMovieMeta } from "../../../shared/interfaces";
 
 interface IMovieCardProps {
-  movie: IMovie;
+  movie: IMovieMeta;
 }
 
 const MovieCard = ({ movie }: IMovieCardProps) => {
@@ -11,17 +11,18 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
       <CustomCard>
         <div className="movie-card">
           <div className="movie-card__poster-col">
-            <div className="movie-card__poster"></div>
+            <img
+              className="movie-card__poster-container"
+              src={movie.Poster}
+              alt={`${movie.Title} poster`}
+            />
           </div>
           <div className="movie-card__info-col">
-            <h1>Title</h1>
-            <h2>2021 Sci-fi</h2>
-            <p>
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum is that it has a more-or-less normal
-              distribution
-            </p>
+            <h1>{movie.Title}</h1>
+            <h2>
+              {movie.Year} &bull; {movie.Genre}
+            </h2>
+            <p>{movie.Plot}</p>
           </div>
         </div>
       </CustomCard>

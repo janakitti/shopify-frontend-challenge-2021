@@ -1,7 +1,7 @@
 .movie-card {
   display: flex;
   flex-direction: row;
-  div {
+  & > div {
     padding: 1em;
   }
 }
@@ -17,7 +17,7 @@
   width: auto;
 }
 
-.movie-card__poster {
+.movie-card__poster-container {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -26,4 +26,5 @@
   width: 8em;
   border-radius: $card-border-radius;
   box-shadow: $poster-shadow;
+  object-fit: fill;
 }

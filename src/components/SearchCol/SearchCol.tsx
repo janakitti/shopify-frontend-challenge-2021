@@ -2,12 +2,12 @@ import { TextField, Icon, Form } from "@shopify/polaris";
 import { SearchMajor } from "@shopify/polaris-icons";
 import { useState, useCallback, useEffect } from "react";
 import MovieCard from "./MovieCard/MovieCard";
-import { IMovie } from "../../shared/interfaces";
-import { queryMovies } from "../../services/movieservice";
+import { IMovieSearch, IMovieMeta } from "../../shared/interfaces";
+import { queryMovies, getMovieDetails } from "../../services/movieservice";
 
 const SearchCol = () => {
   const [searchInput, setSearchInput] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<IMovie[]>([]);
+  const [searchResults, setSearchResults] = useState<IMovieMeta[]>([]);
   const [movieCards, setMovieCards] = useState<JSX.Element[]>([]);
 
   const handleSearch = (input: string) => {
@@ -16,17 +16,22 @@ const SearchCol = () => {
 
   const handleSubmit = useCallback(
     async (_event) => {
-      const results = await queryMovies(searchInput);
-      setSearchResults(results);
+      const queryResults = await queryMovies(searchInput);
+      const metaResuts = await Promise.all(
+        queryResults.map((movie: IMovieSearch) => getMovieDetails(movie.imdbID))
+      );
+      setSearchResults(metaResuts);
     },
     [searchInput]
   );
 
   useEffect(() => {
-    const cards = searchResults?.map((movie: IMovie) => (
-      <MovieCard movie={movie} />
-    ));
-    setMovieCards(cards);
+    (async () => {
+      const cards = await searchResults?.map((movie: IMovieMeta) => (
+        <MovieCard movie={movie} />
+      ));
+      setMovieCards(cards);
+    })();
   }, [searchResults]);
 
   return (

@@ -1,10 +1,18 @@
-export interface IMovieResponse {
+export interface IMovieQueryResponse {
   Response: string;
-  Search: IMovie[];
+  Search: IMovieSearch[];
   totalResults: string;
 }
 
-export interface IMovie {
+export interface IMovieSearch {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+}
+
+export interface IMovieMeta {
   Title: string;
   Year: string;
   Rated: string;
