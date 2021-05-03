@@ -6,6 +6,10 @@
   }
 }
 
+.movie-card__container {
+  margin: 1em 0;
+}
+
 .movie-card__poster-col {
   width: 10em;
   @include breakpoint-max($screen-width-xl) {

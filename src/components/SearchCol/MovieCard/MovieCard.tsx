@@ -7,7 +7,7 @@ interface IMovieCardProps {
 
 const MovieCard = ({ movie }: IMovieCardProps) => {
   return (
-    <>
+    <div className="movie-card__container">
       <CustomCard>
         <div className="movie-card">
           <div className="movie-card__poster-col">
@@ -26,7 +26,7 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
           </div>
         </div>
       </CustomCard>
-    </>
+    </div>
   );
 };
 
