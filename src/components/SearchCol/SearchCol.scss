@@ -1,6 +1,9 @@
 .search-col-wrapper {
-  height: 100vh;
-  overflow-y: scroll;
+  @include breakpoint-min($screen-width-lg) {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+
   @include hide-scrollbar;
   .logo-text {
     margin-bottom: 2em;
