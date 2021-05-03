@@ -1,9 +1,9 @@
 .nomination-card__container {
   margin-bottom: 2em;
-  height: 8em;
+  height: 6.5em;
   width: 100%;
   @include breakpoint-min($screen-width-lg) {
-    width: 22em;
+    width: 17em;
   }
   .title {
     @include header-text;
