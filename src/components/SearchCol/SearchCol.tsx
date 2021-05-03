@@ -28,7 +28,7 @@ const SearchCol = () => {
   useEffect(() => {
     (async () => {
       const cards = await searchResults?.map((movie: IMovieMeta) => (
-        <MovieCard movie={movie} />
+        <MovieCard movie={movie} key={movie.imdbID} />
       ));
       setMovieCards(cards);
     })();
