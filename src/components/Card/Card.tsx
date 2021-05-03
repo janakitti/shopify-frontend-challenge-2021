@@ -1,11 +1,15 @@
 interface ICardProps {
   children: React.ReactNode;
+  className?: string;
   bgImage?: string;
 }
 
-const Card = ({ children, bgImage }: ICardProps) => {
+const Card = ({ children, className, bgImage }: ICardProps) => {
   return (
-    <div className="card" style={{ backgroundImage: `url('${bgImage}')` }}>
+    <div
+      className={`card ${className}`}
+      style={{ backgroundImage: `url('${bgImage}')` }}
+    >
       {children}
     </div>
   );

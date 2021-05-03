@@ -1,0 +1,13 @@
+.nomination-card__container {
+  margin-bottom: 2em;
+  width: 22em;
+  height: 8em;
+  .title {
+    @include header-text;
+    color: white;
+  }
+  .subtitle {
+    @include body-text;
+    color: white;
+  }
+}
