@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ButtonGroup, Button } from "@shopify/polaris";
 import CustomCard from "../../Card/Card";
 import { IMovieMeta } from "../../../shared/interfaces";
 import { checkIfNominated } from "../../../shared/utils";
+import { NOMINATION_NUMBER } from "../../../shared/constants";
 import {
   NominationsContext,
   NominationReducerActions,
@@ -14,6 +15,14 @@ interface IMovieCardProps {
 
 const MovieCard = ({ movie }: IMovieCardProps) => {
   const { nominations, dispatchNominations } = useContext(NominationsContext);
+  const [isNominationComplete, setIsNominationComplete] = useState(false);
+
+  useEffect(() => {
+    setIsNominationComplete(
+      nominations.nominations.length === NOMINATION_NUMBER
+    );
+  }, [nominations]);
+
   const nominateMovie = () => {
     dispatchNominations({
       type: NominationReducerActions.ADD_MOVIE,
@@ -53,11 +62,19 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
               <ButtonGroup>
                 <Button>View</Button>
                 {checkIfNominated(movie, nominations.nominations) ? (
-                  <Button primary onClick={removeNominatedMovie}>
+                  <Button
+                    primary
+                    onClick={removeNominatedMovie}
+                    disabled={isNominationComplete}
+                  >
                     Nominated
                   </Button>
                 ) : (
-                  <Button primary onClick={nominateMovie}>
+                  <Button
+                    primary
+                    onClick={nominateMovie}
+                    disabled={isNominationComplete}
+                  >
                     Nominate
                   </Button>
                 )}
