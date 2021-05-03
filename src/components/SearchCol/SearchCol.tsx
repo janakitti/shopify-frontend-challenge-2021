@@ -18,7 +18,9 @@ const SearchCol = () => {
     async (_event) => {
       const queryResults = await queryMovies(searchInput);
       const metaResuts = await Promise.all(
-        queryResults.map((movie: IMovieSearch) => getMovieDetails(movie.imdbID))
+        queryResults?.map((movie: IMovieSearch) =>
+          getMovieDetails(movie.imdbID)
+        )
       );
       setSearchResults(metaResuts);
     },

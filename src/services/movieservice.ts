@@ -10,7 +10,7 @@ export const queryMovies = async (query: string): Promise<IMovieSearch[]> => {
     `${OMDB_API_URL}/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${query}&type=movie&page=1`
   );
   const movies: IMovieQueryResponse = await res.json();
-  return movies.Search;
+  return movies.Search || [];
 };
 
 export const getMovieDetails = async (id: string): Promise<IMovieMeta> => {
