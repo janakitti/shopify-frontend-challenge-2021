@@ -2,9 +2,6 @@
   margin-bottom: 2em;
   height: 6.5em;
   width: 100%;
-  @include breakpoint-min($screen-width-lg) {
-    width: 17em;
-  }
   .title {
     @include header-text;
     color: white;

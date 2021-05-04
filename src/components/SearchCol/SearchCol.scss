@@ -1,6 +1,8 @@
 .search-col-wrapper {
-  @include breakpoint-min($screen-width-lg) {
+  padding: 0 1em;
+  @include breakpoint-min($screen-width-xl) {
     height: 100vh;
+    padding: 0 10em 0 1em;
     overflow-y: scroll;
   }
 
