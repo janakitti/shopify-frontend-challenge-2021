@@ -65,15 +65,29 @@ const SearchCol = () => {
         {movieCards.length ? (
           <>{movieCards}</>
         ) : (
-          <div className="search-col__results--empty">
-            <img
-              src="./no_results_found.svg"
-              height={300}
-              width={300}
-              alt="No movies found"
-            ></img>
-            <p>No movies found</p>
-          </div>
+          <>
+            {debouncedSearch ? (
+              <div className="search-col__results--empty">
+                <img
+                  src="./no_results_found.svg"
+                  height={300}
+                  width={300}
+                  alt="No movies found"
+                ></img>
+                <p>No movies found</p>
+              </div>
+            ) : (
+              <div className="search-col__results--empty">
+                <img
+                  src="./begin_search.svg"
+                  height={300}
+                  width={300}
+                  alt="Search for movies"
+                ></img>
+                <p>Search!</p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
