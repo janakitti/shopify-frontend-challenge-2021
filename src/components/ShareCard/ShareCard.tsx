@@ -2,11 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { Button, TextField, Icon } from "@shopify/polaris";
 import { ClipboardMinor } from "@shopify/polaris-icons";
 import CustomCard from "../Card/Card";
-import { NominationsContext } from "../../pages/HomePage/HomePage";
+import {
+  NominationsContext,
+  NominationReducerActions,
+} from "../../pages/HomePage/HomePage";
 import { IMovieMeta } from "../../shared/interfaces";
 
 const ShareCard = () => {
-  const { nominations } = useContext(NominationsContext);
+  const { nominations, dispatchNominations } = useContext(NominationsContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [shareLink, setShareLink] = useState("");
 
@@ -20,6 +23,10 @@ const ShareCard = () => {
     );
     setShareLink(newShareLink);
   }, [nominations]);
+
+  const restart = () => {
+    dispatchNominations({ type: NominationReducerActions.CLEAR_MOVIES });
+  };
 
   const generateShareCardContents = ((): JSX.Element => {
     if (!isSubmitted) {
@@ -65,6 +72,11 @@ const ShareCard = () => {
               onChange={() => {}}
               prefix={<Icon source={ClipboardMinor} color="base" />}
             />
+          </div>
+          <div className="button-container">
+            <Button outline size="slim" onClick={restart}>
+              Restart
+            </Button>
           </div>
         </>
       );

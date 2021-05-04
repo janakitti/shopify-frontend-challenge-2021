@@ -23,11 +23,13 @@ const INITIAL_NOMINATION_STATE: INominationState = {
 export enum NominationReducerActions {
   ADD_MOVIE = "ADD_MOVIE",
   REMOVE_MOVIE = "REMOVE_MOVIE",
+  CLEAR_MOVIES = "CLEAR_MOVIES",
 }
 
 export type TNominationAction =
   | { type: NominationReducerActions.ADD_MOVIE; payload: { movie: IMovieMeta } }
-  | { type: NominationReducerActions.REMOVE_MOVIE; payload: { id: string } };
+  | { type: NominationReducerActions.REMOVE_MOVIE; payload: { id: string } }
+  | { type: NominationReducerActions.CLEAR_MOVIES };
 
 const nominationReducer = (
   state: INominationState,
@@ -43,6 +45,10 @@ const nominationReducer = (
         nominations: state.nominations.filter(
           (m: IMovieMeta) => m.imdbID !== action.payload.id
         ),
+      };
+    case NominationReducerActions.CLEAR_MOVIES:
+      return {
+        nominations: [],
       };
     default:
       return state;
