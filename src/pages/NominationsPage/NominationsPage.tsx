@@ -2,29 +2,33 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { IMovieMeta } from "../../shared/interfaces";
 import { getMovieDetails } from "../../services/movieservice";
+import SharedNominationItem from "../../components/SharedNominationItem/SharedNominationItem";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
 
 const NominationsPage = () => {
-  const [nominations, setNominations] = useState<IMovieMeta[]>([]);
+  const [nominations, setNominations] = useState<JSX.Element[]>([]);
   const query = useQuery();
 
   useEffect(() => {
-    const data = query.get("nominations");
+    const data = query.get("data");
     const ids = data?.split("-");
     if (ids) {
       (async () => {
         const metaResuts = await Promise.all(
           ids?.map((id: string) => getMovieDetails(id))
         );
-        setNominations(metaResuts);
+        const items = metaResuts.map((movie: IMovieMeta, index: number) => (
+          <SharedNominationItem movie={movie} key={movie.imdbID + index} />
+        ));
+        setNominations(items);
       })();
     }
   }, []);
 
-  return <h1>{JSON.stringify(nominations)}</h1>;
+  return <div>{nominations}</div>;
 };
 
 export default NominationsPage;
