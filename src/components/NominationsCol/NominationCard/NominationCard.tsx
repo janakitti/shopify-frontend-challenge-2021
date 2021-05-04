@@ -27,8 +27,15 @@ const NominationCard = ({ movie }: INominationCardProps) => {
       tint
       onClick={removeNomination}
     >
-      <h1 className="title">{movie.Title}</h1>
-      <h2 className="subtitle">{movie.Year}</h2>
+      <div className="grid-container">
+        <div>
+          <h1 className="title">{movie.Title}</h1>
+          <h2 className="subtitle">{movie.Year}</h2>
+        </div>
+        <div className="delete-column">
+          <img src="./delete.svg" alt="Delete nomination" />
+        </div>
+      </div>
     </Card>
   );
 };

@@ -13,4 +13,34 @@
     @include body-text;
     color: white;
   }
+  .grid-container {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: 80% 1fr;
+
+    .delete-column {
+      margin-right: 1em;
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      img {
+        height: 2em;
+        width: 2em;
+      }
+    }
+    @include breakpoint-min($screen-width-lg) {
+      .delete-column {
+        margin-right: 0;
+        margin-left: auto;
+        display: block;
+        img {
+          height: 1.5em;
+          width: 1.5em;
+        }
+      }
+    }
+  }
 }
