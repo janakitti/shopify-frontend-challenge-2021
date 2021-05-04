@@ -7,6 +7,7 @@ import { IMovieMeta } from "../../shared/interfaces";
 
 const ShareCard = () => {
   const { nominations } = useContext(NominationsContext);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [shareLink, setShareLink] = useState("");
 
   useEffect(() => {
@@ -19,10 +20,11 @@ const ShareCard = () => {
     );
     setShareLink(newShareLink);
   }, [nominations]);
-  return (
-    <div className="movie-card__container">
-      <CustomCard>
-        <div className="share-card__inner-container">
+
+  const generateShareCardContents = ((): JSX.Element => {
+    if (!isSubmitted) {
+      return (
+        <>
           <img
             src="./nominations_complete.svg"
             height={200}
@@ -33,17 +35,47 @@ const ShareCard = () => {
             <h1 className="title">Nominations complete!</h1>
             <p className="body">You can delete nomination if you want.</p>
           </div>
-
+          <div className="button-container">
+            <Button primary onClick={() => setIsSubmitted(true)}>
+              Submit Nominations
+            </Button>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <img
+            src="./nominations_complete.svg"
+            height={200}
+            width={200}
+            alt="Nominations complete"
+          />
+          <div>
+            <h1 className="title">You've got good taste!</h1>
+            <p className="body">
+              Copy the link and share your nominations with the world
+            </p>
+          </div>
           <div className="button-container">
             <TextField
-              label="Search movies"
+              label="Share link"
               labelHidden
               value={shareLink}
               onChange={() => {}}
               prefix={<Icon source={ClipboardMinor} color="base" />}
             />
-            <Button primary>Submit Nominations</Button>
           </div>
+        </>
+      );
+    }
+  })();
+
+  return (
+    <div className="movie-card__container">
+      <CustomCard>
+        <div className="share-card__inner-container">
+          {generateShareCardContents}
         </div>
       </CustomCard>
     </div>
