@@ -1,4 +1,4 @@
-import { TextField, Icon } from "@shopify/polaris";
+import { TextField, Icon, Spinner } from "@shopify/polaris";
 import { SearchMajor } from "@shopify/polaris-icons";
 import { useState, useEffect } from "react";
 import MovieCard from "./MovieCard/MovieCard";
@@ -11,6 +11,7 @@ const SearchCol = () => {
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<IMovieMeta[]>([]);
   const [movieCards, setMovieCards] = useState<JSX.Element[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = (input: string) => {
     setSearchInput(input);
@@ -30,6 +31,7 @@ const SearchCol = () => {
   useEffect(() => {
     (async () => {
       if (debouncedSearch) {
+        setIsLoading(true);
         const queryResults = await queryMovies(debouncedSearch);
         const metaResuts = await Promise.all(
           queryResults?.map((movie: IMovieSearch) =>
@@ -40,6 +42,7 @@ const SearchCol = () => {
       } else {
         setSearchResults([]);
       }
+      setIsLoading(false);
     })();
   }, [debouncedSearch]);
 
@@ -62,29 +65,37 @@ const SearchCol = () => {
         prefix={<Icon source={SearchMajor} color="base" />}
       />
       <div className="search-col__results">
-        {movieCards.length ? (
-          <>{movieCards}</>
+        {isLoading ? (
+          <div className="search-col__results--loading">
+            <Spinner accessibilityLabel="Spinner example" size="large" />
+          </div>
         ) : (
           <>
-            {debouncedSearch ? (
-              <div className="search-col__results--empty">
-                <img
-                  src="./no_results_found.svg"
-                  height={300}
-                  width={300}
-                  alt="No movies found"
-                ></img>
-                <p>No movies found</p>
-              </div>
+            {movieCards.length ? (
+              <>{movieCards}</>
             ) : (
               <div className="search-col__results--empty">
-                <img
-                  src="./begin_search.svg"
-                  height={300}
-                  width={300}
-                  alt="Search for movies"
-                ></img>
-                <p>Search!</p>
+                {debouncedSearch ? (
+                  <>
+                    <img
+                      src="./no_results_found.svg"
+                      height={300}
+                      width={300}
+                      alt="No movies found"
+                    ></img>
+                    <p>No movies found</p>
+                  </>
+                ) : (
+                  <>
+                    <img
+                      src="./begin_search.svg"
+                      height={300}
+                      width={300}
+                      alt="Search for movies"
+                    ></img>
+                    <p>Search!</p>
+                  </>
+                )}
               </div>
             )}
           </>

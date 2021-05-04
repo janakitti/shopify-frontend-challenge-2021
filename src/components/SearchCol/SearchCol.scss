@@ -36,6 +36,12 @@
   width: 100%;
 }
 
+.search-col__results--loading {
+  display: flex;
+  justify-content: center;
+  padding-top: 6em;
+}
+
 .search-col__results--empty {
   padding-top: 2em;
   text-align: center;
