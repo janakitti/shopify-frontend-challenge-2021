@@ -39,6 +39,20 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
       },
     });
   };
+
+  const generateNominateButton = ((): JSX.Element => {
+    const isNominated = checkIfNominated(movie, nominations.nominations);
+    return (
+      <Button
+        primary
+        onClick={nominateMovie}
+        disabled={isNominated || isNominationComplete}
+      >
+        {isNominated ? "Nominated" : "Nominate"}
+      </Button>
+    );
+  })();
+
   return (
     <div className="movie-card__container">
       <CustomCard>
@@ -61,23 +75,7 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
             <div className="movie-card__button-group">
               <ButtonGroup>
                 <Button>View</Button>
-                {checkIfNominated(movie, nominations.nominations) ? (
-                  <Button
-                    primary
-                    onClick={removeNominatedMovie}
-                    disabled={isNominationComplete}
-                  >
-                    Nominated
-                  </Button>
-                ) : (
-                  <Button
-                    primary
-                    onClick={nominateMovie}
-                    disabled={isNominationComplete}
-                  >
-                    Nominate
-                  </Button>
-                )}
+                {generateNominateButton}
               </ButtonGroup>
             </div>
           </div>
