@@ -1,0 +1,22 @@
+.share-card__inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  img {
+    margin: 0 auto;
+    padding: 2em 0;
+  }
+  .title {
+    @include display-sm-text;
+  }
+  .body {
+    @include body-text;
+  }
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1em 0;
+  }
+}

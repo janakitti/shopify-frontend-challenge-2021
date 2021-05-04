@@ -1,13 +1,17 @@
 import { TextField, Icon, Spinner } from "@shopify/polaris";
 import { SearchMajor } from "@shopify/polaris-icons";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import MovieCard from "./MovieCard/MovieCard";
 import { IMovieSearch, IMovieMeta } from "../../shared/interfaces";
 import { queryMovies, getMovieDetails } from "../../services/movieservice";
 import Header from "../Header/Header";
 import useDebounce from "../../shared/useDebounce";
+import { NOMINATION_NUMBER } from "../../shared/constants";
+import ShareCard from "../ShareCard/ShareCard";
+import { NominationsContext } from "../../pages/HomePage/HomePage";
 
 const SearchCol = () => {
+  const { nominations } = useContext(NominationsContext);
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<IMovieMeta[]>([]);
   const [movieCards, setMovieCards] = useState<JSX.Element[]>([]);
@@ -47,7 +51,9 @@ const SearchCol = () => {
   }, [debouncedSearch]);
 
   const resultsSection = ((): JSX.Element => {
-    if (isLoading) {
+    if (nominations.nominations.length === NOMINATION_NUMBER) {
+      return <ShareCard />;
+    } else if (isLoading) {
       return (
         <div className="search-col__results--loading">
           <Spinner accessibilityLabel="Spinner example" size="large" />
