@@ -1,8 +1,16 @@
-import React, { useReducer, createContext } from "react";
+import React, {
+  useReducer,
+  createContext,
+  useCallback,
+  useState,
+  useEffect,
+} from "react";
+import { Toast, Frame } from "@shopify/polaris";
 import Header from "../../components/Header/Header";
 import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
 import { IMovieMeta } from "../../shared/interfaces";
+import { NOMINATION_NUMBER } from "../../shared/constants";
 
 export interface INominationState {
   nominations: IMovieMeta[];
@@ -55,14 +63,32 @@ const HomePage = () => {
     INITIAL_NOMINATION_STATE
   );
 
+  useEffect(() => {
+    if (nominations.nominations.length === NOMINATION_NUMBER) {
+      toggleIsToastActive();
+    }
+  }, [nominations]);
+
+  const [isToastActive, setIsToastActive] = useState(false);
+  const toggleIsToastActive = useCallback(
+    () => setIsToastActive((active) => !active),
+    []
+  );
+  const toastMarkup = isToastActive ? (
+    <Toast content="Nominations complete 🎉" onDismiss={toggleIsToastActive} />
+  ) : null;
+
   return (
     <NominationsContext.Provider value={{ nominations, dispatchNominations }}>
-      <div className="home-wrapper">
-        <div className="home-wrapper__body">
-          <SearchCol />
-          <NominationsCol />
+      <Frame>
+        <div className="home-wrapper">
+          <div className="home-wrapper__body">
+            <SearchCol />
+            <NominationsCol />
+          </div>
         </div>
-      </div>
+        {toastMarkup}
+      </Frame>
     </NominationsContext.Provider>
   );
 };
