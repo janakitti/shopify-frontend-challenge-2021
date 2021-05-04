@@ -61,7 +61,21 @@ const SearchCol = () => {
         onChange={handleSearch}
         prefix={<Icon source={SearchMajor} color="base" />}
       />
-      {movieCards}
+      <div className="search-col__results">
+        {movieCards.length ? (
+          <>{movieCards}</>
+        ) : (
+          <div className="search-col__results--empty">
+            <img
+              src="./no_results_found.svg"
+              height={300}
+              width={300}
+              alt="No movies found"
+            ></img>
+            <p>No movies found</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

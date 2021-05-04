@@ -16,6 +16,12 @@
   font-weight: $display-lg-font-weight;
 }
 
+@mixin display-sm-text {
+  font-size: $display-sm-font-size;
+  line-height: $display-sm-line-height;
+  font-weight: $display-sm-font-weight;
+}
+
 @mixin display-text {
   font-size: $display-font-size;
   line-height: $display-line-height;

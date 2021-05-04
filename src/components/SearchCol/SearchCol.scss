@@ -25,6 +25,21 @@
 .header__logo {
   margin-right: 1em;
 }
+
 .header__title {
   @include header-text;
+}
+
+.results-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.search-col__results--empty {
+  padding-top: 2em;
+  text-align: center;
+  p {
+    @include display-sm-text;
+  }
 }
