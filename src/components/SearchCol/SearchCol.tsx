@@ -46,6 +46,42 @@ const SearchCol = () => {
     })();
   }, [debouncedSearch]);
 
+  const resultsSection = ((): JSX.Element => {
+    if (isLoading) {
+      return (
+        <div className="search-col__results--loading">
+          <Spinner accessibilityLabel="Spinner example" size="large" />
+        </div>
+      );
+    } else if (movieCards.length) {
+      return <>{movieCards}</>;
+    } else if (debouncedSearch) {
+      return (
+        <div className="search-col__results--empty">
+          <img
+            src="./no_results_found.svg"
+            height={300}
+            width={300}
+            alt="No movies found"
+          ></img>
+          <p>No movies found</p>
+        </div>
+      );
+    } else {
+      return (
+        <div className="search-col__results--empty">
+          <img
+            src="./begin_search.svg"
+            height={300}
+            width={300}
+            alt="Search for movies"
+          ></img>
+          <p>Search!</p>
+        </div>
+      );
+    }
+  })();
+
   return (
     <div className="section search-col-wrapper">
       <Header>
@@ -64,43 +100,7 @@ const SearchCol = () => {
         onChange={handleSearch}
         prefix={<Icon source={SearchMajor} color="base" />}
       />
-      <div className="search-col__results">
-        {isLoading ? (
-          <div className="search-col__results--loading">
-            <Spinner accessibilityLabel="Spinner example" size="large" />
-          </div>
-        ) : (
-          <>
-            {movieCards.length ? (
-              <>{movieCards}</>
-            ) : (
-              <div className="search-col__results--empty">
-                {debouncedSearch ? (
-                  <>
-                    <img
-                      src="./no_results_found.svg"
-                      height={300}
-                      width={300}
-                      alt="No movies found"
-                    ></img>
-                    <p>No movies found</p>
-                  </>
-                ) : (
-                  <>
-                    <img
-                      src="./begin_search.svg"
-                      height={300}
-                      width={300}
-                      alt="Search for movies"
-                    ></img>
-                    <p>Search!</p>
-                  </>
-                )}
-              </div>
-            )}
-          </>
-        )}
-      </div>
+      <div className="search-col__results">{resultsSection}</div>
     </div>
   );
 };
