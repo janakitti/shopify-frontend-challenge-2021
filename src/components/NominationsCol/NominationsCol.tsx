@@ -5,12 +5,14 @@ import { UserContext } from "../../AppContext";
 import Header from "../Header/Header";
 
 const NominationsCol = () => {
-  const { user: nominations } = useContext(UserContext);
+  const {
+    user: { username, nominations },
+  } = useContext(UserContext);
   const [nominationCards, setNominationCards] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
     setNominationCards(
-      nominations.nominations.map((movie: IMovieMeta) => (
+      nominations.map((movie: IMovieMeta) => (
         <NominationCard movie={movie} key={movie.imdbID} />
       ))
     );
@@ -18,7 +20,7 @@ const NominationsCol = () => {
 
   return (
     <div className="section nomination-col-wrapper">
-      <Header>the nommies</Header>
+      <Header>{username}</Header>
       {nominationCards}
     </div>
   );
