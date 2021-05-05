@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Icon } from "@shopify/polaris";
-import { PlayCircleMajor } from "@shopify/polaris-icons";
+import { PlayCircleMajor, FavoriteMajor } from "@shopify/polaris-icons";
 import CustomCard from "../../Card/Card";
 import { IMovieMeta } from "../../../shared/interfaces";
 import { checkIfNominated } from "../../../shared/utils";
@@ -76,7 +76,15 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
               <h2>
                 {movie.Year} &bull; {movie.Genre}
               </h2>
-              <p className="movie-card__plot">{movie.Plot}</p>
+              <div className="rating-container">
+                <img src="./star.svg" alt="movie rating" className="star" />
+                <span>
+                  {movie.imdbRating} &bull; {movie.Rated}
+                </span>
+              </div>
+              <div className="movie-card__plot-container">
+                <p className="movie-card__plot">{movie.Plot}</p>
+              </div>
             </div>
             <div className="movie-card__button-group">
               {generateNominateButton}
