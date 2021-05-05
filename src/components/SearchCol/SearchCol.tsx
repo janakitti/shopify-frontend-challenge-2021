@@ -8,11 +8,11 @@ import Header from "../Header/Header";
 import useDebounce from "../../shared/useDebounce";
 import { NOMINATION_NUMBER } from "../../shared/constants";
 import ShareCard from "../ShareCard/ShareCard";
-import { NominationsContext } from "../../AppContext";
+import { UserContext } from "../../AppContext";
 import { isIMovieMeta } from "../../shared/utils";
 
 const SearchCol = () => {
-  const { nominations } = useContext(NominationsContext);
+  const { nominations } = useContext(UserContext);
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<IMovieMeta[]>([]);
   const [movieCards, setMovieCards] = useState<JSX.Element[]>([]);

@@ -5,17 +5,14 @@ import CustomCard from "../../Card/Card";
 import { IMovieMeta } from "../../../shared/interfaces";
 import { checkIfNominated } from "../../../shared/utils";
 import { NOMINATION_NUMBER } from "../../../shared/constants";
-import {
-  NominationsContext,
-  NominationReducerActions,
-} from "../../../AppContext";
+import { UserContext, UserReducerActions } from "../../../AppContext";
 
 interface IMovieCardProps {
   movie: IMovieMeta;
 }
 
 const MovieCard = ({ movie }: IMovieCardProps) => {
-  const { nominations, dispatchNominations } = useContext(NominationsContext);
+  const { nominations, dispatchNominations } = useContext(UserContext);
   const [isNominationComplete, setIsNominationComplete] = useState(false);
 
   useEffect(() => {
@@ -26,7 +23,7 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
 
   const nominateMovie = () => {
     dispatchNominations({
-      type: NominationReducerActions.ADD_MOVIE,
+      type: UserReducerActions.ADD_MOVIE,
       payload: {
         movie,
       },
@@ -34,7 +31,7 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
   };
   const removeNominatedMovie = () => {
     dispatchNominations({
-      type: NominationReducerActions.REMOVE_MOVIE,
+      type: UserReducerActions.REMOVE_MOVIE,
       payload: {
         id: movie.imdbID,
       },

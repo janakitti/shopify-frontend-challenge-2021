@@ -12,10 +12,10 @@ import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
 import { IMovieMeta } from "../../shared/interfaces";
 import { NOMINATION_NUMBER } from "../../shared/constants";
-import { NominationsContext } from "../../AppContext";
+import { UserContext } from "../../AppContext";
 
 const HomePage = () => {
-  const { nominations } = useContext(NominationsContext);
+  const { nominations } = useContext(UserContext);
 
   useEffect(() => {
     if (nominations.nominations.length === NOMINATION_NUMBER) {

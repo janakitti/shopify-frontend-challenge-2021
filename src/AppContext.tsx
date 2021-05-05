@@ -1,41 +1,38 @@
-import { useReducer, createContext, ReactChildren } from "react";
+import { useReducer, createContext } from "react";
 import { IMovieMeta } from "./shared/interfaces";
 
-export interface INominationState {
+export interface IUserState {
   nominations: IMovieMeta[];
 }
 
-const INITIAL_NOMINATION_STATE: INominationState = {
+const INITIAL_USER_STATE: IUserState = {
   nominations: [],
 };
 
-export enum NominationReducerActions {
+export enum UserReducerActions {
   ADD_MOVIE = "ADD_MOVIE",
   REMOVE_MOVIE = "REMOVE_MOVIE",
   CLEAR_MOVIES = "CLEAR_MOVIES",
 }
 
-export type TNominationAction =
-  | { type: NominationReducerActions.ADD_MOVIE; payload: { movie: IMovieMeta } }
-  | { type: NominationReducerActions.REMOVE_MOVIE; payload: { id: string } }
-  | { type: NominationReducerActions.CLEAR_MOVIES };
+export type TUserAction =
+  | { type: UserReducerActions.ADD_MOVIE; payload: { movie: IMovieMeta } }
+  | { type: UserReducerActions.REMOVE_MOVIE; payload: { id: string } }
+  | { type: UserReducerActions.CLEAR_MOVIES };
 
-const nominationReducer = (
-  state: INominationState,
-  action: TNominationAction
-): INominationState => {
+const userReducer = (state: IUserState, action: TUserAction): IUserState => {
   switch (action.type) {
-    case NominationReducerActions.ADD_MOVIE:
+    case UserReducerActions.ADD_MOVIE:
       return {
         nominations: [...state.nominations, action.payload.movie],
       };
-    case NominationReducerActions.REMOVE_MOVIE:
+    case UserReducerActions.REMOVE_MOVIE:
       return {
         nominations: state.nominations.filter(
           (m: IMovieMeta) => m.imdbID !== action.payload.id
         ),
       };
-    case NominationReducerActions.CLEAR_MOVIES:
+    case UserReducerActions.CLEAR_MOVIES:
       return {
         nominations: [],
       };
@@ -44,11 +41,11 @@ const nominationReducer = (
   }
 };
 
-export const NominationsContext = createContext<{
-  nominations: INominationState;
-  dispatchNominations: React.Dispatch<TNominationAction>;
+export const UserContext = createContext<{
+  nominations: IUserState;
+  dispatchNominations: React.Dispatch<TUserAction>;
 }>({
-  nominations: INITIAL_NOMINATION_STATE,
+  nominations: INITIAL_USER_STATE,
   dispatchNominations: () => null,
 });
 
@@ -58,13 +55,13 @@ interface IAppContextProps {
 
 const AppProvider = ({ children }: IAppContextProps) => {
   const [nominations, dispatchNominations] = useReducer(
-    nominationReducer,
-    INITIAL_NOMINATION_STATE
+    userReducer,
+    INITIAL_USER_STATE
   );
   return (
-    <NominationsContext.Provider value={{ nominations, dispatchNominations }}>
+    <UserContext.Provider value={{ nominations, dispatchNominations }}>
       {children}
-    </NominationsContext.Provider>
+    </UserContext.Provider>
   );
 };
 

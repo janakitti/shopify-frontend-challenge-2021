@@ -1,21 +1,18 @@
 import { useContext } from "react";
 import Card from "../../Card/Card";
 import { IMovieMeta } from "../../../shared/interfaces";
-import {
-  NominationsContext,
-  NominationReducerActions,
-} from "../../../AppContext";
+import { UserContext, UserReducerActions } from "../../../AppContext";
 
 interface INominationCardProps {
   movie: IMovieMeta;
 }
 
 const NominationCard = ({ movie }: INominationCardProps) => {
-  const { dispatchNominations } = useContext(NominationsContext);
+  const { dispatchNominations } = useContext(UserContext);
 
   const removeNomination = () => {
     dispatchNominations({
-      type: NominationReducerActions.REMOVE_MOVIE,
+      type: UserReducerActions.REMOVE_MOVIE,
       payload: { id: movie.imdbID },
     });
   };

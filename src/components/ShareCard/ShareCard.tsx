@@ -2,11 +2,11 @@ import { useContext, useEffect, useState, useCallback } from "react";
 import { Button, TextField, Icon, Toast, Frame } from "@shopify/polaris";
 import { ClipboardMinor } from "@shopify/polaris-icons";
 import CustomCard from "../Card/Card";
-import { NominationsContext, NominationReducerActions } from "../../AppContext";
+import { UserContext, UserReducerActions } from "../../AppContext";
 import { IMovieMeta } from "../../shared/interfaces";
 
 const ShareCard = () => {
-  const { nominations, dispatchNominations } = useContext(NominationsContext);
+  const { nominations, dispatchNominations } = useContext(UserContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [shareLink, setShareLink] = useState("");
 
@@ -31,7 +31,7 @@ const ShareCard = () => {
   }, [nominations]);
 
   const restart = () => {
-    dispatchNominations({ type: NominationReducerActions.CLEAR_MOVIES });
+    dispatchNominations({ type: UserReducerActions.CLEAR_MOVIES });
   };
 
   const copyShareLink = () => {

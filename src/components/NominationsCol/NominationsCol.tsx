@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import NominationCard from "../NominationsCol/NominationCard/NominationCard";
 import { IMovieMeta } from "../../shared/interfaces";
-import { NominationsContext } from "../../AppContext";
+import { UserContext } from "../../AppContext";
 import Header from "../Header/Header";
 
 const NominationsCol = () => {
-  const { nominations } = useContext(NominationsContext);
+  const { nominations } = useContext(UserContext);
   const [nominationCards, setNominationCards] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
