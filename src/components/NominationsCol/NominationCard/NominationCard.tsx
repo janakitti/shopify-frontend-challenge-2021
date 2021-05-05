@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Card from "../../Card/Card";
 import { IMovieMeta } from "../../../shared/interfaces";
 import { UserContext, UserReducerActions } from "../../../AppContext";
+import PopAnimationWrapper from "../../../components/Motion/PopAnimationWrapper";
 
 interface INominationCardProps {
   movie: IMovieMeta;
@@ -18,22 +19,24 @@ const NominationCard = ({ movie }: INominationCardProps) => {
   };
 
   return (
-    <Card className="nomination-card__container" bgImage={movie.Poster} tint>
-      <div className="grid-container">
-        <div>
-          <h1 className="title">{movie.Title}</h1>
-          <h2 className="subtitle">{movie.Year}</h2>
+    <PopAnimationWrapper delay={0}>
+      <Card className="nomination-card__container" bgImage={movie.Poster} tint>
+        <div className="grid-container">
+          <div>
+            <h1 className="title">{movie.Title}</h1>
+            <h2 className="subtitle">{movie.Year}</h2>
+          </div>
+          <div className="delete-column">
+            <img
+              src="./delete.svg"
+              alt="Delete nomination"
+              className="delete-icon"
+              onClick={removeNomination}
+            />
+          </div>
         </div>
-        <div className="delete-column">
-          <img
-            src="./delete.svg"
-            alt="Delete nomination"
-            className="delete-icon"
-            onClick={removeNomination}
-          />
-        </div>
-      </div>
-    </Card>
+      </Card>
+    </PopAnimationWrapper>
   );
 };
 
