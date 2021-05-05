@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { Button, TextField, Icon } from "@shopify/polaris";
+import { useContext, useEffect, useState, useCallback } from "react";
+import { Button, TextField, Icon, Toast, Frame } from "@shopify/polaris";
 import { ClipboardMinor } from "@shopify/polaris-icons";
 import CustomCard from "../Card/Card";
 import {
@@ -12,6 +12,15 @@ const ShareCard = () => {
   const { nominations, dispatchNominations } = useContext(NominationsContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [shareLink, setShareLink] = useState("");
+
+  const [isToastActive, setIsToastActive] = useState(false);
+  const toggleIsToastActive = useCallback(
+    () => setIsToastActive((active) => !active),
+    []
+  );
+  const toastMarkup = isToastActive ? (
+    <Toast content="Copied 📋" onDismiss={toggleIsToastActive} />
+  ) : null;
 
   useEffect(() => {
     const newShareLink = nominations.nominations.reduce(
@@ -30,6 +39,7 @@ const ShareCard = () => {
 
   const copyShareLink = () => {
     navigator.clipboard.writeText(shareLink);
+    toggleIsToastActive();
   };
 
   const generateShareCardContents = ((): JSX.Element => {
@@ -90,13 +100,16 @@ const ShareCard = () => {
   })();
 
   return (
-    <div className="movie-card__container">
-      <CustomCard>
-        <div className="share-card__inner-container">
-          {generateShareCardContents}
-        </div>
-      </CustomCard>
-    </div>
+    <Frame>
+      <div className="movie-card__container">
+        <CustomCard>
+          <div className="share-card__inner-container">
+            {generateShareCardContents}
+          </div>
+        </CustomCard>
+      </div>
+      {toastMarkup}
+    </Frame>
   );
 };
 
