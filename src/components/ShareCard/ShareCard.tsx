@@ -19,13 +19,17 @@ const ShareCard = () => {
         acc += cur.imdbID + "-";
         return acc;
       },
-      "baseurl/"
+      `${process.env.REACT_APP_BASE_URL}/nominations?data=`
     );
     setShareLink(newShareLink.slice(0, newShareLink.length - 1));
   }, [nominations]);
 
   const restart = () => {
     dispatchNominations({ type: NominationReducerActions.CLEAR_MOVIES });
+  };
+
+  const copyShareLink = () => {
+    navigator.clipboard.writeText(shareLink);
   };
 
   const generateShareCardContents = ((): JSX.Element => {
@@ -65,13 +69,15 @@ const ShareCard = () => {
             </p>
           </div>
           <div className="button-container">
-            <TextField
-              label="Share link"
-              labelHidden
-              value={shareLink}
-              onChange={() => {}}
-              prefix={<Icon source={ClipboardMinor} color="base" />}
-            />
+            <div onClick={copyShareLink}>
+              <TextField
+                label="Share link"
+                labelHidden
+                value={shareLink}
+                onChange={() => {}}
+                prefix={<Icon source={ClipboardMinor} color="base" />}
+              />
+            </div>
           </div>
           <div className="button-container">
             <Button outline size="slim" onClick={restart}>
