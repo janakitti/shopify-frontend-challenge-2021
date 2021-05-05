@@ -32,7 +32,11 @@ const NominationsPage = () => {
         const items = metaResuts
           .filter(isIMovieMeta)
           .map((movie: IMovieMeta, index: number) => (
-            <SharedNominationItem movie={movie} key={movie.imdbID + index} />
+            <SharedNominationItem
+              movie={movie}
+              key={movie.imdbID}
+              index={index}
+            />
           ));
         setUsername(username);
         setNominations(items);
