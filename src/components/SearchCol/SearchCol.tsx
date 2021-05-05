@@ -31,7 +31,7 @@ const SearchCol = () => {
     })();
   }, [searchResults]);
 
-  const debouncedSearch = useDebounce(searchInput, 1000);
+  const debouncedSearch = useDebounce(searchInput, 500);
 
   useEffect(() => {
     (async () => {
