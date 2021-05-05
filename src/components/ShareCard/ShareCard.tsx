@@ -21,7 +21,7 @@ const ShareCard = () => {
       },
       "baseurl/"
     );
-    setShareLink(newShareLink);
+    setShareLink(newShareLink.slice(0, newShareLink.length - 1));
   }, [nominations]);
 
   const restart = () => {
