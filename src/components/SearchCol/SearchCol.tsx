@@ -11,6 +11,7 @@ import ShareCard from "../ShareCard/ShareCard";
 import { UserContext } from "../../AppContext";
 import { isIMovieMeta } from "../../shared/utils";
 import UserAvatar from "../UserAvatar/UserAvatar";
+import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 
 const SearchCol = () => {
   const { user: nominations } = useContext(UserContext);
@@ -104,18 +105,22 @@ const SearchCol = () => {
           </div>
         </div>
       </Header>
-      <h1 className="title">Nominate</h1>
-      <p className="body">
-        It is a long established fact that a reader will be distracted by the
-        readable content of a page when looking at its layout. The point of
-        using Lorem Ipsum is that it has a more-or-less normal distribution
-      </p>
-      <TextField
-        label="Search movies"
-        value={searchInput}
-        onChange={handleSearch}
-        prefix={<Icon source={SearchMajor} color="base" />}
-      />
+      <PopAnimationWrapper delay={0}>
+        <h1 className="title">Nominate</h1>
+        <p className="body">
+          It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking at its layout. The point of
+          using Lorem Ipsum is that it has a more-or-less normal distribution
+        </p>
+      </PopAnimationWrapper>
+      <PopAnimationWrapper delay={0.1}>
+        <TextField
+          label="Search movies"
+          value={searchInput}
+          onChange={handleSearch}
+          prefix={<Icon source={SearchMajor} color="base" />}
+        />
+      </PopAnimationWrapper>
       <div className="search-col__results">{resultsSection}</div>
     </div>
   );

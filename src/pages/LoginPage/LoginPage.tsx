@@ -30,7 +30,7 @@ const LoginPage = () => {
 
   return (
     <div className="login-card-container">
-      <PopAnimationWrapper>
+      <PopAnimationWrapper delay={0}>
         <CustomCard className="login-card">
           <div className="login-card__logo-container">
             <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
