@@ -4,7 +4,7 @@ import { TextField, Button, Form, InlineError } from "@shopify/polaris";
 import { USER_PASSWORD } from "../../shared/constants";
 import { useHistory } from "react-router-dom";
 import { UserContext, UserReducerActions } from "../../AppContext";
-import { motion } from "framer-motion";
+import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 
 const LoginPage = () => {
   let history = useHistory();
@@ -30,15 +30,7 @@ const LoginPage = () => {
 
   return (
     <div className="login-card-container">
-      <motion.div
-        initial={{ scale: 0.5 }}
-        animate={{ scale: 1 }}
-        transition={{
-          type: "spring",
-          stiffness: 260,
-          damping: 20,
-        }}
-      >
+      <PopAnimationWrapper>
         <CustomCard className="login-card">
           <div className="login-card__logo-container">
             <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
@@ -69,7 +61,7 @@ const LoginPage = () => {
             </div>
           </Form>
         </CustomCard>
-      </motion.div>
+      </PopAnimationWrapper>
     </div>
   );
 };
