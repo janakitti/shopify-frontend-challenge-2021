@@ -22,12 +22,26 @@
   }
 }
 
+.search-col-wrapper__header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .header__logo {
   margin-right: 1em;
 }
 
 .header__title {
   @include header-text;
+}
+
+.header__avatar {
+  display: block;
+  @include breakpoint-min($screen-width-lg) {
+    display: none;
+  }
 }
 
 .results-container {

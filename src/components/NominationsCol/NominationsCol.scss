@@ -2,3 +2,10 @@
   border-bottom: 1.5em solid $accent;
   padding: 0 1em;
 }
+
+.nomination-col__header-container {
+  display: none;
+  @include breakpoint-min($screen-width-lg) {
+    display: block;
+  }
+}

@@ -10,6 +10,7 @@ import { NOMINATION_NUMBER } from "../../shared/constants";
 import ShareCard from "../ShareCard/ShareCard";
 import { UserContext } from "../../AppContext";
 import { isIMovieMeta } from "../../shared/utils";
+import UserAvatar from "../UserAvatar/UserAvatar";
 
 const SearchCol = () => {
   const { user: nominations } = useContext(UserContext);
@@ -92,8 +93,16 @@ const SearchCol = () => {
   return (
     <div className="section search-col-wrapper">
       <Header>
-        <img src="./shopify_logo.svg" className="header__logo" alt="logo" />
-        <h1 className="header__title">the shoppies</h1>
+        <div className="search-col-wrapper__header-container">
+          <div>
+            <img src="./shopify_logo.svg" className="header__logo" alt="logo" />
+            <h1 className="header__title">the shoppies</h1>
+          </div>
+
+          <div className="header__avatar">
+            <UserAvatar />
+          </div>
+        </div>
       </Header>
       <h1 className="title">Nominate</h1>
       <p className="body">

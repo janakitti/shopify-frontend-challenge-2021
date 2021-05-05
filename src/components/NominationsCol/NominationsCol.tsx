@@ -21,9 +21,12 @@ const NominationsCol = () => {
 
   return (
     <div className="section nomination-col-wrapper">
-      <Header>
-        <UserAvatar />
-      </Header>
+      <div className="nomination-col__header-container">
+        <Header>
+          <UserAvatar />
+        </Header>
+      </div>
+
       {nominationCards}
     </div>
   );
