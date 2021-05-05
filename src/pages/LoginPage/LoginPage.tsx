@@ -4,6 +4,7 @@ import { TextField, Button, Form, InlineError } from "@shopify/polaris";
 import { USER_PASSWORD } from "../../shared/constants";
 import { useHistory } from "react-router-dom";
 import { UserContext, UserReducerActions } from "../../AppContext";
+import { motion } from "framer-motion";
 
 const LoginPage = () => {
   let history = useHistory();
@@ -29,36 +30,46 @@ const LoginPage = () => {
 
   return (
     <div className="login-card-container">
-      <CustomCard className="login-card">
-        <div className="login-card__logo-container">
-          <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
-          <h1 className="logo__name">the shoppies</h1>
-        </div>
-        <h2>Sign in to nominate your favourite movies</h2>
-        <Form onSubmit={handleLogin}>
-          <div className="form-container">
-            <TextField
-              label="Username"
-              value={username}
-              onChange={setUsername}
-            />
-            <TextField
-              label="Password"
-              type="password"
-              value={password}
-              onChange={setPassword}
-              aria-describedby="password-field"
-            />
-            {erroMsg && (
-              <InlineError message={erroMsg} fieldID="password-field" />
-            )}
-
-            <Button primary fullWidth submit>
-              Log in
-            </Button>
+      <motion.div
+        initial={{ scale: 0.5 }}
+        animate={{ scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+        }}
+      >
+        <CustomCard className="login-card">
+          <div className="login-card__logo-container">
+            <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
+            <h1 className="logo__name">the shoppies</h1>
           </div>
-        </Form>
-      </CustomCard>
+          <h2>Sign in to nominate your favourite movies</h2>
+          <Form onSubmit={handleLogin}>
+            <div className="form-container">
+              <TextField
+                label="Username"
+                value={username}
+                onChange={setUsername}
+              />
+              <TextField
+                label="Password"
+                type="password"
+                value={password}
+                onChange={setPassword}
+                aria-describedby="password-field"
+              />
+              {erroMsg && (
+                <InlineError message={erroMsg} fieldID="password-field" />
+              )}
+
+              <Button primary fullWidth submit>
+                Log in
+              </Button>
+            </div>
+          </Form>
+        </CustomCard>
+      </motion.div>
     </div>
   );
 };
