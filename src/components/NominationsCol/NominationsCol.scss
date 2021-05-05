@@ -1,6 +1,9 @@
 .nomination-col-wrapper {
-  border-bottom: 1.5em solid $accent;
   padding: 0 1em;
+}
+
+.nomination-col-wrapper--populated {
+  border-bottom: 1.5em solid $accent;
 }
 
 .nomination-col__header-container {

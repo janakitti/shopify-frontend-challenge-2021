@@ -20,13 +20,16 @@ const NominationsCol = () => {
   }, [nominations]);
 
   return (
-    <div className="section nomination-col-wrapper">
+    <div
+      className={`section nomination-col-wrapper ${
+        nominations.length ? "nomination-col-wrapper--populated" : null
+      }`}
+    >
       <div className="nomination-col__header-container">
         <Header>
           <UserAvatar />
         </Header>
       </div>
-
       {nominationCards}
     </div>
   );
