@@ -1,9 +1,30 @@
-.shared-nominations__container {
+.shared-nominations__page-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  @include breakpoint-min($screen-width-xl) {
-    flex-direction: row;
-  }
+  justify-content: center;
+  text-align: center;
   height: 100vh;
+}
+
+.shared-nominations__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.shared-nominations__logo-container {
+  @include logo;
+}
+
+.shared-nominations__title-container {
+  padding: 2em;
+  .title {
+    @include display-text;
+  }
+}
+
+.shared-nominations__button-container {
+  padding: 2em;
 }
