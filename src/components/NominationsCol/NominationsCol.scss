@@ -2,3 +2,13 @@
   border-bottom: 1.5em solid $accent;
   padding: 0 1em;
 }
+.username-container {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  p {
+    @include header-text;
+    margin-left: 1em;
+    line-height: 2em;
+  }
+}
