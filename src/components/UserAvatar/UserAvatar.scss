@@ -1,0 +1,13 @@
+.username-container {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  p {
+    @include header-text;
+    margin-left: 1em;
+    line-height: 2em;
+  }
+  button {
+    margin-left: 1em;
+  }
+}

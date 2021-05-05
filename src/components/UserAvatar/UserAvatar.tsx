@@ -1,13 +1,25 @@
 import { useContext } from "react";
-import { Avatar } from "@shopify/polaris";
-import { UserContext } from "../../AppContext";
+import { Avatar, Button } from "@shopify/polaris";
+import { UserContext, UserReducerActions } from "../../AppContext";
+import { useHistory } from "react-router-dom";
 
 const UserAvatar = () => {
+  let history = useHistory();
   const {
     user: { username },
+    dispatchUser,
   } = useContext(UserContext);
+
+  const handleLogout = () => {
+    dispatchUser({ type: UserReducerActions.LOGOUT });
+    history.push("/");
+  };
+
   return (
     <div className="username-container">
+      <Button outline size="slim" onClick={handleLogout}>
+        Logout
+      </Button>
       <p>{username}</p>
       <Avatar
         size="small"
