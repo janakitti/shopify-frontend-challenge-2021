@@ -53,39 +53,54 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
     );
   })();
 
+  const generateMoviePoster = ((): JSX.Element => {
+    if (movie.Poster === "N/A") {
+      return (
+        <div className="movie-card__poster-container">
+          <Icon source={PlayCircleMajor} color="subdued" />
+        </div>
+      );
+    } else {
+      return (
+        <img
+          className="movie-card__poster-container"
+          src={movie.Poster}
+          alt={`${movie.Title} poster`}
+        />
+      );
+    }
+  })();
+
+  const generateMovieInfo = ((): JSX.Element => {
+    const imdbRating =
+      movie.imdbRating === "N/A" ? "No rating" : movie.imdbRating;
+    const rated = movie.Rated === "N/A" ? "Not rated" : movie.Rated;
+    return (
+      <div className="movie-card__info-col-top">
+        <h1 className="movie-card__title">{movie.Title}</h1>
+        <h2>
+          {movie.Year} &bull; {movie.Genre}
+        </h2>
+        <div className="rating-container">
+          <img src="./star.svg" alt="movie rating" className="star" />
+          <span>
+            {imdbRating} &bull; {rated}
+          </span>
+        </div>
+        <div className="movie-card__plot-container">
+          <p className="movie-card__plot">{movie.Plot}</p>
+        </div>
+      </div>
+    );
+  })();
+
   return (
     <div className="movie-card__container">
       <CustomCard>
         <div className="movie-card">
-          <div className="movie-card__poster-col">
-            {movie.Poster === "N/A" ? (
-              <div className="movie-card__poster-container">
-                <Icon source={PlayCircleMajor} color="subdued" />
-              </div>
-            ) : (
-              <img
-                className="movie-card__poster-container"
-                src={movie.Poster}
-                alt={`${movie.Title} poster`}
-              />
-            )}
-          </div>
+          <div className="movie-card__poster-col">{generateMoviePoster}</div>
           <div className="movie-card__info-col">
-            <div className="movie-card__info-col-top">
-              <h1 className="movie-card__title">{movie.Title}</h1>
-              <h2>
-                {movie.Year} &bull; {movie.Genre}
-              </h2>
-              <div className="rating-container">
-                <img src="./star.svg" alt="movie rating" className="star" />
-                <span>
-                  {movie.imdbRating} &bull; {movie.Rated}
-                </span>
-              </div>
-              <div className="movie-card__plot-container">
-                <p className="movie-card__plot">{movie.Plot}</p>
-              </div>
-            </div>
+            {generateMovieInfo}
             <div className="movie-card__button-group">
               {generateNominateButton}
             </div>
