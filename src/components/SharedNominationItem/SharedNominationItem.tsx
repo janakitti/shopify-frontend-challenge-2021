@@ -6,7 +6,7 @@ interface ISharedNominationItemProps {
 
 const SharedNominationItem = ({ movie }: ISharedNominationItemProps) => {
   return (
-    <div>
+    <div className="nomination-item__container">
       <img src={movie.Poster} alt="Poster" />
       <h1>{movie.Title}</h1>
       <h2>{movie.Year}</h2>

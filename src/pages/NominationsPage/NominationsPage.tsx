@@ -28,7 +28,7 @@ const NominationsPage = () => {
     }
   }, []);
 
-  return <div>{nominations}</div>;
+  return <div className="shared-nominations__container">{nominations}</div>;
 };
 
 export default NominationsPage;

@@ -1,0 +1,25 @@
+.nomination-item__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1em;
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: grey;
+    height: 11em;
+    width: 8em;
+    border-radius: $card-border-radius;
+    box-shadow: $poster-shadow;
+    object-fit: fill;
+  }
+  h1 {
+    @include header-text;
+    margin-top: 1em;
+  }
+  h2 {
+    @include body-text;
+  }
+}

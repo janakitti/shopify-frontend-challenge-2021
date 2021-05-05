@@ -1,0 +1,9 @@
+.shared-nominations__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @include breakpoint-min($screen-width-xl) {
+    flex-direction: row;
+  }
+  height: 100vh;
+}
