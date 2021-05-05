@@ -18,10 +18,11 @@
 }
 
 .movie-card__poster-container {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  background-color: $empty;
   height: 11em;
   width: 8em;
   border-radius: $card-border-radius;

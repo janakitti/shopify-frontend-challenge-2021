@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { Button } from "@shopify/polaris";
+import { Button, Icon } from "@shopify/polaris";
+import { PlayCircleMajor } from "@shopify/polaris-icons";
 import CustomCard from "../../Card/Card";
 import { IMovieMeta } from "../../../shared/interfaces";
 import { checkIfNominated } from "../../../shared/utils";
@@ -58,11 +59,17 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
       <CustomCard>
         <div className="movie-card">
           <div className="movie-card__poster-col">
-            <img
-              className="movie-card__poster-container"
-              src={movie.Poster}
-              alt={`${movie.Title} poster`}
-            />
+            {movie.Poster === "N/A" ? (
+              <div className="movie-card__poster-container">
+                <Icon source={PlayCircleMajor} color="subdued" />
+              </div>
+            ) : (
+              <img
+                className="movie-card__poster-container"
+                src={movie.Poster}
+                alt={`${movie.Title} poster`}
+              />
+            )}
           </div>
           <div className="movie-card__info-col">
             <div className="movie-card__info-col-top">
