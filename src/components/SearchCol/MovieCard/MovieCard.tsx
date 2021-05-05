@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { ButtonGroup, Button } from "@shopify/polaris";
+import { Button } from "@shopify/polaris";
 import CustomCard from "../../Card/Card";
 import { IMovieMeta } from "../../../shared/interfaces";
 import { checkIfNominated } from "../../../shared/utils";
@@ -73,10 +73,7 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
               <p className="movie-card__plot">{movie.Plot}</p>
             </div>
             <div className="movie-card__button-group">
-              <ButtonGroup>
-                <Button>View</Button>
-                {generateNominateButton}
-              </ButtonGroup>
+              {generateNominateButton}
             </div>
           </div>
         </div>
