@@ -1,8 +1,9 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback, useContext } from "react";
 import CustomCard from "../../components/Card/Card";
 import { TextField, Button, Form, InlineError } from "@shopify/polaris";
 import { USER_PASSWORD } from "../../shared/constants";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../../AppContext";
 
 const LoginPage = () => {
   let history = useHistory();
