@@ -34,7 +34,7 @@ const LoginPage = () => {
           <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
           <h1 className="logo__name">the shoppies</h1>
         </div>
-        <h2>Sign in to nominate</h2>
+        <h2>Sign in to nominate your favourite movies</h2>
         <Form onSubmit={handleLogin}>
           <div className="form-container">
             <TextField
