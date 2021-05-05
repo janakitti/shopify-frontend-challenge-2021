@@ -1,0 +1,31 @@
+.login-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.login-card {
+  height: 26em;
+  width: 25em;
+  padding: 2em;
+  margin: auto;
+  text-align: center;
+  .padding-container {
+    padding: 2em;
+  }
+  h2 {
+    margin-bottom: 2em;
+  }
+}
+
+.form-container {
+  & > div {
+    margin-bottom: 1em;
+  }
+  & > button {
+    margin-top: 2em;
+  }
+}
