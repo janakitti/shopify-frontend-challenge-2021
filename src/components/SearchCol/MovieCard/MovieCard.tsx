@@ -77,7 +77,7 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
     const rated = movie.Rated === "N/A" ? "Not rated" : movie.Rated;
     return (
       <div className="movie-card__info-col-top">
-        <h1 className="movie-card__title">{movie.Title}</h1>
+        <h1 className="movie-title">{movie.Title}</h1>
         <h2>
           {movie.Year} &bull; {movie.Genre}
         </h2>
@@ -87,8 +87,8 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
             {imdbRating} &bull; {rated}
           </span>
         </div>
-        <div className="movie-card__plot-container">
-          <p className="movie-card__plot">{movie.Plot}</p>
+        <div className="plot-container">
+          <p className="plot">{movie.Plot}</p>
         </div>
       </div>
     );
