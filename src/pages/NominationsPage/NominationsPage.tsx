@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { IMovieMeta } from "../../shared/interfaces";
 import { getMovieDetails } from "../../services/movieservice";
 import SharedNominationItem from "../../components/SharedNominationItem/SharedNominationItem";
+import { isIMovieMeta } from "../../shared/utils";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -20,9 +21,11 @@ const NominationsPage = () => {
         const metaResuts = await Promise.all(
           ids?.map((id: string) => getMovieDetails(id))
         );
-        const items = metaResuts.map((movie: IMovieMeta, index: number) => (
-          <SharedNominationItem movie={movie} key={movie.imdbID + index} />
-        ));
+        const items = metaResuts
+          .filter(isIMovieMeta)
+          .map((movie: IMovieMeta, index: number) => (
+            <SharedNominationItem movie={movie} key={movie.imdbID + index} />
+          ));
         setNominations(items);
       })();
     }

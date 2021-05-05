@@ -9,6 +9,7 @@ import useDebounce from "../../shared/useDebounce";
 import { NOMINATION_NUMBER } from "../../shared/constants";
 import ShareCard from "../ShareCard/ShareCard";
 import { NominationsContext } from "../../pages/HomePage/HomePage";
+import { isIMovieMeta } from "../../shared/utils";
 
 const SearchCol = () => {
   const { nominations } = useContext(NominationsContext);
@@ -42,7 +43,7 @@ const SearchCol = () => {
             getMovieDetails(movie.imdbID)
           )
         );
-        setSearchResults(metaResuts);
+        setSearchResults(metaResuts.filter(isIMovieMeta));
       } else {
         setSearchResults([]);
       }
