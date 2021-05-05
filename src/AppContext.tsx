@@ -7,7 +7,7 @@ export interface IUserState {
 }
 
 const INITIAL_USER_STATE: IUserState = {
-  username: "",
+  username: "Guest",
   nominations: [],
 };
 
