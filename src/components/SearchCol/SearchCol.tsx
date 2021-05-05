@@ -40,10 +40,10 @@ const SearchCol = () => {
       if (debouncedSearch) {
         setIsLoading(true);
         const queryResults = await queryMovies(debouncedSearch);
+        const imdbIds = queryResults.map((movie: IMovieSearch) => movie.imdbID);
+        const uniqueImdbIds = Array.from(new Set(imdbIds));
         const metaResuts = await Promise.all(
-          queryResults?.map((movie: IMovieSearch) =>
-            getMovieDetails(movie.imdbID)
-          )
+          uniqueImdbIds.map((id: string) => getMovieDetails(id))
         );
         setSearchResults(metaResuts.filter(isIMovieMeta));
       } else {

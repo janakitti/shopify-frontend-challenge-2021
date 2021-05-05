@@ -79,7 +79,7 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
       <div className="movie-card__info-col-top">
         <h1 className="movie-title">{movie.Title}</h1>
         <h2>
-          {movie.Year} &bull; {movie.Genre}
+          {movie.Year} &bull; {movie.Genre} {movie.imdbID}
         </h2>
         <div className="rating-container">
           <img src="./star.svg" alt="movie rating" className="star" />
