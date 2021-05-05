@@ -6,9 +6,10 @@ import { UserContext, UserReducerActions } from "../../AppContext";
 import { IMovieMeta } from "../../shared/interfaces";
 
 const ShareCard = () => {
-  const { user: nominations, dispatchUser: dispatchNominations } = useContext(
-    UserContext
-  );
+  const {
+    user: { username, nominations },
+    dispatchUser: dispatchNominations,
+  } = useContext(UserContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [shareLink, setShareLink] = useState("");
 
@@ -22,13 +23,10 @@ const ShareCard = () => {
   ) : null;
 
   useEffect(() => {
-    const newShareLink = nominations.nominations.reduce(
-      (acc: string, cur: IMovieMeta) => {
-        acc += cur.imdbID + "-";
-        return acc;
-      },
-      `${process.env.REACT_APP_BASE_URL}/nominations?data=`
-    );
+    const newShareLink = nominations.reduce((acc: string, cur: IMovieMeta) => {
+      acc += cur.imdbID + "-";
+      return acc;
+    }, `${process.env.REACT_APP_BASE_URL}/nominations?data=${username}-`);
     setShareLink(newShareLink.slice(0, newShareLink.length - 1));
   }, [nominations]);
 
