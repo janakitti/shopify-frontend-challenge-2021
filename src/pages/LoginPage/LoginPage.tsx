@@ -3,10 +3,11 @@ import CustomCard from "../../components/Card/Card";
 import { TextField, Button, Form, InlineError } from "@shopify/polaris";
 import { USER_PASSWORD } from "../../shared/constants";
 import { useHistory } from "react-router-dom";
-import { UserContext } from "../../AppContext";
+import { UserContext, UserReducerActions } from "../../AppContext";
 
 const LoginPage = () => {
   let history = useHistory();
+  const { dispatchUser } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [erroMsg, setErrorMsg] = useState("");
@@ -17,6 +18,7 @@ const LoginPage = () => {
         setErrorMsg("Please enter your credentials.");
         return;
       } else if (password === USER_PASSWORD) {
+        dispatchUser({ type: UserReducerActions.LOGIN, payload: { username } });
         history.push("/search");
       } else {
         setErrorMsg("Username or password is incorrect.");
