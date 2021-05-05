@@ -94,9 +94,9 @@ const SearchCol = () => {
     <div className="section search-col-wrapper">
       <Header>
         <div className="search-col-wrapper__header-container">
-          <div>
-            <img src="./shopify_logo.svg" className="header__logo" alt="logo" />
-            <h1 className="header__title">the shoppies</h1>
+          <div className="search-col__logo-container">
+            <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
+            <h1 className="logo__name">the shoppies</h1>
           </div>
 
           <div className="header__avatar">

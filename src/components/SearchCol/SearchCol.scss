@@ -29,12 +29,8 @@
   width: 100%;
 }
 
-.header__logo {
-  margin-right: 1em;
-}
-
-.header__title {
-  @include header-text;
+.search-col__logo-container {
+  @include logo;
 }
 
 .header__avatar {
