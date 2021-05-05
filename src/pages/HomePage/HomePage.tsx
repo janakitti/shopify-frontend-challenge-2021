@@ -15,7 +15,7 @@ import { NOMINATION_NUMBER } from "../../shared/constants";
 import { UserContext } from "../../AppContext";
 
 const HomePage = () => {
-  const { nominations } = useContext(UserContext);
+  const { user: nominations } = useContext(UserContext);
 
   useEffect(() => {
     if (nominations.nominations.length === NOMINATION_NUMBER) {

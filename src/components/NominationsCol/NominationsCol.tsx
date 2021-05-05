@@ -5,7 +5,7 @@ import { UserContext } from "../../AppContext";
 import Header from "../Header/Header";
 
 const NominationsCol = () => {
-  const { nominations } = useContext(UserContext);
+  const { user: nominations } = useContext(UserContext);
   const [nominationCards, setNominationCards] = useState<JSX.Element[]>([]);
 
   useEffect(() => {

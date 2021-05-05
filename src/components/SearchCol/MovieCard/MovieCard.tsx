@@ -12,7 +12,9 @@ interface IMovieCardProps {
 }
 
 const MovieCard = ({ movie }: IMovieCardProps) => {
-  const { nominations, dispatchNominations } = useContext(UserContext);
+  const { user: nominations, dispatchUser: dispatchNominations } = useContext(
+    UserContext
+  );
   const [isNominationComplete, setIsNominationComplete] = useState(false);
 
   useEffect(() => {

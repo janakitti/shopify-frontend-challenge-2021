@@ -6,7 +6,9 @@ import { UserContext, UserReducerActions } from "../../AppContext";
 import { IMovieMeta } from "../../shared/interfaces";
 
 const ShareCard = () => {
-  const { nominations, dispatchNominations } = useContext(UserContext);
+  const { user: nominations, dispatchUser: dispatchNominations } = useContext(
+    UserContext
+  );
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [shareLink, setShareLink] = useState("");
 

@@ -42,11 +42,11 @@ const userReducer = (state: IUserState, action: TUserAction): IUserState => {
 };
 
 export const UserContext = createContext<{
-  nominations: IUserState;
-  dispatchNominations: React.Dispatch<TUserAction>;
+  user: IUserState;
+  dispatchUser: React.Dispatch<TUserAction>;
 }>({
-  nominations: INITIAL_USER_STATE,
-  dispatchNominations: () => null,
+  user: INITIAL_USER_STATE,
+  dispatchUser: () => null,
 });
 
 interface IAppContextProps {
@@ -54,12 +54,9 @@ interface IAppContextProps {
 }
 
 const AppProvider = ({ children }: IAppContextProps) => {
-  const [nominations, dispatchNominations] = useReducer(
-    userReducer,
-    INITIAL_USER_STATE
-  );
+  const [user, dispatchUser] = useReducer(userReducer, INITIAL_USER_STATE);
   return (
-    <UserContext.Provider value={{ nominations, dispatchNominations }}>
+    <UserContext.Provider value={{ user, dispatchUser }}>
       {children}
     </UserContext.Provider>
   );

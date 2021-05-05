@@ -8,7 +8,7 @@ interface INominationCardProps {
 }
 
 const NominationCard = ({ movie }: INominationCardProps) => {
-  const { dispatchNominations } = useContext(UserContext);
+  const { dispatchUser: dispatchNominations } = useContext(UserContext);
 
   const removeNomination = () => {
     dispatchNominations({

@@ -12,7 +12,7 @@ import { UserContext } from "../../AppContext";
 import { isIMovieMeta } from "../../shared/utils";
 
 const SearchCol = () => {
-  const { nominations } = useContext(UserContext);
+  const { user: nominations } = useContext(UserContext);
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<IMovieMeta[]>([]);
   const [movieCards, setMovieCards] = useState<JSX.Element[]>([]);
