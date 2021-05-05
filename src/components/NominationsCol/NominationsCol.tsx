@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import NominationCard from "../NominationsCol/NominationCard/NominationCard";
 import { IMovieMeta } from "../../shared/interfaces";
-import { NominationsContext } from "../../pages/HomePage/HomePage";
+import { NominationsContext } from "../../AppContext";
 import Header from "../Header/Header";
 
 const NominationsCol = () => {

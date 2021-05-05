@@ -2,10 +2,7 @@ import { useContext, useEffect, useState, useCallback } from "react";
 import { Button, TextField, Icon, Toast, Frame } from "@shopify/polaris";
 import { ClipboardMinor } from "@shopify/polaris-icons";
 import CustomCard from "../Card/Card";
-import {
-  NominationsContext,
-  NominationReducerActions,
-} from "../../pages/HomePage/HomePage";
+import { NominationsContext, NominationReducerActions } from "../../AppContext";
 import { IMovieMeta } from "../../shared/interfaces";
 
 const ShareCard = () => {

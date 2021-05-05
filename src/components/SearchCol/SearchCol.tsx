@@ -8,7 +8,7 @@ import Header from "../Header/Header";
 import useDebounce from "../../shared/useDebounce";
 import { NOMINATION_NUMBER } from "../../shared/constants";
 import ShareCard from "../ShareCard/ShareCard";
-import { NominationsContext } from "../../pages/HomePage/HomePage";
+import { NominationsContext } from "../../AppContext";
 import { isIMovieMeta } from "../../shared/utils";
 
 const SearchCol = () => {

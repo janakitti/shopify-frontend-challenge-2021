@@ -4,7 +4,7 @@ import { IMovieMeta } from "../../../shared/interfaces";
 import {
   NominationsContext,
   NominationReducerActions,
-} from "../../../pages/HomePage/HomePage";
+} from "../../../AppContext";
 
 interface INominationCardProps {
   movie: IMovieMeta;

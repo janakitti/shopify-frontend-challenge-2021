@@ -8,7 +8,7 @@ import { NOMINATION_NUMBER } from "../../../shared/constants";
 import {
   NominationsContext,
   NominationReducerActions,
-} from "../../../pages/HomePage/HomePage";
+} from "../../../AppContext";
 
 interface IMovieCardProps {
   movie: IMovieMeta;
