@@ -3,11 +3,11 @@ import NominationCard from "../NominationsCol/NominationCard/NominationCard";
 import { IMovieMeta } from "../../shared/interfaces";
 import { UserContext } from "../../AppContext";
 import Header from "../Header/Header";
-import { Avatar } from "@shopify/polaris";
+import UserAvatar from "../UserAvatar/UserAvatar";
 
 const NominationsCol = () => {
   const {
-    user: { username, nominations },
+    user: { nominations },
   } = useContext(UserContext);
   const [nominationCards, setNominationCards] = useState<JSX.Element[]>([]);
 
@@ -22,14 +22,7 @@ const NominationsCol = () => {
   return (
     <div className="section nomination-col-wrapper">
       <Header>
-        <div className="username-container">
-          <p>{username}</p>
-          <Avatar
-            size="small"
-            name="username"
-            accessibilityLabel="User's username"
-          />
-        </div>
+        <UserAvatar />
       </Header>
       {nominationCards}
     </div>
