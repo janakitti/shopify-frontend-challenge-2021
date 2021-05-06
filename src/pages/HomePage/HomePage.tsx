@@ -11,14 +11,16 @@ import Header from "../../components/Header/Header";
 import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
 import { IMovieMeta } from "../../shared/interfaces";
-import { NOMINATION_NUMBER } from "../../shared/constants";
+import { NOMINATION_NUMBER, SCREEN_WIDTH_LG } from "../../shared/constants";
 import { UserContext, UserReducerActions } from "../../AppContext";
+import useScreenWidth from "../../shared/useScreenWidth";
 
 const HomePage = () => {
   const {
     user: { nominations },
     dispatchUser,
   } = useContext(UserContext);
+  const screenWidth = useScreenWidth();
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("shoppies-username");
@@ -40,28 +42,59 @@ const HomePage = () => {
   useEffect(() => {
     localStorage.setItem("shoppies-nominations", JSON.stringify(nominations));
     if (nominations.length === NOMINATION_NUMBER) {
-      toggleIsToastActive();
+      toggleIsCompletedToastActive();
     }
   }, [nominations]);
 
-  const [isToastActive, setIsToastActive] = useState(false);
-  const toggleIsToastActive = useCallback(
-    () => setIsToastActive((active) => !active),
+  const [isNominatedToastActive, setIsNominatedToastActive] = useState(false);
+  const toggleIsNominatedToastActive = useCallback(
+    () => setIsNominatedToastActive((active) => !active),
     []
   );
-  const toastMarkup = isToastActive ? (
-    <Toast content="Nominations complete 🎉" onDismiss={toggleIsToastActive} />
+  const nominatedToastMarkup =
+    isNominatedToastActive && screenWidth && screenWidth < SCREEN_WIDTH_LG ? (
+      <Toast
+        content="Nomination added below!"
+        onDismiss={toggleIsNominatedToastActive}
+        duration={1500}
+      />
+    ) : null;
+
+  const [isCompletedToastActive, setIsCompletedToastActive] = useState(false);
+  const toggleIsCompletedToastActive = useCallback(
+    () => setIsCompletedToastActive((active) => !active),
+    []
+  );
+  const completedToastMarkup = isCompletedToastActive ? (
+    <Toast
+      content="Nominations complete 🎉"
+      onDismiss={toggleIsCompletedToastActive}
+    />
+  ) : null;
+
+  const [isCopiedToastActive, setIsCopiedToastActive] = useState(false);
+  const toggleIsCopiedToastActive = useCallback(
+    () => setIsCopiedToastActive((active) => !active),
+    []
+  );
+  const copiedToastMarkup = isCopiedToastActive ? (
+    <Toast content="Copied 📋" onDismiss={toggleIsCopiedToastActive} />
   ) : null;
 
   return (
     <Frame>
       <div className="home-wrapper">
         <div className="home-wrapper__body">
-          <SearchCol />
+          <SearchCol
+            toggleCopiedToast={toggleIsCopiedToastActive}
+            toggleNominatedToast={toggleIsNominatedToastActive}
+          />
           <NominationsCol />
         </div>
       </div>
-      {toastMarkup}
+      {nominatedToastMarkup}
+      {completedToastMarkup}
+      {copiedToastMarkup}
     </Frame>
   );
 };

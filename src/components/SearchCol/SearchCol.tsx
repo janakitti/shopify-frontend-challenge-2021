@@ -13,7 +13,15 @@ import { isIMovieMeta } from "../../shared/utils";
 import UserAvatar from "../UserAvatar/UserAvatar";
 import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 
-const SearchCol = () => {
+interface ISearchColProps {
+  toggleCopiedToast: () => void;
+  toggleNominatedToast: () => void;
+}
+
+const SearchCol = ({
+  toggleCopiedToast,
+  toggleNominatedToast,
+}: ISearchColProps) => {
   const { user: nominations } = useContext(UserContext);
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<IMovieMeta[]>([]);
@@ -27,7 +35,11 @@ const SearchCol = () => {
   useEffect(() => {
     (async () => {
       const cards = await searchResults?.map((movie: IMovieMeta) => (
-        <MovieCard movie={movie} key={movie.imdbID} />
+        <MovieCard
+          movie={movie}
+          key={movie.imdbID}
+          toggleNominatedToast={toggleNominatedToast}
+        />
       ));
       setMovieCards(cards);
     })();
@@ -55,7 +67,7 @@ const SearchCol = () => {
 
   const resultsSection = ((): JSX.Element => {
     if (nominations.nominations.length === NOMINATION_NUMBER) {
-      return <ShareCard />;
+      return <ShareCard toggleCopiedToast={toggleCopiedToast} />;
     } else if (isLoading) {
       return (
         <div className="search-col__results--loading">
@@ -73,7 +85,8 @@ const SearchCol = () => {
             width={300}
             alt="No movies found"
           ></img>
-          <p>No movies found</p>
+          <h1>Looks like we couldn't find that movie!</h1>
+          <p>Try using a different search term</p>
         </div>
       );
     } else {
@@ -110,8 +123,8 @@ const SearchCol = () => {
         <p className="body">
           The Shoppies are just around the corner and entrepreneurs from all
           over the world are putting in their movie nominations. Search for
-          movies below and select 5 movies that you feel are worthy of a Shoppy
-          this year!
+          movies below and select <b>5 movies</b> that <i>you</i> feel are
+          worthy of a Shoppy this year!
         </p>
       </PopAnimationWrapper>
       <PopAnimationWrapper delay={0.1}>

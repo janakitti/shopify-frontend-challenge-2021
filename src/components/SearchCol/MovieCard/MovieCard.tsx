@@ -9,9 +9,10 @@ import { UserContext, UserReducerActions } from "../../../AppContext";
 
 interface IMovieCardProps {
   movie: IMovieMeta;
+  toggleNominatedToast: () => void;
 }
 
-const MovieCard = ({ movie }: IMovieCardProps) => {
+const MovieCard = ({ movie, toggleNominatedToast }: IMovieCardProps) => {
   const { user: nominations, dispatchUser: dispatchNominations } = useContext(
     UserContext
   );
@@ -24,6 +25,9 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
   }, [nominations]);
 
   const nominateMovie = () => {
+    if (nominations.nominations.length < NOMINATION_NUMBER - 1) {
+      toggleNominatedToast();
+    }
     dispatchNominations({
       type: UserReducerActions.ADD_MOVIE,
       payload: {

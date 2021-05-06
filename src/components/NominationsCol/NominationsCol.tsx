@@ -32,7 +32,9 @@ const NominationsCol = () => {
         </Header>
       </div>
       <div className="nomination-progress">
-        {`${nominations.length}/${NOMINATION_NUMBER} nominations`}
+        {!nominations.length
+          ? null
+          : `${nominations.length}/${NOMINATION_NUMBER} nominations`}
       </div>
       {nominationCards}
     </div>

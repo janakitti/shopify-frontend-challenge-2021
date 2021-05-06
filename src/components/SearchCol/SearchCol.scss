@@ -1,5 +1,6 @@
 .search-col-wrapper {
   padding: 0 1em;
+  max-width: 100vw;
   @include breakpoint-min($screen-width-xl) {
     height: 100vh;
     padding: 0 10em 0 1em;
@@ -55,7 +56,11 @@
 .search-col__results--empty {
   padding-top: 2em;
   text-align: center;
-  p {
+  h1 {
     @include display-sm-text;
+  }
+  p {
+    margin-top: 1em;
+    @include body-text;
   }
 }
