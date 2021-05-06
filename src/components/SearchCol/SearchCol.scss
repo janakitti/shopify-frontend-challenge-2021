@@ -32,6 +32,8 @@
 
 .search-col__logo-container {
   @include logo;
+  justify-content: left;
+  width: 100%;
 }
 
 .header__avatar {
