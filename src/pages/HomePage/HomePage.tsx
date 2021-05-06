@@ -12,12 +12,30 @@ import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
 import { IMovieMeta } from "../../shared/interfaces";
 import { NOMINATION_NUMBER } from "../../shared/constants";
-import { UserContext } from "../../AppContext";
+import { UserContext, UserReducerActions } from "../../AppContext";
 
 const HomePage = () => {
   const {
     user: { nominations },
+    dispatchUser,
   } = useContext(UserContext);
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("shoppies-username");
+    const storedNominations = localStorage.getItem("shoppies-nominations");
+    if (storedUsername) {
+      dispatchUser({
+        type: UserReducerActions.LOGIN,
+        payload: { username: storedUsername },
+      });
+    }
+    if (storedNominations) {
+      dispatchUser({
+        type: UserReducerActions.SET_MOVIES,
+        payload: { movies: JSON.parse(storedNominations) },
+      });
+    }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("shoppies-nominations", JSON.stringify(nominations));

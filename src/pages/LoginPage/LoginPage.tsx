@@ -16,10 +16,6 @@ const LoginPage = () => {
   useEffect(() => {
     const storedUsername = localStorage.getItem("shoppies-username");
     if (storedUsername) {
-      dispatchUser({
-        type: UserReducerActions.LOGIN,
-        payload: { username: storedUsername },
-      });
       history.push("/search");
     }
   }, [history, dispatchUser]);

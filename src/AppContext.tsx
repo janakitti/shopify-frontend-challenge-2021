@@ -14,6 +14,7 @@ const INITIAL_USER_STATE: IUserState = {
 export enum UserReducerActions {
   LOGIN = "LOGIN",
   LOGOUT = "LOGOUT",
+  SET_MOVIES = "SET_MOVIES",
   ADD_MOVIE = "ADD_MOVIE",
   REMOVE_MOVIE = "REMOVE_MOVIE",
   CLEAR_MOVIES = "CLEAR_MOVIES",
@@ -22,6 +23,7 @@ export enum UserReducerActions {
 export type TUserAction =
   | { type: UserReducerActions.LOGIN; payload: { username: string } }
   | { type: UserReducerActions.LOGOUT }
+  | { type: UserReducerActions.SET_MOVIES; payload: { movies: IMovieMeta[] } }
   | { type: UserReducerActions.ADD_MOVIE; payload: { movie: IMovieMeta } }
   | { type: UserReducerActions.REMOVE_MOVIE; payload: { id: string } }
   | { type: UserReducerActions.CLEAR_MOVIES };
@@ -35,6 +37,11 @@ const userReducer = (state: IUserState, action: TUserAction): IUserState => {
       };
     case UserReducerActions.LOGOUT:
       return INITIAL_USER_STATE;
+    case UserReducerActions.SET_MOVIES:
+      return {
+        ...state,
+        nominations: action.payload.movies,
+      };
     case UserReducerActions.ADD_MOVIE:
       return {
         ...state,
