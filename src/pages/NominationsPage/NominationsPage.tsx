@@ -46,18 +46,20 @@ const NominationsPage = () => {
 
   return (
     <div className="shared-nominations__page-wrapper">
-      <div className="shared-nominations__title-container">
-        <div className="shared-nominations__logo-container">
-          <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
-          <h1 className="logo__name">the shoppies</h1>
+      <div>
+        <div className="shared-nominations__title-container">
+          <div className="shared-nominations__logo-container">
+            <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
+            <h1 className="logo__name">the shoppies</h1>
+          </div>
+          <h1 className="title">{username}'s Nominations</h1>
         </div>
-        <h1 className="title">{username}'s Nominations</h1>
-      </div>
-      <div className="shared-nominations__container">{nominations}</div>
-      <div className="shared-nominations__button-container">
-        <Button primary size="slim" onClick={handleClick}>
-          Cast your own nominations!
-        </Button>
+        <div className="shared-nominations__container">{nominations}</div>
+        <div className="shared-nominations__button-container">
+          <Button primary size="slim" onClick={handleClick}>
+            Cast your own nominations!
+          </Button>
+        </div>
       </div>
     </div>
   );
