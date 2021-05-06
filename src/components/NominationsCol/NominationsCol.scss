@@ -1,10 +1,19 @@
 .nomination-col-wrapper {
   padding: 0 1em;
+  margin-top: 3em;
   max-width: 100vw;
+  @include breakpoint-min($screen-width-lg) {
+    margin-top: 0;
+  }
 }
 
 .nomination-col-wrapper--populated {
   border-bottom: 1.5em solid $accent;
+  background-color: $light;
+  @include breakpoint-min($screen-width-lg) {
+    border-top: 0;
+    background-color: $background;
+  }
 }
 
 .nomination-col__header-container {
@@ -15,6 +24,11 @@
 }
 
 .nomination-progress {
-  padding-bottom: 0.5em;
+  padding: 1em 0 1em 0;
   @include header-text;
+  text-align: center;
+  @include breakpoint-min($screen-width-lg) {
+    padding: 0 0 0.5em 0;
+    text-align: left;
+  }
 }
