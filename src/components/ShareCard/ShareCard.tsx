@@ -1,26 +1,21 @@
-import { useContext, useEffect, useState, useCallback } from "react";
-import { Button, TextField, Icon, Toast, Frame } from "@shopify/polaris";
+import { useContext, useEffect, useState } from "react";
+import { Button, TextField, Icon } from "@shopify/polaris";
 import { ClipboardMinor } from "@shopify/polaris-icons";
 import CustomCard from "../Card/Card";
 import { UserContext, UserReducerActions } from "../../AppContext";
 import { IMovieMeta } from "../../shared/interfaces";
 
-const ShareCard = () => {
+interface IShareCardProps {
+  toggleCopiedToast: () => void;
+}
+
+const ShareCard = ({ toggleCopiedToast }: IShareCardProps) => {
   const {
     user: { username, nominations },
     dispatchUser: dispatchNominations,
   } = useContext(UserContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [shareLink, setShareLink] = useState("");
-
-  const [isToastActive, setIsToastActive] = useState(false);
-  const toggleIsToastActive = useCallback(
-    () => setIsToastActive((active) => !active),
-    []
-  );
-  const toastMarkup = isToastActive ? (
-    <Toast content="Copied 📋" onDismiss={toggleIsToastActive} />
-  ) : null;
 
   useEffect(() => {
     const newShareLink = nominations.reduce((acc: string, cur: IMovieMeta) => {
@@ -36,7 +31,7 @@ const ShareCard = () => {
 
   const copyShareLink = () => {
     navigator.clipboard.writeText(shareLink);
-    toggleIsToastActive();
+    toggleCopiedToast();
   };
 
   const generateShareCardContents = ((): JSX.Element => {
@@ -97,16 +92,13 @@ const ShareCard = () => {
   })();
 
   return (
-    <Frame>
-      <div className="movie-card__container">
-        <CustomCard>
-          <div className="share-card__inner-container">
-            {generateShareCardContents}
-          </div>
-        </CustomCard>
-      </div>
-      {toastMarkup}
-    </Frame>
+    <div className="movie-card__container">
+      <CustomCard>
+        <div className="share-card__inner-container">
+          {generateShareCardContents}
+        </div>
+      </CustomCard>
+    </div>
   );
 };
 

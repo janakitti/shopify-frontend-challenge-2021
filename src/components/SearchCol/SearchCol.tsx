@@ -13,7 +13,11 @@ import { isIMovieMeta } from "../../shared/utils";
 import UserAvatar from "../UserAvatar/UserAvatar";
 import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 
-const SearchCol = () => {
+interface ISearchColProps {
+  toggleCopiedToast: () => void;
+}
+
+const SearchCol = ({ toggleCopiedToast }: ISearchColProps) => {
   const { user: nominations } = useContext(UserContext);
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<IMovieMeta[]>([]);
@@ -55,7 +59,7 @@ const SearchCol = () => {
 
   const resultsSection = ((): JSX.Element => {
     if (nominations.nominations.length === NOMINATION_NUMBER) {
-      return <ShareCard />;
+      return <ShareCard toggleCopiedToast={toggleCopiedToast} />;
     } else if (isLoading) {
       return (
         <div className="search-col__results--loading">
