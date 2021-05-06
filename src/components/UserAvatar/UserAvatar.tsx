@@ -12,6 +12,8 @@ const UserAvatar = () => {
 
   const handleLogout = () => {
     dispatchUser({ type: UserReducerActions.LOGOUT });
+    localStorage.setItem("shoppies-username", "");
+    localStorage.setItem("shoppies-nominations", "");
     history.push("/");
   };
 
