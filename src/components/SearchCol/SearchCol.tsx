@@ -15,9 +15,13 @@ import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 
 interface ISearchColProps {
   toggleCopiedToast: () => void;
+  toggleNominatedToast: () => void;
 }
 
-const SearchCol = ({ toggleCopiedToast }: ISearchColProps) => {
+const SearchCol = ({
+  toggleCopiedToast,
+  toggleNominatedToast,
+}: ISearchColProps) => {
   const { user: nominations } = useContext(UserContext);
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<IMovieMeta[]>([]);
@@ -31,7 +35,11 @@ const SearchCol = ({ toggleCopiedToast }: ISearchColProps) => {
   useEffect(() => {
     (async () => {
       const cards = await searchResults?.map((movie: IMovieMeta) => (
-        <MovieCard movie={movie} key={movie.imdbID} />
+        <MovieCard
+          movie={movie}
+          key={movie.imdbID}
+          toggleNominatedToast={toggleNominatedToast}
+        />
       ));
       setMovieCards(cards);
     })();

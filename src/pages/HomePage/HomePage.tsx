@@ -44,6 +44,18 @@ const HomePage = () => {
     }
   }, [nominations]);
 
+  const [isNominatedToastActive, setIsNominatedToastActive] = useState(false);
+  const toggleIsNominatedToastActive = useCallback(
+    () => setIsNominatedToastActive((active) => !active),
+    []
+  );
+  const nominatedToastMarkup = isNominatedToastActive ? (
+    <Toast
+      content="Nomination added!"
+      onDismiss={toggleIsNominatedToastActive}
+    />
+  ) : null;
+
   const [isCompletedToastActive, setIsCompletedToastActive] = useState(false);
   const toggleIsCompletedToastActive = useCallback(
     () => setIsCompletedToastActive((active) => !active),
@@ -69,10 +81,14 @@ const HomePage = () => {
     <Frame>
       <div className="home-wrapper">
         <div className="home-wrapper__body">
-          <SearchCol toggleCopiedToast={toggleIsCopiedToastActive} />
+          <SearchCol
+            toggleCopiedToast={toggleIsCopiedToastActive}
+            toggleNominatedToast={toggleIsNominatedToastActive}
+          />
           <NominationsCol />
         </div>
       </div>
+      {nominatedToastMarkup}
       {completedToastMarkup}
       {copiedToastMarkup}
     </Frame>
