@@ -85,7 +85,8 @@ const SearchCol = ({
             width={300}
             alt="No movies found"
           ></img>
-          <p>No movies found</p>
+          <h1>Looks like we couldn't find that movie!</h1>
+          <p>Try using a different search term</p>
         </div>
       );
     } else {
@@ -122,8 +123,8 @@ const SearchCol = ({
         <p className="body">
           The Shoppies are just around the corner and entrepreneurs from all
           over the world are putting in their movie nominations. Search for
-          movies below and select 5 movies that you feel are worthy of a Shoppy
-          this year!
+          movies below and select <b>5 movies</b> that <i>you</i> feel are
+          worthy of a Shoppy this year!
         </p>
       </PopAnimationWrapper>
       <PopAnimationWrapper delay={0.1}>

@@ -45,8 +45,12 @@ const ShareCard = ({ toggleCopiedToast }: IShareCardProps) => {
             alt="Nominations complete"
           />
           <div>
-            <h1 className="title">Nominations complete!</h1>
-            <p className="body">You can delete nomination if you want.</p>
+            <h1 className="title">What a fine selection!</h1>
+            <p className="body">
+              Your nominations are ready to go! You can still remove a
+              nomination if you'd like to edit your selection. Once you are
+              ready, hit the button below.
+            </p>
           </div>
           <div className="button-container">
             <Button primary onClick={() => setIsSubmitted(true)}>
@@ -59,15 +63,16 @@ const ShareCard = ({ toggleCopiedToast }: IShareCardProps) => {
       return (
         <>
           <img
-            src="./nominations_complete.svg"
+            src="./sent.svg"
             height={200}
             width={200}
             alt="Nominations complete"
           />
           <div>
-            <h1 className="title">You've got good taste!</h1>
+            <h1 className="title">Your nominations are on their way!</h1>
             <p className="body">
-              Copy the link and share your nominations with the world
+              While we await the results of the Shoppies, you can copy this link
+              and share your nominations with the world!
             </p>
           </div>
           <div className="button-container">
