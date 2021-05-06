@@ -4,6 +4,7 @@ import { IMovieMeta } from "../../shared/interfaces";
 import { UserContext } from "../../AppContext";
 import Header from "../Header/Header";
 import UserAvatar from "../UserAvatar/UserAvatar";
+import { NOMINATION_NUMBER } from "../../shared/constants";
 
 const NominationsCol = () => {
   const {
@@ -30,7 +31,9 @@ const NominationsCol = () => {
           <UserAvatar />
         </Header>
       </div>
-      <div className="nomination-progress">4/5 Nominations</div>
+      <div className="nomination-progress">
+        {`${nominations.length}/${NOMINATION_NUMBER} nominations`}
+      </div>
       {nominationCards}
     </div>
   );
