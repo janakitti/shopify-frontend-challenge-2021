@@ -30,7 +30,7 @@ const LoginPage = () => {
         localStorage.setItem("shoppies-username", username);
         history.push("/search");
       } else {
-        setErrorMsg("Username or password is incorrect.");
+        setErrorMsg(`Pssst, the password is "shoppies"`);
       }
     },
     [username, password, history, dispatchUser]
