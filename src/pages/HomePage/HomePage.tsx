@@ -15,10 +15,13 @@ import { NOMINATION_NUMBER } from "../../shared/constants";
 import { UserContext } from "../../AppContext";
 
 const HomePage = () => {
-  const { user: nominations } = useContext(UserContext);
+  const {
+    user: { nominations },
+  } = useContext(UserContext);
 
   useEffect(() => {
-    if (nominations.nominations.length === NOMINATION_NUMBER) {
+    localStorage.setItem("shoppies-nominations", JSON.stringify(nominations));
+    if (nominations.length === NOMINATION_NUMBER) {
       toggleIsToastActive();
     }
   }, [nominations]);

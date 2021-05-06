@@ -20,6 +20,7 @@ const LoginPage = () => {
         return;
       } else if (password === USER_PASSWORD) {
         dispatchUser({ type: UserReducerActions.LOGIN, payload: { username } });
+        localStorage.setItem("shoppies-username", username);
         history.push("/search");
       } else {
         setErrorMsg("Username or password is incorrect.");
