@@ -5,13 +5,14 @@
   align-content: center;
   height: 100vh;
   width: 100%;
+  padding: 0 1em;
 }
 
 .login-card {
   height: auto;
   max-width: 25em;
   padding: 2em;
-  margin: auto 1em;
+  margin: auto;
   text-align: center;
   .padding-container {
     padding: 2em;
