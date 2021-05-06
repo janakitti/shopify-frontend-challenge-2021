@@ -98,7 +98,7 @@ const SearchCol = ({
             width={300}
             alt="Search for movies"
           ></img>
-          <p>Search for movies above</p>
+          <h1>Search for movies above</h1>
         </div>
       );
     }
