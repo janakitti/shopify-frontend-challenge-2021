@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useContext } from "react";
 import CustomCard from "../../components/Card/Card";
 import { TextField, Button, Form, InlineError } from "@shopify/polaris";
-import { USER_PASSWORD } from "../../shared/constants";
+import { MAX_USERNAME_LENGTH, USER_PASSWORD } from "../../shared/constants";
 import { useHistory } from "react-router-dom";
 import { UserContext, UserReducerActions } from "../../AppContext";
 import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
@@ -51,6 +51,7 @@ const LoginPage = () => {
                 label="Username"
                 value={username}
                 onChange={setUsername}
+                maxLength={MAX_USERNAME_LENGTH}
               />
               <TextField
                 label="Password"
