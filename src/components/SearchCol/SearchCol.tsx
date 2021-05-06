@@ -108,9 +108,10 @@ const SearchCol = () => {
       <PopAnimationWrapper delay={0}>
         <h1 className="title">Nominate</h1>
         <p className="body">
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more-or-less normal distribution
+          The Shoppies are just around the corner and entrepreneurs from all
+          over the world are putting in their movie nominations. Search for
+          movies below and select 5 movies that you feel are worthy of a Shoppy
+          this year!
         </p>
       </PopAnimationWrapper>
       <PopAnimationWrapper delay={0.1}>
