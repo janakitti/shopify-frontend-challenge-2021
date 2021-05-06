@@ -6,6 +6,10 @@
     @include header-text;
     margin-left: 1em;
     line-height: 2em;
+    display: none;
+    @include breakpoint-min($screen-width-sm) {
+      display: inline-block;
+    }
   }
   button {
     margin-left: 1em;
