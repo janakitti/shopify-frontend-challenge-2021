@@ -11,7 +11,7 @@ import Header from "../../components/Header/Header";
 import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
 import { IMovieMeta } from "../../shared/interfaces";
-import { NOMINATION_NUMBER } from "../../shared/constants";
+import { NOMINATION_NUMBER, SCREEN_WIDTH_LG } from "../../shared/constants";
 import { UserContext, UserReducerActions } from "../../AppContext";
 
 const HomePage = () => {
@@ -19,6 +19,23 @@ const HomePage = () => {
     user: { nominations },
     dispatchUser,
   } = useContext(UserContext);
+
+  const [windowSize, setWindowSize] = useState<{
+    width?: number;
+    height?: number;
+  }>({});
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("shoppies-username");
@@ -49,12 +66,16 @@ const HomePage = () => {
     () => setIsNominatedToastActive((active) => !active),
     []
   );
-  const nominatedToastMarkup = isNominatedToastActive ? (
-    <Toast
-      content="Nomination added!"
-      onDismiss={toggleIsNominatedToastActive}
-    />
-  ) : null;
+  const nominatedToastMarkup =
+    isNominatedToastActive &&
+    windowSize.width &&
+    windowSize.width < SCREEN_WIDTH_LG ? (
+      <Toast
+        content="Nomination added below!"
+        onDismiss={toggleIsNominatedToastActive}
+        duration={1500}
+      />
+    ) : null;
 
   const [isCompletedToastActive, setIsCompletedToastActive] = useState(false);
   const toggleIsCompletedToastActive = useCallback(
@@ -80,6 +101,7 @@ const HomePage = () => {
   return (
     <Frame>
       <div className="home-wrapper">
+        {windowSize.width}
         <div className="home-wrapper__body">
           <SearchCol
             toggleCopiedToast={toggleIsCopiedToastActive}
