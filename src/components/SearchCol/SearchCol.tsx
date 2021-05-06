@@ -22,7 +22,9 @@ const SearchCol = ({
   toggleCopiedToast,
   toggleNominatedToast,
 }: ISearchColProps) => {
-  const { user: nominations } = useContext(UserContext);
+  const {
+    user: { nominations },
+  } = useContext(UserContext);
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<IMovieMeta[]>([]);
   const [movieCards, setMovieCards] = useState<JSX.Element[]>([]);
@@ -66,7 +68,7 @@ const SearchCol = ({
   }, [debouncedSearch]);
 
   const resultsSection = ((): JSX.Element => {
-    if (nominations.nominations.length === NOMINATION_NUMBER) {
+    if (nominations.length === NOMINATION_NUMBER) {
       return <ShareCard toggleCopiedToast={toggleCopiedToast} />;
     } else if (isLoading) {
       return (
@@ -132,7 +134,7 @@ const SearchCol = ({
           value={searchInput}
           onChange={handleSearch}
           prefix={<Icon source={SearchMajor} color="base" />}
-          disabled={nominations.nominations.length === NOMINATION_NUMBER}
+          disabled={nominations.length === NOMINATION_NUMBER}
         />
       </PopAnimationWrapper>
       <div className="search-col__results">{resultsSection}</div>
