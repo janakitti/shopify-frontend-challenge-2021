@@ -83,7 +83,7 @@ const MovieCard = ({ movie, toggleNominatedToast }: IMovieCardProps) => {
       <div className="movie-card__info-col-top">
         <h1 className="movie-title">{movie.Title}</h1>
         <h2>
-          {movie.Year} &bull; {movie.Genre} {movie.imdbID}
+          {movie.Year} &bull; {movie.Genre}
         </h2>
         <div className="rating-container">
           <img src="./star.svg" alt="movie rating" className="star" />
