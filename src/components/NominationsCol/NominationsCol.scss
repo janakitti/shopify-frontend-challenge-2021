@@ -12,3 +12,8 @@
     display: block;
   }
 }
+
+.nomination-progress {
+  padding-bottom: 0.5em;
+  @include header-text;
+}

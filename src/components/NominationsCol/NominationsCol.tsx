@@ -30,6 +30,7 @@ const NominationsCol = () => {
           <UserAvatar />
         </Header>
       </div>
+      <div className="nomination-progress">4/5 Nominations</div>
       {nominationCards}
     </div>
   );
