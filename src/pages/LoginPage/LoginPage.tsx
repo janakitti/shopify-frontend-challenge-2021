@@ -1,4 +1,4 @@
-import { useState, useCallback, useContext } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
 import CustomCard from "../../components/Card/Card";
 import { TextField, Button, Form, InlineError } from "@shopify/polaris";
 import { USER_PASSWORD } from "../../shared/constants";
@@ -13,6 +13,17 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [erroMsg, setErrorMsg] = useState("");
 
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("shoppies-username");
+    if (storedUsername) {
+      dispatchUser({
+        type: UserReducerActions.LOGIN,
+        payload: { username: storedUsername },
+      });
+      history.push("/search");
+    }
+  }, [history, dispatchUser]);
+
   const handleLogin = useCallback(
     (_event) => {
       if (!username || !password) {
@@ -26,7 +37,7 @@ const LoginPage = () => {
         setErrorMsg("Username or password is incorrect.");
       }
     },
-    [username, password]
+    [username, password, history, dispatchUser]
   );
 
   return (
