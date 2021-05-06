@@ -112,7 +112,6 @@ const SearchCol = ({
             <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
             <h1 className="logo__name">the shoppies</h1>
           </div>
-
           <div className="header__avatar">
             <UserAvatar />
           </div>
@@ -133,6 +132,7 @@ const SearchCol = ({
           value={searchInput}
           onChange={handleSearch}
           prefix={<Icon source={SearchMajor} color="base" />}
+          disabled={nominations.nominations.length === NOMINATION_NUMBER}
         />
       </PopAnimationWrapper>
       <div className="search-col__results">{resultsSection}</div>
