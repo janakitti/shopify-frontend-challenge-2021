@@ -1,5 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Icon, Heading, Subheading } from "@shopify/polaris";
+import {
+  Button,
+  ButtonGroup,
+  Icon,
+  Heading,
+  Subheading,
+} from "@shopify/polaris";
 import { PlayCircleMajor, FavoriteMajor } from "@shopify/polaris-icons";
 import CustomCard from "../../Card/Card";
 import { IMovieMeta, IMovieSearch } from "../../../shared/interfaces";
@@ -10,9 +16,14 @@ import { UserContext, UserReducerActions } from "../../../AppContext";
 interface IMovieCardProps {
   movie: IMovieSearch;
   toggleNominatedToast: () => void;
+  displayMovieDetails: (id: string) => Promise<void>;
 }
 
-const MovieCard = ({ movie, toggleNominatedToast }: IMovieCardProps) => {
+const MovieCard = ({
+  movie,
+  toggleNominatedToast,
+  displayMovieDetails,
+}: IMovieCardProps) => {
   const { user: nominations, dispatchUser: dispatchNominations } = useContext(
     UserContext
   );
@@ -92,7 +103,15 @@ const MovieCard = ({ movie, toggleNominatedToast }: IMovieCardProps) => {
           <div className="movie-card__info-col">
             {generateMovieInfo}
             <div className="movie-card__button-group">
-              {generateNominateButton}
+              <ButtonGroup>
+                <Button
+                  outline
+                  onClick={() => displayMovieDetails(movie.imdbID)}
+                >
+                  View
+                </Button>
+                {generateNominateButton}
+              </ButtonGroup>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useContext,
 } from "react";
-import { Toast, Frame } from "@shopify/polaris";
+import { Toast, Frame, Modal } from "@shopify/polaris";
 import Header from "../../components/Header/Header";
 import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
@@ -21,6 +21,7 @@ const HomePage = () => {
     dispatchUser,
   } = useContext(UserContext);
   const screenWidth = useScreenWidth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("shoppies-username");
@@ -45,6 +46,13 @@ const HomePage = () => {
       toggleIsCompletedToastActive();
     }
   }, [nominations]);
+
+  const handleModal = useCallback(() => setIsModalOpen(!isModalOpen), [
+    isModalOpen,
+  ]);
+  const displayMovieDetails = async (id: string) => {
+    setIsModalOpen(true);
+  };
 
   const [isNominatedToastActive, setIsNominatedToastActive] = useState(false);
   const toggleIsNominatedToastActive = useCallback(
@@ -82,20 +90,24 @@ const HomePage = () => {
   ) : null;
 
   return (
-    <Frame>
-      <div className="home-wrapper">
-        <div className="home-wrapper__body">
-          <SearchCol
-            toggleCopiedToast={toggleIsCopiedToastActive}
-            toggleNominatedToast={toggleIsNominatedToastActive}
-          />
-          <NominationsCol />
+    <>
+      <Frame>
+        <div className="home-wrapper">
+          <div className="home-wrapper__body">
+            <SearchCol
+              toggleCopiedToast={toggleIsCopiedToastActive}
+              toggleNominatedToast={toggleIsNominatedToastActive}
+              displayMovieDetails={displayMovieDetails}
+            />
+            <NominationsCol />
+          </div>
         </div>
-      </div>
-      {nominatedToastMarkup}
-      {completedToastMarkup}
-      {copiedToastMarkup}
-    </Frame>
+        {nominatedToastMarkup}
+        {completedToastMarkup}
+        {copiedToastMarkup}
+      </Frame>
+      <Modal open={isModalOpen} title="Details" onClose={handleModal}></Modal>
+    </>
   );
 };
 

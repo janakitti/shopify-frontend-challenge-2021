@@ -16,11 +16,13 @@ import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 interface ISearchColProps {
   toggleCopiedToast: () => void;
   toggleNominatedToast: () => void;
+  displayMovieDetails: (id: string) => Promise<void>;
 }
 
 const SearchCol = ({
   toggleCopiedToast,
   toggleNominatedToast,
+  displayMovieDetails,
 }: ISearchColProps) => {
   const {
     user: { nominations },
@@ -41,6 +43,7 @@ const SearchCol = ({
           movie={movie}
           key={movie.imdbID}
           toggleNominatedToast={toggleNominatedToast}
+          displayMovieDetails={displayMovieDetails}
         />
       ));
       setMovieCards(cards);
