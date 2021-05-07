@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { Button, Icon, Heading, Subheading } from "@shopify/polaris";
 import { PlayCircleMajor, FavoriteMajor } from "@shopify/polaris-icons";
 import CustomCard from "../../Card/Card";
-import { IMovieMeta } from "../../../shared/interfaces";
+import { IMovieMeta, IMovieSearch } from "../../../shared/interfaces";
 import { checkIfNominated } from "../../../shared/utils";
 import { NOMINATION_NUMBER } from "../../../shared/constants";
 import { UserContext, UserReducerActions } from "../../../AppContext";
 
 interface IMovieCardProps {
-  movie: IMovieMeta;
+  movie: IMovieSearch;
   toggleNominatedToast: () => void;
 }
 
@@ -76,9 +76,6 @@ const MovieCard = ({ movie, toggleNominatedToast }: IMovieCardProps) => {
   })();
 
   const generateMovieInfo = ((): JSX.Element => {
-    const imdbRating =
-      movie.imdbRating === "N/A" ? "No rating" : movie.imdbRating;
-    const rated = movie.Rated === "N/A" ? "Not rated" : movie.Rated;
     return (
       <div className="movie-card__info-col-top">
         <Heading element="h1">{movie.Title}</Heading>

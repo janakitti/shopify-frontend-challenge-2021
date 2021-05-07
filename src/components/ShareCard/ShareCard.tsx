@@ -3,7 +3,7 @@ import { Button, TextField, Icon } from "@shopify/polaris";
 import { ClipboardMinor } from "@shopify/polaris-icons";
 import CustomCard from "../Card/Card";
 import { UserContext, UserReducerActions } from "../../AppContext";
-import { IMovieMeta } from "../../shared/interfaces";
+import { IMovieMeta, IMovieSearch } from "../../shared/interfaces";
 
 interface IShareCardProps {
   toggleCopiedToast: () => void;
@@ -18,10 +18,13 @@ const ShareCard = ({ toggleCopiedToast }: IShareCardProps) => {
   const [shareLink, setShareLink] = useState("");
 
   useEffect(() => {
-    const newShareLink = nominations.reduce((acc: string, cur: IMovieMeta) => {
-      acc += cur.imdbID + "-";
-      return acc;
-    }, `${process.env.REACT_APP_BASE_URL}/nominations?data=${username}-`);
+    const newShareLink = nominations.reduce(
+      (acc: string, cur: IMovieSearch) => {
+        acc += cur.imdbID + "-";
+        return acc;
+      },
+      `${process.env.REACT_APP_BASE_URL}/nominations?data=${username}-`
+    );
     setShareLink(newShareLink.slice(0, newShareLink.length - 1));
   }, [nominations]);
 

@@ -26,7 +26,7 @@ const SearchCol = ({
     user: { nominations },
   } = useContext(UserContext);
   const [searchInput, setSearchInput] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<IMovieMeta[]>([]);
+  const [searchResults, setSearchResults] = useState<IMovieSearch[]>([]);
   const [movieCards, setMovieCards] = useState<JSX.Element[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -36,7 +36,7 @@ const SearchCol = ({
 
   useEffect(() => {
     (async () => {
-      const cards = await searchResults?.map((movie: IMovieMeta) => (
+      const cards = await searchResults?.map((movie: IMovieSearch) => (
         <MovieCard
           movie={movie}
           key={movie.imdbID}
@@ -54,12 +54,8 @@ const SearchCol = ({
       if (debouncedSearch) {
         setIsLoading(true);
         const queryResults = await queryMovies(debouncedSearch);
-        const imdbIds = queryResults.map((movie: IMovieSearch) => movie.imdbID);
-        const uniqueImdbIds = Array.from(new Set(imdbIds));
-        const metaResuts = await Promise.all(
-          uniqueImdbIds.map((id: string) => getMovieDetails(id))
-        );
-        setSearchResults(metaResuts.filter(isIMovieMeta));
+        const movies = queryResults.map((movie: IMovieSearch) => movie);
+        setSearchResults(movies);
       } else {
         setSearchResults([]);
       }
