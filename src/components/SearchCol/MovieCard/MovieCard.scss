@@ -11,8 +11,8 @@
 }
 
 .movie-card__poster-col {
-  width: 8em;
-  @include breakpoint-max($screen-width-xl) {
+  width: 10em;
+  @include breakpoint-max($screen-width-sm) {
     display: none;
   }
 }
@@ -23,8 +23,8 @@
   justify-content: center;
   margin: auto;
   background-color: $empty;
-  height: 8em;
-  width: 6em;
+  height: 11em;
+  width: 8em;
   border-radius: $card-border-radius;
   box-shadow: $poster-shadow;
   object-fit: fill;
