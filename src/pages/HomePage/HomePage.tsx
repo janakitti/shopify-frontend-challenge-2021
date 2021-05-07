@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useContext,
 } from "react";
-import { Toast, Frame, Modal } from "@shopify/polaris";
+import { Toast, Frame, Modal, TextContainer } from "@shopify/polaris";
 import Header from "../../components/Header/Header";
 import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
@@ -14,6 +14,7 @@ import { IMovieMeta } from "../../shared/interfaces";
 import { NOMINATION_NUMBER, SCREEN_WIDTH_LG } from "../../shared/constants";
 import { UserContext, UserReducerActions } from "../../AppContext";
 import useScreenWidth from "../../shared/useScreenWidth";
+import { getMovieDetails } from "../../services/movieservice";
 
 const HomePage = () => {
   const {
@@ -22,6 +23,7 @@ const HomePage = () => {
   } = useContext(UserContext);
   const screenWidth = useScreenWidth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentMovie, setCurrentMovie] = useState<IMovieMeta>();
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("shoppies-username");
@@ -51,6 +53,8 @@ const HomePage = () => {
     isModalOpen,
   ]);
   const displayMovieDetails = async (id: string) => {
+    const details = await getMovieDetails(id);
+    setCurrentMovie(details);
     setIsModalOpen(true);
   };
 
@@ -106,7 +110,17 @@ const HomePage = () => {
         {completedToastMarkup}
         {copiedToastMarkup}
       </Frame>
-      <Modal open={isModalOpen} title="Details" onClose={handleModal}></Modal>
+      <Modal
+        open={isModalOpen}
+        title={currentMovie?.Title}
+        onClose={handleModal}
+      >
+        <Modal.Section>
+          <TextContainer>
+            <p></p>
+          </TextContainer>
+        </Modal.Section>
+      </Modal>
     </>
   );
 };
