@@ -45,6 +45,7 @@ const HomePage = () => {
   useEffect(() => {
     localStorage.setItem("shoppies-nominations", JSON.stringify(nominations));
     if (nominations.length === NOMINATION_NUMBER) {
+      window.scroll({ top: 0, behavior: "smooth" });
       toggleIsCompletedToastActive();
     }
   }, [nominations]);
