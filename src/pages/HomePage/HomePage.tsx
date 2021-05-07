@@ -117,7 +117,12 @@ const HomePage = () => {
       >
         <Modal.Section>
           <TextContainer>
-            <p></p>
+            <img
+              src={currentMovie?.Poster}
+              alt="Movie poster"
+              className="details-modal__img"
+            />
+            <p>{currentMovie?.Plot}</p>
           </TextContainer>
         </Modal.Section>
       </Modal>

@@ -10,3 +10,16 @@
     grid-template-columns: 75% 25%;
   }
 }
+
+.details-modal__img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  background-color: $empty;
+  height: 12em;
+  width: 100%;
+  border-radius: $card-border-radius;
+  box-shadow: $poster-shadow;
+  object-fit: cover;
+}
