@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Icon } from "@shopify/polaris";
+import { Button, Icon, Heading, Subheading } from "@shopify/polaris";
 import { PlayCircleMajor, FavoriteMajor } from "@shopify/polaris-icons";
 import CustomCard from "../../Card/Card";
 import { IMovieMeta } from "../../../shared/interfaces";
@@ -81,19 +81,8 @@ const MovieCard = ({ movie, toggleNominatedToast }: IMovieCardProps) => {
     const rated = movie.Rated === "N/A" ? "Not rated" : movie.Rated;
     return (
       <div className="movie-card__info-col-top">
-        <h1 className="movie-title">{movie.Title}</h1>
-        <h2>
-          {movie.Year} &bull; {movie.Genre}
-        </h2>
-        <div className="rating-container">
-          <img src="./star.svg" alt="movie rating" className="star" />
-          <span>
-            {imdbRating} &bull; {rated}
-          </span>
-        </div>
-        <div className="plot-container">
-          <p className="plot">{movie.Plot}</p>
-        </div>
+        <Heading element="h1">{movie.Title}</Heading>
+        <Subheading>{movie.Year}</Subheading>
       </div>
     );
   })();
