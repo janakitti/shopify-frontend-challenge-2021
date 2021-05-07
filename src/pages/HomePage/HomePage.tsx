@@ -117,12 +117,32 @@ const HomePage = () => {
       >
         <Modal.Section>
           <TextContainer>
-            <img
-              src={currentMovie?.Poster}
-              alt="Movie poster"
-              className="details-modal__img"
-            />
-            <p>{currentMovie?.Plot}</p>
+            <div className="details-modal__inner-container">
+              <div className="poster-col">
+                <img
+                  className="poster-container"
+                  src={currentMovie?.Poster}
+                  alt={`${currentMovie?.Title} poster`}
+                />
+              </div>
+              <div className="info-col">
+                <div>
+                  <h1 className="movie-title">{currentMovie?.Title}</h1>
+                  <h2>
+                    {currentMovie?.Year} &bull; {currentMovie?.Genre}
+                  </h2>
+                  <div className="rating-container">
+                    <img src="./star.svg" alt="movie rating" className="star" />
+                    <span>
+                      {currentMovie?.imdbRating} &bull; {currentMovie?.Rated}
+                    </span>
+                  </div>
+                  <div className="plot-container">
+                    <p className="plot">{currentMovie?.Plot}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </TextContainer>
         </Modal.Section>
       </Modal>
