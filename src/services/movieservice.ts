@@ -11,8 +11,25 @@ export const queryMovies = async (query: string): Promise<IMovieSearch[]> => {
   const res = await fetch(
     `${OMDB_API_URL}/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${query}&type=movie&page=1`
   );
-  const movies: IMovieQueryResponse = await res?.json();
-  return movies.Search || [];
+  const data: IMovieQueryResponse = await res?.json();
+  const movies = data.Search;
+
+  interface IUniqueMoviesAccumulator {
+    movies: IMovieSearch[];
+    ids: Set<string>;
+  }
+  const initAcc: IUniqueMoviesAccumulator = { movies: [], ids: new Set() };
+  const uniqueMovies = movies?.reduce(
+    (acc: IUniqueMoviesAccumulator, curr: IMovieSearch) => {
+      if (!acc.ids.has(curr.imdbID)) {
+        acc.movies.push(curr);
+        acc.ids.add(curr.imdbID);
+      }
+      return acc;
+    },
+    initAcc
+  );
+  return uniqueMovies?.movies || [];
 };
 
 export const getMovieDetails = async (
