@@ -16,10 +16,13 @@ export const queryMovies = async (query: string): Promise<IMovieSearch[]> => {
 };
 
 export const getMovieDetails = async (
-  id: string
+  id: string,
+  fullPlot?: boolean
 ): Promise<IMovieMeta | undefined> => {
   const res = await fetch(
-    `${OMDB_API_URL}/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&i=${id}&plot=short`
+    `${OMDB_API_URL}/?apikey=${
+      process.env.REACT_APP_OMDB_API_KEY
+    }&i=${id}&plot=${fullPlot ? "full" : "short"}`
   );
   const data: IMovieMeta | IError = await res?.json();
   return isIError(data) ? undefined : data;

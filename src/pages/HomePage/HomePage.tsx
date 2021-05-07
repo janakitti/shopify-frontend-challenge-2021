@@ -53,7 +53,7 @@ const HomePage = () => {
     isModalOpen,
   ]);
   const displayMovieDetails = async (id: string) => {
-    const details = await getMovieDetails(id);
+    const details = await getMovieDetails(id, true);
     setCurrentMovie(details);
     setIsModalOpen(true);
   };
