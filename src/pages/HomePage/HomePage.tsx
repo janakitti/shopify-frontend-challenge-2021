@@ -93,6 +93,43 @@ const HomePage = () => {
     <Toast content="Copied 📋" onDismiss={toggleIsCopiedToastActive} />
   ) : null;
 
+  const generateMovieInfo = ((): JSX.Element => {
+    const imdbRating =
+      currentMovie?.imdbRating === "N/A"
+        ? "No rating"
+        : currentMovie?.imdbRating;
+    const rated =
+      currentMovie?.Rated === "N/A" ? "Not rated" : currentMovie?.Rated;
+    return (
+      <div className="details-modal__inner-container">
+        <div className="poster-col">
+          <img
+            className="poster-container"
+            src={currentMovie?.Poster}
+            alt={`${currentMovie?.Title} poster`}
+          />
+        </div>
+        <div className="info-col">
+          <div>
+            <h1 className="movie-title">{currentMovie?.Title}</h1>
+            <h2>
+              {currentMovie?.Year} &bull; {currentMovie?.Genre}
+            </h2>
+            <div className="rating-container">
+              <img src="./star.svg" alt="movie rating" className="star" />
+              <span>
+                {imdbRating} &bull; {rated}
+              </span>
+            </div>
+            <div className="plot-container">
+              <p className="plot">{currentMovie?.Plot}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  })();
+
   return (
     <>
       <Frame>
@@ -116,34 +153,7 @@ const HomePage = () => {
         onClose={handleModal}
       >
         <Modal.Section>
-          <TextContainer>
-            <div className="details-modal__inner-container">
-              <div className="poster-col">
-                <img
-                  className="poster-container"
-                  src={currentMovie?.Poster}
-                  alt={`${currentMovie?.Title} poster`}
-                />
-              </div>
-              <div className="info-col">
-                <div>
-                  <h1 className="movie-title">{currentMovie?.Title}</h1>
-                  <h2>
-                    {currentMovie?.Year} &bull; {currentMovie?.Genre}
-                  </h2>
-                  <div className="rating-container">
-                    <img src="./star.svg" alt="movie rating" className="star" />
-                    <span>
-                      {currentMovie?.imdbRating} &bull; {currentMovie?.Rated}
-                    </span>
-                  </div>
-                  <div className="plot-container">
-                    <p className="plot">{currentMovie?.Plot}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </TextContainer>
+          <TextContainer>{generateMovieInfo}</TextContainer>
         </Modal.Section>
       </Modal>
     </>
