@@ -6,7 +6,7 @@ This is my submission for Shopify's UX Developer Intern & Web Developer Intern C
 
 You can learn more about the challenge from the [challenge description](UX Developer Intern & Web Developer Intern Challenge - Fall 2021).
 
- **[Grab some popcorn and view my submission!](https://the-shoppies-fall-2021.netlify.app/) 🍿**
+ **[Grab some popcorn and view my submission!](https://the-shoppies-fall-2021.netlify.app/) 🍿 ** (Login Password: `shoppies`)
 
 ## Table of Contents
 
@@ -41,31 +41,29 @@ You can learn more about the challenge from the [challenge description](UX Devel
 
 ## Design
 
-I wanted to create a unique design that also drew some elements from Shopify's Polaris design system. Although in a real production scenario, it would be proper to either use Polaris throughout the entire app or not at all, I figured that a hybrid design would give me an opportunity to better express some of my ideas and challenge myself to make the styling feel seamless to the user.
+My first steps after reading the challenge description and breaking down the tasks in Notion, I went right to Figma to create mockups of my app.
 
-In order to maintain a consistent experience as much as possible, I tried my best to incorportate [design guidlines](https://polaris.shopify.com/design/design), including some for color and typography, when introducing components from outside of Polaris.
+I wanted to create a design that unique and minimal, that also drew some elements from Shopify's Polaris design system. Although in a production app, it isn't ideal to mix components from Polaris with components from other sources, I figured that a hybrid design for this project would give me an opportunity to better express my creative vision and challenge myself to maintain a consistent UX.
+
+In order to maintain a consistent experience as much as possible, I tried my best to incorportate some of the [design guidlines](https://polaris.shopify.com/design/design), including some for color and typography, when introducing components from outside of Polaris.
 
 I went through a couple of design ideas before settling on the one you see in the final product. You can check out my mockups on [Figma](https://www.figma.com/file/OVc9F9vBECAi3jKlr68Gs7/The-Shoppies-Mockups?node-id=0%3A1).
-
-
 
 ## Features
 
 ### Search
 
-I created `services/movieservice.ts` to handle fetching movie data using the OMDb API with the native Fetch API. In order to allow updates to the search terms to automatically update the results list with a bit of a buffer, I created a `useDebounce` React hook. I learned about this implementation from [useHooks](https://usehooks.com/useDebounce/).
+I created `services/movieservice.ts` to handle fetching movie data using the OMDb API with the native Fetch API. 
 
-The OMDb API 
+The OMDb API offers 2 types of calls: a search by movie title, which returns a list of matching entries with just a few properties, and a call for an exact movie, which returns the full metadata. In my initial design of the app (which can be seen right above the final design in the [Figma](https://www.figma.com/file/OVc9F9vBECAi3jKlr68Gs7/The-Shoppies-Mockups?node-id=0%3A1)), I wanted to display the movie genre, ratings, and plot on each card in the results list. This meant I needed to make an extra call for each result that was returned from the initial search call. I thought that presenting more information to the user would improve the overall UX, and since the number of results return at a time is < 10, this would justify the extra calls. After reflecting on this more, I realized that this is not a scalable approach for presenting results. It also demands a higher bandwidth, which can pose issues for mobile users. In the end, I settled with only running the search call to grab a list of results, and then implementing a modal feature that would fetch the extra metadata only for the movies the user wanted to read more about.
 
-The OMDb API offers 2 types of calls: a query by movie title, which returns a list of matching entries with just a few properties ()
-
-A decision I had to make when designing the results list UI was how much information I wanted to display on each card. 
+In order to allow updates to the search terms to automatically update the results list with a bit of a buffer, I created a `useDebounce` React hook. I learned about this implementation from [useHooks](https://usehooks.com/useDebounce/).
 
 ### Nominations List
 
-To manage the state of the nominations, I used a combination of `useReducer` context and provided the state from `App.tsx`. The reason why I chose context was because the list of nominations needed to be accessible by multiple components at different levels of the tree. I decided it would make sense to store this within the User State because the currently selected nominations tie in with the currently logged in user (more on the User State in the following section). With a reducer, I was able to extract out the logic for common state updates such as `ADD_NOMINATION`, `REMOVE_NOMINATION`, `CLEAR_NOMINATION`, and `SET_NOMINATION` from my components.
+To manage the state of the nominations, I used a combination of `useReducer` and context, and provided the state from `App.tsx`. The reason why I chose context was because the list of nominations needed to be accessible by multiple components at different levels of the React tree. I decided it would make sense to store nomination data within a global User State because the currently selected nominations should tie in with the currently logged in user (more on the User State in the following section). With a reducer, I was able to extract out the logic for common state updates such as `ADD_NOMINATION`, `REMOVE_NOMINATION`, `CLEAR_NOMINATION`, and `SET_NOMINATION` from my components.
 
-The `useReducer` and context setup I use (which I learned from [here](https://dev.to/elisealcala/react-context-with-usereducer-and-typescript-4obm)) is very similar to a Redux setup. The reason why I chose to use context over Redux however, is because I wasn't handling a large amount of global state and there aren't any high-frequency state updates in the app. The size of the app also didn't justify the addition of another depenency.
+The `useReducer` and context setup I used (which I learned from [here](https://dev.to/elisealcala/react-context-with-usereducer-and-typescript-4obm)) is very similar to a Redux setup. The reason why I chose to use context over Redux however, is because I wasn't handling a large amount of global state and there aren't any high-frequency state updates in the app. The size of the app also didn't justify the addition of another depenency.
 
 ### Login
 
@@ -75,7 +73,7 @@ The username from the login is kept in the context store, so that it can be acce
 
 ### Shareable Links
 
-Once the user has selected 5 nominations, they are presented with a shareable link. This link can be shared with anyone and when visited, will display the user's username along with their 5 nominations in a visually appealing layout. Since I didn't implement a backend for this project, the username and nominated movie `imdbID`s are stored in a `data` query parameter in the shareable link, delimited by hyphens:
+Once the user has selected 5 nominations, they are presented with a shareable link. This link takes users to a page that displays the nominator's username along with their 5 nominations in a visually appealing layout. Since I didn't implement a backend for this project, the username and nominated movie `imdbID`s are stored in a `data` query parameter in the shareable link, delimited by hyphens:
 
 ```
 the-shoppies-fall-2021.netlify.app/nominations?data=janakitti-tt0076759-tt0080684-tt0086190-tt2488496-tt0120915
@@ -92,6 +90,30 @@ This was my first time using the Framer Motion API and I had really great time p
 One of the main challenges I came across was ensuring that my app could look and function nicely on multiple screen widths. I learned how to create SCSS mixins for conveniently writing up conditional styles based on screen width breakpoints from [Łukasz Florczak's article](https://medium.com/codeartisan/breakpoints-and-media-queries-in-scss-46e8f551e2f2). For most of my other projects, I've used the grid system from Bootstrap to handle the rearranging of rows and columns on various screen widths. For this project, I wanted to try creating this myself, and so I learned about [`grid-template-columns`](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns).
 
 One design concern that I encountered on mobile was that the fact that the nominations list was below the movie results list. When the user searches for movies and nominates one of them, they aren't immediately able to see their nomination get added to the list without scrolling all the way down. Unlike on desktops, where the nominations list is postions to the right of the search interface, the mobile UI offers no clear feedback on a successful nomination apart from the disabling of the "Nominate" button. I decided that a Polaris Toast that said "Nomination added below!" could be an clean way to inform users that their nomination was added below. I only wanted this Toast to appear on mobile, however. After a bit of trial and error, I found that it wasn't able to develop a solution using CSS breakpoints alone. I ended up learning to create a hook for getting the current screen width from this [useHooks article](https://usehooks.com/useWindowSize/).
+
+### Unique Movie IDs
+
+Another challenge I came across involved the `imdbID` property of return results from the OMDb API. When rending a list of elements in React, a unique key needs to be provided to each element so that React can identify which ones have changed over time. When implementing my results list, I used the `imdbID` property as my unique key. Unfortunately, for some search terms, the OMDb API will return duplicate entries (for example, when you search "Lego" and fetch page 1). In order to resolve this, I needed to filter out any duplicate responses before passing the data to render the movie card components. I ended up running a `reduce` operation on the returned movies, using a Set to keep track of and quickly lookup `imdbID`s that have already been added to the list:
+
+```typescript
+  interface IUniqueMoviesAccumulator {
+    movies: IMovieSearch[];
+    ids: Set<string>;
+  }
+  const initAcc: IUniqueMoviesAccumulator = { movies: [], ids: new Set() };
+  const uniqueMovies = movies?.reduce(
+    (acc: IUniqueMoviesAccumulator, curr: IMovieSearch) => {
+      if (!acc.ids.has(curr.imdbID)) {
+        acc.movies.push(curr);
+        acc.ids.add(curr.imdbID);
+      }
+      return acc;
+    },
+    initAcc
+  );
+```
+
+
 
 ## Next Steps
 
