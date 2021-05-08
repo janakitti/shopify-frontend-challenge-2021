@@ -13,6 +13,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [erroMsg, setErrorMsg] = useState("");
 
+  // Check if username exists in localStorage, redirect to Home if already logged in
   useEffect(() => {
     const storedUsername = localStorage.getItem("shoppies-username");
     if (storedUsername) {

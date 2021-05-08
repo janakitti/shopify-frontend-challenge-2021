@@ -29,13 +29,13 @@ const MovieCard = ({
     setIsNominationComplete(nominations.length === NOMINATION_NUMBER);
   }, [nominations]);
 
+  // Fetch movie data and add nomination to the store
   const nominateMovie = async () => {
     const movieDetails = await getMovieDetails(movie.imdbID);
     if (isIMovieMeta(movieDetails)) {
       if (nominations.length < NOMINATION_NUMBER - 1) {
         toggleNominatedToast();
       }
-
       dispatchUser({
         type: UserReducerActions.ADD_MOVIE,
         payload: {

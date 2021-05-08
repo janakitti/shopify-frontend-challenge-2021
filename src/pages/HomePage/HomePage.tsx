@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useContext } from "react";
+import { useCallback, useState, useEffect, useContext } from "react";
 import { Toast, Frame, Modal, TextContainer, Caption } from "@shopify/polaris";
 import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
@@ -15,8 +15,11 @@ const HomePage = () => {
   } = useContext(UserContext);
   const screenWidth = useScreenWidth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Movie that is currently being viewed in the Modal
   const [currentMovie, setCurrentMovie] = useState<IMovieDetails>();
 
+  // Get any stored data from localStorage
   useEffect(() => {
     const storedUsername = localStorage.getItem("shoppies-username");
     const storedNominations = localStorage.getItem("shoppies-nominations");
@@ -34,6 +37,7 @@ const HomePage = () => {
     }
   }, []);
 
+  // Update locally stored nominations and check if nominations are complete
   useEffect(() => {
     localStorage.setItem("shoppies-nominations", JSON.stringify(nominations));
     if (nominations.length === NOMINATION_NUMBER) {
@@ -45,12 +49,15 @@ const HomePage = () => {
   const handleModal = useCallback(() => setIsModalOpen(!isModalOpen), [
     isModalOpen,
   ]);
+
+  // Called when View button is clicked
   const displayMovieDetails = async (id: string) => {
     const details = await getMovieDetails(id, true);
     setCurrentMovie(details);
     setIsModalOpen(true);
   };
 
+  // Mobile toast to indicate nomination was successful
   const [isNominatedToastActive, setIsNominatedToastActive] = useState(false);
   const toggleIsNominatedToastActive = useCallback(
     () => setIsNominatedToastActive((active) => !active),
@@ -65,6 +72,7 @@ const HomePage = () => {
       />
     ) : null;
 
+  // Toast to indicate all nominations have been selected
   const [isCompletedToastActive, setIsCompletedToastActive] = useState(false);
   const toggleIsCompletedToastActive = useCallback(
     () => setIsCompletedToastActive((active) => !active),
@@ -77,6 +85,7 @@ const HomePage = () => {
     />
   ) : null;
 
+  // Toast to indicate that Share Link was automatically copied
   const [isCopiedToastActive, setIsCopiedToastActive] = useState(false);
   const toggleIsCopiedToastActive = useCallback(
     () => setIsCopiedToastActive((active) => !active),
@@ -86,6 +95,7 @@ const HomePage = () => {
     <Toast content="Copied 📋" onDismiss={toggleIsCopiedToastActive} />
   ) : null;
 
+  // Logic for rendering movie details for modal
   const generateMovieInfo = ((): JSX.Element => {
     const imdbRating =
       !currentMovie?.imdbRating || currentMovie?.imdbRating === "N/A"

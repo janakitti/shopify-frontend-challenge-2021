@@ -22,6 +22,7 @@ const NominationsPage = () => {
     history.push("/");
   };
 
+  // Read the query parameters from the URL and set the states
   useEffect(() => {
     const user = query.get("user");
     const ids = query.get("ids")?.split("-");
@@ -48,7 +49,8 @@ const NominationsPage = () => {
     }
   }, []);
 
-  const renderPage = ((): JSX.Element => {
+  // Logic for rendering contents of the page
+  const generatePage = ((): JSX.Element => {
     if (isLoading) {
       return <Spinner />;
     } else if (username && nominations.length) {
@@ -104,7 +106,7 @@ const NominationsPage = () => {
 
   return (
     <div className="shared-nominations__page-wrapper">
-      <div>{renderPage}</div>
+      <div>{generatePage}</div>
     </div>
   );
 };
