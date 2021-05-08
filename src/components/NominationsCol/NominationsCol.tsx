@@ -1,12 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import NominationCard from "../NominationsCol/NominationCard/NominationCard";
-import { IMovieDetails, IMovieSearch } from "../../shared/interfaces";
+import { IMovieDetails } from "../../shared/interfaces";
 import { UserContext } from "../../AppContext";
 import Header from "../Header/Header";
 import UserAvatar from "../UserAvatar/UserAvatar";
 import { NOMINATION_NUMBER } from "../../shared/constants";
-import { getMovieDetails } from "../../services/movie.service";
-import { isIMovieMeta } from "../../shared/utils";
 
 const NominationsCol = () => {
   const {
@@ -16,12 +14,8 @@ const NominationsCol = () => {
 
   useEffect(() => {
     (async () => {
-      const movieDetails = await Promise.all(
-        nominations.map((movie: IMovieSearch) => getMovieDetails(movie.imdbID))
-      );
-      const filteredMovieDetails = movieDetails.filter(isIMovieMeta);
       setNominationCards(
-        filteredMovieDetails.map((movie: IMovieDetails) => (
+        nominations.map((movie: IMovieDetails) => (
           <NominationCard movie={movie} key={movie.imdbID} />
         ))
       );

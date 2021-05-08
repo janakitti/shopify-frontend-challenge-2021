@@ -1,9 +1,9 @@
 import { useReducer, createContext } from "react";
-import { IMovieDetails, IMovieSearch } from "./shared/interfaces";
+import { IMovieDetails } from "./shared/interfaces";
 
 export interface IUserState {
   username: string;
-  nominations: IMovieSearch[];
+  nominations: IMovieDetails[];
 }
 
 const INITIAL_USER_STATE: IUserState = {
@@ -23,8 +23,11 @@ export enum UserReducerActions {
 export type TUserAction =
   | { type: UserReducerActions.LOGIN; payload: { username: string } }
   | { type: UserReducerActions.LOGOUT }
-  | { type: UserReducerActions.SET_MOVIES; payload: { movies: IMovieSearch[] } }
-  | { type: UserReducerActions.ADD_MOVIE; payload: { movie: IMovieSearch } }
+  | {
+      type: UserReducerActions.SET_MOVIES;
+      payload: { movies: IMovieDetails[] };
+    }
+  | { type: UserReducerActions.ADD_MOVIE; payload: { movie: IMovieDetails } }
   | { type: UserReducerActions.REMOVE_MOVIE; payload: { id: string } }
   | { type: UserReducerActions.CLEAR_MOVIES };
 
@@ -51,7 +54,7 @@ const userReducer = (state: IUserState, action: TUserAction): IUserState => {
       return {
         ...state,
         nominations: state.nominations.filter(
-          (m: IMovieSearch) => m.imdbID !== action.payload.id
+          (m: IMovieDetails) => m.imdbID !== action.payload.id
         ),
       };
     case UserReducerActions.CLEAR_MOVIES:

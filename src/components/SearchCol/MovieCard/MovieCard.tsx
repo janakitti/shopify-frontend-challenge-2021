@@ -3,9 +3,10 @@ import { Button, ButtonGroup, Icon } from "@shopify/polaris";
 import { PlayCircleMajor } from "@shopify/polaris-icons";
 import CustomCard from "../../Card/Card";
 import { IMovieSearch } from "../../../shared/interfaces";
-import { checkIfNominated } from "../../../shared/utils";
+import { checkIfNominated, isIMovieMeta } from "../../../shared/utils";
 import { NOMINATION_NUMBER } from "../../../shared/constants";
 import { UserContext, UserReducerActions } from "../../../AppContext";
+import { getMovieDetails } from "../../../services/movie.service";
 
 interface IMovieCardProps {
   movie: IMovieSearch;
@@ -29,16 +30,20 @@ const MovieCard = ({
     );
   }, [nominations]);
 
-  const nominateMovie = () => {
-    if (nominations.nominations.length < NOMINATION_NUMBER - 1) {
-      toggleNominatedToast();
+  const nominateMovie = async () => {
+    const movieDetails = await getMovieDetails(movie.imdbID);
+    if (isIMovieMeta(movieDetails)) {
+      if (nominations.nominations.length < NOMINATION_NUMBER - 1) {
+        toggleNominatedToast();
+      }
+
+      dispatchNominations({
+        type: UserReducerActions.ADD_MOVIE,
+        payload: {
+          movie: movieDetails,
+        },
+      });
     }
-    dispatchNominations({
-      type: UserReducerActions.ADD_MOVIE,
-      payload: {
-        movie,
-      },
-    });
   };
   const removeNominatedMovie = () => {
     dispatchNominations({
