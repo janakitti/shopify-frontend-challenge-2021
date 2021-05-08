@@ -13,13 +13,11 @@ const NominationsCol = () => {
   const [nominationCards, setNominationCards] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
-    (async () => {
-      setNominationCards(
-        nominations.map((movie: IMovieDetails) => (
-          <NominationCard movie={movie} key={movie.imdbID} />
-        ))
-      );
-    })();
+    setNominationCards(
+      nominations.map((movie: IMovieDetails) => (
+        <NominationCard movie={movie} key={movie.imdbID} />
+      ))
+    );
   }, [nominations]);
 
   return (
