@@ -17,6 +17,7 @@ const ShareCard = ({ toggleCopiedToast }: IShareCardProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [shareLink, setShareLink] = useState("");
 
+  // Create a Share Link where username and nominated imdbIDs are stored in query params
   useEffect(() => {
     const newShareLink = nominations.reduce(
       (acc: string, cur: IMovieSearch) => {
@@ -37,6 +38,7 @@ const ShareCard = ({ toggleCopiedToast }: IShareCardProps) => {
     toggleCopiedToast();
   };
 
+  // Logic for rendering card contents
   const generateShareCardContents = ((): JSX.Element => {
     if (!isSubmitted) {
       return (

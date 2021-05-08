@@ -27,14 +27,20 @@ const SearchCol = ({
     user: { nominations },
   } = useContext(UserContext);
   const [searchInput, setSearchInput] = useState<string>("");
+
+  // List of fetched results
   const [searchResults, setSearchResults] = useState<IMovieSearch[]>([]);
+
+  // List of MovieCard components
   const [movieCards, setMovieCards] = useState<JSX.Element[]>([]);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = (input: string) => {
     setSearchInput(input);
   };
 
+  // Create results list
   useEffect(() => {
     (async () => {
       const cards = await searchResults?.map((movie: IMovieSearch) => (
@@ -49,8 +55,8 @@ const SearchCol = ({
     })();
   }, [searchResults]);
 
+  // Debounce search input
   const debouncedSearch = useDebounce(searchInput, 500);
-
   useEffect(() => {
     (async () => {
       if (debouncedSearch) {
@@ -65,7 +71,8 @@ const SearchCol = ({
     })();
   }, [debouncedSearch]);
 
-  const resultsSection = ((): JSX.Element => {
+  // Logic for rendering results section
+  const generateResultsSection = ((): JSX.Element => {
     if (nominations.length === NOMINATION_NUMBER) {
       return <ShareCard toggleCopiedToast={toggleCopiedToast} />;
     } else if (isLoading) {
@@ -135,7 +142,7 @@ const SearchCol = ({
           disabled={nominations.length === NOMINATION_NUMBER}
         />
       </PopAnimationWrapper>
-      <div className="search-col__results">{resultsSection}</div>
+      <div className="search-col__results">{generateResultsSection}</div>
     </div>
   );
 };

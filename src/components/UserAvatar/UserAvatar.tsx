@@ -10,6 +10,7 @@ const UserAvatar = () => {
     dispatchUser,
   } = useContext(UserContext);
 
+  // Clear locally stored data
   const handleLogout = () => {
     dispatchUser({ type: UserReducerActions.LOGOUT });
     localStorage.setItem("shoppies-username", "");
