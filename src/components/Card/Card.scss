@@ -2,6 +2,9 @@
   background-color: $card-bg-color;
   box-shadow: $card-shadow;
   border-radius: $card-border-radius;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   overflow: hidden;
   .inner-container {
     height: 100%;

@@ -30,3 +30,14 @@
 .shared-nominations__button-container {
   padding: 2em;
 }
+
+.shared-nominations__graphic {
+  text-align: center;
+  h1 {
+    @include display-sm-text;
+  }
+  p {
+    margin-top: 1em;
+    @include body-text;
+  }
+}

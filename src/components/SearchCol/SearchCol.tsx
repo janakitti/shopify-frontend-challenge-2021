@@ -2,64 +2,68 @@ import { TextField, Icon, Spinner } from "@shopify/polaris";
 import { SearchMajor } from "@shopify/polaris-icons";
 import { useState, useEffect, useContext } from "react";
 import MovieCard from "./MovieCard/MovieCard";
-import { IMovieSearch, IMovieMeta } from "../../shared/interfaces";
-import { queryMovies, getMovieDetails } from "../../services/movieservice";
+import { IMovieSearch } from "../../shared/interfaces";
+import { queryMovies } from "../../services/movie.service";
 import Header from "../Header/Header";
 import useDebounce from "../../shared/useDebounce";
 import { NOMINATION_NUMBER } from "../../shared/constants";
 import ShareCard from "../ShareCard/ShareCard";
-import { UserContext } from "../../AppContext";
-import { isIMovieMeta } from "../../shared/utils";
+import { UserContext } from "../../UserContext";
 import UserAvatar from "../UserAvatar/UserAvatar";
 import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 
 interface ISearchColProps {
   toggleCopiedToast: () => void;
   toggleNominatedToast: () => void;
+  displayMovieDetails: (id: string) => Promise<void>;
 }
 
 const SearchCol = ({
   toggleCopiedToast,
   toggleNominatedToast,
+  displayMovieDetails,
 }: ISearchColProps) => {
   const {
     user: { nominations },
   } = useContext(UserContext);
   const [searchInput, setSearchInput] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<IMovieMeta[]>([]);
+
+  // List of fetched results
+  const [searchResults, setSearchResults] = useState<IMovieSearch[]>([]);
+
+  // List of MovieCard components
   const [movieCards, setMovieCards] = useState<JSX.Element[]>([]);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = (input: string) => {
     setSearchInput(input);
   };
 
+  // Create results list
   useEffect(() => {
     (async () => {
-      const cards = await searchResults?.map((movie: IMovieMeta) => (
+      const cards = await searchResults?.map((movie: IMovieSearch) => (
         <MovieCard
           movie={movie}
           key={movie.imdbID}
           toggleNominatedToast={toggleNominatedToast}
+          displayMovieDetails={displayMovieDetails}
         />
       ));
       setMovieCards(cards);
     })();
-  }, [searchResults]);
+  }, [searchResults, toggleNominatedToast, displayMovieDetails]);
 
+  // Debounce search input
   const debouncedSearch = useDebounce(searchInput, 500);
-
   useEffect(() => {
     (async () => {
       if (debouncedSearch) {
         setIsLoading(true);
         const queryResults = await queryMovies(debouncedSearch);
-        const imdbIds = queryResults.map((movie: IMovieSearch) => movie.imdbID);
-        const uniqueImdbIds = Array.from(new Set(imdbIds));
-        const metaResuts = await Promise.all(
-          uniqueImdbIds.map((id: string) => getMovieDetails(id))
-        );
-        setSearchResults(metaResuts.filter(isIMovieMeta));
+        const movies = queryResults.map((movie: IMovieSearch) => movie);
+        setSearchResults(movies);
       } else {
         setSearchResults([]);
       }
@@ -67,7 +71,8 @@ const SearchCol = ({
     })();
   }, [debouncedSearch]);
 
-  const resultsSection = ((): JSX.Element => {
+  // Logic for rendering results section
+  const generateResultsSection = ((): JSX.Element => {
     if (nominations.length === NOMINATION_NUMBER) {
       return <ShareCard toggleCopiedToast={toggleCopiedToast} />;
     } else if (isLoading) {
@@ -137,7 +142,7 @@ const SearchCol = ({
           disabled={nominations.length === NOMINATION_NUMBER}
         />
       </PopAnimationWrapper>
-      <div className="search-col__results">{resultsSection}</div>
+      <div className="search-col__results">{generateResultsSection}</div>
     </div>
   );
 };

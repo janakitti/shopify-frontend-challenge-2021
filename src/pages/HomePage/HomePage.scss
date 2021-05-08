@@ -7,6 +7,55 @@
   display: grid;
   grid-template-columns: 1fr;
   @include breakpoint-min($screen-width-lg) {
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 70% 30%;
+  }
+}
+
+.details-modal__inner-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  @include breakpoint-min($screen-width-lg) {
+    grid-template-columns: 30% 70%;
+  }
+  .poster-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    background-color: $empty;
+    height: auto;
+    min-height: 15em;
+    width: 100%;
+    border-radius: $card-border-radius;
+    box-shadow: $poster-shadow;
+    object-fit: cover;
+  }
+  .info-col {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5em 0 0 0;
+    @include breakpoint-min($screen-width-lg) {
+      padding: 0 0 0 1.5em;
+    }
+    .movie-title {
+      @include header-text;
+    }
+    .plot {
+      @include body-text;
+      margin: 1em 0;
+    }
+    .rating-container {
+      display: flex;
+      flex-direction: row;
+      vertical-align: middle;
+      margin-bottom: 0.5em;
+      .star {
+        height: 0.8em;
+        margin-top: 0.35em;
+        margin-right: 0.5em;
+      }
+    }
   }
 }

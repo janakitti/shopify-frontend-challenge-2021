@@ -1,51 +1,55 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Icon } from "@shopify/polaris";
-import { PlayCircleMajor, FavoriteMajor } from "@shopify/polaris-icons";
+import { Button, ButtonGroup, Icon } from "@shopify/polaris";
+import { PlayCircleMajor } from "@shopify/polaris-icons";
 import CustomCard from "../../Card/Card";
-import { IMovieMeta } from "../../../shared/interfaces";
-import { checkIfNominated } from "../../../shared/utils";
+import { IMovieSearch } from "../../../shared/interfaces";
+import { checkIfNominated, isIMovieDetails } from "../../../shared/utils";
 import { NOMINATION_NUMBER } from "../../../shared/constants";
-import { UserContext, UserReducerActions } from "../../../AppContext";
+import { UserContext, UserReducerActions } from "../../../UserContext";
+import { getMovieDetails } from "../../../services/movie.service";
 
 interface IMovieCardProps {
-  movie: IMovieMeta;
+  movie: IMovieSearch;
   toggleNominatedToast: () => void;
+  displayMovieDetails: (id: string) => Promise<void>;
 }
 
-const MovieCard = ({ movie, toggleNominatedToast }: IMovieCardProps) => {
-  const { user: nominations, dispatchUser: dispatchNominations } = useContext(
-    UserContext
-  );
+const MovieCard = ({
+  movie,
+  toggleNominatedToast,
+  displayMovieDetails,
+}: IMovieCardProps) => {
+  const {
+    user: { nominations },
+    dispatchUser,
+  } = useContext(UserContext);
+
+  // Used to disable Nominate button nomination limit is reached
   const [isNominationComplete, setIsNominationComplete] = useState(false);
 
   useEffect(() => {
-    setIsNominationComplete(
-      nominations.nominations.length === NOMINATION_NUMBER
-    );
+    setIsNominationComplete(nominations.length === NOMINATION_NUMBER);
   }, [nominations]);
 
-  const nominateMovie = () => {
-    if (nominations.nominations.length < NOMINATION_NUMBER - 1) {
-      toggleNominatedToast();
+  // Fetch movie data and add nomination to the store
+  const nominateMovie = async () => {
+    const movieDetails = await getMovieDetails(movie.imdbID);
+    if (isIMovieDetails(movieDetails)) {
+      if (nominations.length < NOMINATION_NUMBER - 1) {
+        toggleNominatedToast();
+      }
+      dispatchUser({
+        type: UserReducerActions.ADD_MOVIE,
+        payload: {
+          movie: movieDetails,
+        },
+      });
     }
-    dispatchNominations({
-      type: UserReducerActions.ADD_MOVIE,
-      payload: {
-        movie,
-      },
-    });
-  };
-  const removeNominatedMovie = () => {
-    dispatchNominations({
-      type: UserReducerActions.REMOVE_MOVIE,
-      payload: {
-        id: movie.imdbID,
-      },
-    });
   };
 
+  // Logic for rendering the Nominate button text
   const generateNominateButton = ((): JSX.Element => {
-    const isNominated = checkIfNominated(movie, nominations.nominations);
+    const isNominated = checkIfNominated(movie, nominations);
     return (
       <Button
         primary
@@ -57,6 +61,7 @@ const MovieCard = ({ movie, toggleNominatedToast }: IMovieCardProps) => {
     );
   })();
 
+  // Logic for rendering poster image based on image availability
   const generateMoviePoster = ((): JSX.Element => {
     if (movie.Poster === "N/A") {
       return (
@@ -75,38 +80,26 @@ const MovieCard = ({ movie, toggleNominatedToast }: IMovieCardProps) => {
     }
   })();
 
-  const generateMovieInfo = ((): JSX.Element => {
-    const imdbRating =
-      movie.imdbRating === "N/A" ? "No rating" : movie.imdbRating;
-    const rated = movie.Rated === "N/A" ? "Not rated" : movie.Rated;
-    return (
-      <div className="movie-card__info-col-top">
-        <h1 className="movie-title">{movie.Title}</h1>
-        <h2>
-          {movie.Year} &bull; {movie.Genre}
-        </h2>
-        <div className="rating-container">
-          <img src="./star.svg" alt="movie rating" className="star" />
-          <span>
-            {imdbRating} &bull; {rated}
-          </span>
-        </div>
-        <div className="plot-container">
-          <p className="plot">{movie.Plot}</p>
-        </div>
-      </div>
-    );
-  })();
-
   return (
     <div className="movie-card__container">
       <CustomCard>
         <div className="movie-card">
           <div className="movie-card__poster-col">{generateMoviePoster}</div>
           <div className="movie-card__info-col">
-            {generateMovieInfo}
+            <div className="movie-card__info-col-top">
+              <h1 className="title">{movie.Title}</h1>
+              <h2 className="year">{movie.Year}</h2>
+            </div>
             <div className="movie-card__button-group">
-              {generateNominateButton}
+              <ButtonGroup>
+                <Button
+                  outline
+                  onClick={() => displayMovieDetails(movie.imdbID)}
+                >
+                  View
+                </Button>
+                {generateNominateButton}
+              </ButtonGroup>
             </div>
           </div>
         </div>

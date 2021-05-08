@@ -12,7 +12,7 @@ export interface IMovieSearch {
   Poster: string;
 }
 
-export interface IMovieMeta {
+export interface IMovieDetails {
   Title: string;
   Year: string;
   Rated: string;

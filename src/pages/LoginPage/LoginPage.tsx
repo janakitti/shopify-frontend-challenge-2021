@@ -3,7 +3,7 @@ import CustomCard from "../../components/Card/Card";
 import { TextField, Button, Form, InlineError } from "@shopify/polaris";
 import { MAX_USERNAME_LENGTH, USER_PASSWORD } from "../../shared/constants";
 import { useHistory } from "react-router-dom";
-import { UserContext, UserReducerActions } from "../../AppContext";
+import { UserContext, UserReducerActions } from "../../UserContext";
 import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 
 const LoginPage = () => {
@@ -13,6 +13,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [erroMsg, setErrorMsg] = useState("");
 
+  // Check if username exists in localStorage, redirect to Home if already logged in
   useEffect(() => {
     const storedUsername = localStorage.getItem("shoppies-username");
     if (storedUsername) {
@@ -44,7 +45,7 @@ const LoginPage = () => {
             <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
             <h1 className="logo__name">the shoppies</h1>
           </div>
-          <h2>Sign in to nominate your favourite movies</h2>
+          <h2>Movie awards for entrepreneurs</h2>
           <Form onSubmit={handleLogin}>
             <div className="form-container">
               <TextField

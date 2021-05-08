@@ -1,9 +1,9 @@
 import { useReducer, createContext } from "react";
-import { IMovieMeta } from "./shared/interfaces";
+import { IMovieDetails } from "./shared/interfaces";
 
 export interface IUserState {
   username: string;
-  nominations: IMovieMeta[];
+  nominations: IMovieDetails[];
 }
 
 const INITIAL_USER_STATE: IUserState = {
@@ -23,8 +23,11 @@ export enum UserReducerActions {
 export type TUserAction =
   | { type: UserReducerActions.LOGIN; payload: { username: string } }
   | { type: UserReducerActions.LOGOUT }
-  | { type: UserReducerActions.SET_MOVIES; payload: { movies: IMovieMeta[] } }
-  | { type: UserReducerActions.ADD_MOVIE; payload: { movie: IMovieMeta } }
+  | {
+      type: UserReducerActions.SET_MOVIES;
+      payload: { movies: IMovieDetails[] };
+    }
+  | { type: UserReducerActions.ADD_MOVIE; payload: { movie: IMovieDetails } }
   | { type: UserReducerActions.REMOVE_MOVIE; payload: { id: string } }
   | { type: UserReducerActions.CLEAR_MOVIES };
 
@@ -51,7 +54,7 @@ const userReducer = (state: IUserState, action: TUserAction): IUserState => {
       return {
         ...state,
         nominations: state.nominations.filter(
-          (m: IMovieMeta) => m.imdbID !== action.payload.id
+          (m: IMovieDetails) => m.imdbID !== action.payload.id
         ),
       };
     case UserReducerActions.CLEAR_MOVIES:
@@ -73,7 +76,7 @@ interface IAppContextProps {
   children: React.ReactNode;
 }
 
-const AppProvider = ({ children }: IAppContextProps) => {
+const UserProvider = ({ children }: IAppContextProps) => {
   const [user, dispatchUser] = useReducer(userReducer, INITIAL_USER_STATE);
   return (
     <UserContext.Provider value={{ user, dispatchUser }}>
@@ -82,4 +85,4 @@ const AppProvider = ({ children }: IAppContextProps) => {
   );
 };
 
-export default AppProvider;
+export default UserProvider;

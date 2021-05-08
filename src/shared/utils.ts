@@ -1,13 +1,15 @@
-import { IMovieMeta, IError } from "./interfaces";
+import { IMovieDetails, IError, IMovieSearch } from "./interfaces";
 
 export const checkIfNominated = (
-  movie: IMovieMeta,
-  nominations: IMovieMeta[]
-) => nominations.some((m: IMovieMeta) => movie.imdbID === m.imdbID);
+  movie: IMovieSearch,
+  nominations: IMovieSearch[]
+) => nominations.some((m: IMovieSearch) => movie.imdbID === m.imdbID);
 
-export const isIMovieMeta = (
-  movie: IMovieMeta | undefined
-): movie is IMovieMeta => !!movie;
+// IMovieDetails type guard
+export const isIMovieDetails = (
+  movie: IMovieDetails | undefined
+): movie is IMovieDetails => !!movie;
 
-export const isIError = (res: IError | IMovieMeta): res is IError =>
+// IError type guard
+export const isIError = (res: IError | IMovieDetails): res is IError =>
   (res as IError).Error !== undefined;

@@ -12,7 +12,7 @@
 
 .movie-card__poster-col {
   width: 10em;
-  @include breakpoint-max($screen-width-xl) {
+  @include breakpoint-max($screen-width-sm) {
     display: none;
   }
 }
@@ -35,8 +35,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  .movie-title {
+  .title {
     @include header-text;
+
+    @include breakpoint-min($screen-width-md) {
+      font-size: 1.5em;
+    }
+  }
+  .year {
+    font-size: 1.2em;
   }
   .plot {
     @include body-text;
@@ -56,7 +63,7 @@
 }
 
 .movie-card__button-group {
-  & > button {
+  & > div {
     float: right;
   }
 }

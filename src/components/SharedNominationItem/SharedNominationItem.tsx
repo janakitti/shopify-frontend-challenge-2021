@@ -1,8 +1,8 @@
-import { IMovieMeta } from "../../shared/interfaces";
+import { IMovieDetails } from "../../shared/interfaces";
 import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 
 interface ISharedNominationItemProps {
-  movie: IMovieMeta;
+  movie: IMovieDetails;
   index: number;
 }
 

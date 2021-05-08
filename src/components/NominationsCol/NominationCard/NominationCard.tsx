@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import Card from "../../Card/Card";
-import { IMovieMeta } from "../../../shared/interfaces";
-import { UserContext, UserReducerActions } from "../../../AppContext";
+import { IMovieDetails } from "../../../shared/interfaces";
+import { UserContext, UserReducerActions } from "../../../UserContext";
 import PopAnimationWrapper from "../../../components/Motion/PopAnimationWrapper";
 
 interface INominationCardProps {
-  movie: IMovieMeta;
+  movie: IMovieDetails;
 }
 
 const NominationCard = ({ movie }: INominationCardProps) => {
