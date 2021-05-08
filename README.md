@@ -6,11 +6,23 @@ This is my submission for Shopify's UX Developer Intern & Web Developer Intern C
 
 You can learn more about the challenge from the [challenge description](UX Developer Intern & Web Developer Intern Challenge - Fall 2021).
 
- **[Grab some popcorn and view my submission!](https://the-shoppies-fall-2021.netlify.app/) 🍿 ** (Login Password: `shoppies`)
+#### [Grab some popcorn and view my submission!](https://the-shoppies-fall-2021.netlify.app/) 🍿  (Login Password: `shoppies`)
 
 ## Table of Contents
 
-[TOC]
+- [Quick Summary](#Quick-Summary)
+- [Tech](#Tech)
+- [Design](#Design)
+- [Features](#Features)
+  - [Search](#Search)
+  - [Nominations List](#Nominations-List)
+  - [Login](#Login)
+  - [Shareable Links](#Shareable-Links)
+  - [Animations](#Animations)
+- [Challenges](#Challenges)
+  - [Responsiveness & Mobile Compatibility](#Responsiveness-&-Mobile-compatibility)
+  - [Unique Movie IDs](#Unique-Movie-IDs)
+- [Next Steps](#Next-Steps)
 
 ## Quick Summary
 
