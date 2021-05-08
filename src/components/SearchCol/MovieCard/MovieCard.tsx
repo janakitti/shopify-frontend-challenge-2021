@@ -23,6 +23,8 @@ const MovieCard = ({
     user: { nominations },
     dispatchUser,
   } = useContext(UserContext);
+
+  // Used to disable Nominate button nomination limit is reached
   const [isNominationComplete, setIsNominationComplete] = useState(false);
 
   useEffect(() => {
@@ -45,6 +47,7 @@ const MovieCard = ({
     }
   };
 
+  // Logic for rendering the Nominate button text
   const generateNominateButton = ((): JSX.Element => {
     const isNominated = checkIfNominated(movie, nominations);
     return (
@@ -58,6 +61,7 @@ const MovieCard = ({
     );
   })();
 
+  // Logic for rendering poster image based on image availability
   const generateMoviePoster = ((): JSX.Element => {
     if (movie.Poster === "N/A") {
       return (
