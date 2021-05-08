@@ -89,8 +89,8 @@ const MovieCard = ({
   const generateMovieInfo = ((): JSX.Element => {
     return (
       <div className="movie-card__info-col-top">
-        <Heading element="h1">{movie.Title}</Heading>
-        <Subheading>{movie.Year}</Subheading>
+        <h1 className="title">{movie.Title}</h1>
+        <h2 className="year">{movie.Year}</h2>
       </div>
     );
   })();

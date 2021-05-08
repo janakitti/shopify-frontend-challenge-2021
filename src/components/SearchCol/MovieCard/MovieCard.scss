@@ -35,8 +35,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  .movie-title {
+  .title {
     @include header-text;
+
+    @include breakpoint-min($screen-width-md) {
+      font-size: 1.5em;
+    }
+  }
+  .year {
+    font-size: 1.2em;
   }
   .plot {
     @include body-text;
