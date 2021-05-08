@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import NominationCard from "../NominationsCol/NominationCard/NominationCard";
-import { IMovieMeta, IMovieSearch } from "../../shared/interfaces";
+import { IMovieDetails, IMovieSearch } from "../../shared/interfaces";
 import { UserContext } from "../../AppContext";
 import Header from "../Header/Header";
 import UserAvatar from "../UserAvatar/UserAvatar";
@@ -21,7 +21,7 @@ const NominationsCol = () => {
       );
       const filteredMovieDetails = movieDetails.filter(isIMovieMeta);
       setNominationCards(
-        filteredMovieDetails.map((movie: IMovieMeta) => (
+        filteredMovieDetails.map((movie: IMovieDetails) => (
           <NominationCard movie={movie} key={movie.imdbID} />
         ))
       );

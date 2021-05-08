@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { IMovieMeta } from "../../shared/interfaces";
+import { IMovieDetails } from "../../shared/interfaces";
 import { getMovieDetails } from "../../services/movieservice";
 import SharedNominationItem from "../../components/SharedNominationItem/SharedNominationItem";
 import { isIMovieMeta } from "../../shared/utils";
@@ -31,7 +31,7 @@ const NominationsPage = () => {
         );
         const items = metaResuts
           .filter(isIMovieMeta)
-          .map((movie: IMovieMeta, index: number) => (
+          .map((movie: IMovieDetails, index: number) => (
             <SharedNominationItem
               movie={movie}
               key={movie.imdbID}

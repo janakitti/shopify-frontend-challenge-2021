@@ -1,5 +1,5 @@
 import { useReducer, createContext } from "react";
-import { IMovieMeta, IMovieSearch } from "./shared/interfaces";
+import { IMovieDetails, IMovieSearch } from "./shared/interfaces";
 
 export interface IUserState {
   username: string;

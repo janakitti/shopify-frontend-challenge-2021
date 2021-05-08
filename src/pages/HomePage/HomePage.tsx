@@ -10,7 +10,7 @@ import { Toast, Frame, Modal, TextContainer } from "@shopify/polaris";
 import Header from "../../components/Header/Header";
 import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
-import { IMovieMeta } from "../../shared/interfaces";
+import { IMovieDetails } from "../../shared/interfaces";
 import { NOMINATION_NUMBER, SCREEN_WIDTH_LG } from "../../shared/constants";
 import { UserContext, UserReducerActions } from "../../AppContext";
 import useScreenWidth from "../../shared/useScreenWidth";
@@ -23,7 +23,7 @@ const HomePage = () => {
   } = useContext(UserContext);
   const screenWidth = useScreenWidth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentMovie, setCurrentMovie] = useState<IMovieMeta>();
+  const [currentMovie, setCurrentMovie] = useState<IMovieDetails>();
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("shoppies-username");

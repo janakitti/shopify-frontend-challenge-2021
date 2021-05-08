@@ -8,7 +8,7 @@ import {
 } from "@shopify/polaris";
 import { PlayCircleMajor, FavoriteMajor } from "@shopify/polaris-icons";
 import CustomCard from "../../Card/Card";
-import { IMovieMeta, IMovieSearch } from "../../../shared/interfaces";
+import { IMovieDetails, IMovieSearch } from "../../../shared/interfaces";
 import { checkIfNominated } from "../../../shared/utils";
 import { NOMINATION_NUMBER } from "../../../shared/constants";
 import { UserContext, UserReducerActions } from "../../../AppContext";
