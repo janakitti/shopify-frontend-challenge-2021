@@ -2,14 +2,13 @@ import { TextField, Icon, Spinner } from "@shopify/polaris";
 import { SearchMajor } from "@shopify/polaris-icons";
 import { useState, useEffect, useContext } from "react";
 import MovieCard from "./MovieCard/MovieCard";
-import { IMovieSearch, IMovieDetails } from "../../shared/interfaces";
-import { queryMovies, getMovieDetails } from "../../services/movie.service";
+import { IMovieSearch } from "../../shared/interfaces";
+import { queryMovies } from "../../services/movie.service";
 import Header from "../Header/Header";
 import useDebounce from "../../shared/useDebounce";
 import { NOMINATION_NUMBER } from "../../shared/constants";
 import ShareCard from "../ShareCard/ShareCard";
 import { UserContext } from "../../AppContext";
-import { isIMovieMeta } from "../../shared/utils";
 import UserAvatar from "../UserAvatar/UserAvatar";
 import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 

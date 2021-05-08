@@ -1,14 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import {
-  Button,
-  ButtonGroup,
-  Icon,
-  Heading,
-  Subheading,
-} from "@shopify/polaris";
-import { PlayCircleMajor, FavoriteMajor } from "@shopify/polaris-icons";
+import { Button, ButtonGroup, Icon } from "@shopify/polaris";
+import { PlayCircleMajor } from "@shopify/polaris-icons";
 import CustomCard from "../../Card/Card";
-import { IMovieDetails, IMovieSearch } from "../../../shared/interfaces";
+import { IMovieSearch } from "../../../shared/interfaces";
 import { checkIfNominated } from "../../../shared/utils";
 import { NOMINATION_NUMBER } from "../../../shared/constants";
 import { UserContext, UserReducerActions } from "../../../AppContext";

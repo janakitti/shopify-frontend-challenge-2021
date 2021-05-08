@@ -3,7 +3,7 @@ import { Button, TextField, Icon } from "@shopify/polaris";
 import { ClipboardMinor } from "@shopify/polaris-icons";
 import CustomCard from "../Card/Card";
 import { UserContext, UserReducerActions } from "../../AppContext";
-import { IMovieDetails, IMovieSearch } from "../../shared/interfaces";
+import { IMovieSearch } from "../../shared/interfaces";
 
 interface IShareCardProps {
   toggleCopiedToast: () => void;

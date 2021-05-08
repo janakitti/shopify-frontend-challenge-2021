@@ -1,13 +1,5 @@
-import React, {
-  useReducer,
-  createContext,
-  useCallback,
-  useState,
-  useEffect,
-  useContext,
-} from "react";
+import React, { useCallback, useState, useEffect, useContext } from "react";
 import { Toast, Frame, Modal, TextContainer, Caption } from "@shopify/polaris";
-import Header from "../../components/Header/Header";
 import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
 import { IMovieDetails } from "../../shared/interfaces";
