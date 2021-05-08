@@ -14,7 +14,7 @@ import { IMovieDetails } from "../../shared/interfaces";
 import { NOMINATION_NUMBER, SCREEN_WIDTH_LG } from "../../shared/constants";
 import { UserContext, UserReducerActions } from "../../AppContext";
 import useScreenWidth from "../../shared/useScreenWidth";
-import { getMovieDetails } from "../../services/movieservice";
+import { getMovieDetails } from "../../services/movie.service";
 
 const HomePage = () => {
   const {

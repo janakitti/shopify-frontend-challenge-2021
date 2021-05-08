@@ -5,7 +5,7 @@ import { UserContext } from "../../AppContext";
 import Header from "../Header/Header";
 import UserAvatar from "../UserAvatar/UserAvatar";
 import { NOMINATION_NUMBER } from "../../shared/constants";
-import { getMovieDetails } from "../../services/movieservice";
+import { getMovieDetails } from "../../services/movie.service";
 import { isIMovieMeta } from "../../shared/utils";
 
 const NominationsCol = () => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { IMovieDetails } from "../../shared/interfaces";
-import { getMovieDetails } from "../../services/movieservice";
+import { getMovieDetails } from "../../services/movie.service";
 import SharedNominationItem from "../../components/SharedNominationItem/SharedNominationItem";
 import { isIMovieMeta } from "../../shared/utils";
 import { Button, Spinner } from "@shopify/polaris";
