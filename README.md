@@ -85,7 +85,7 @@ The `useReducer` and context setup I used (which I learned from [here](https://d
 
 ### Login
 
-![login](C:\Users\JRatana\Documents\GitHub\shopify-fall-2021-challenge\the-shoppies\demo_assets\login.gif)
+![login](https://github.com/janakitti/shopify-frontend-challenge-2021/blob/main/demo_assets/login.gif)
 
 I added a mock login feature as part of my Shareable Link feature. The login feature doesn't use any authentication technology, it's simply used as a fun way for users to attatch their name to their nominations for their shareable links.
 
