@@ -23,7 +23,7 @@ const ShareCard = ({ toggleCopiedToast }: IShareCardProps) => {
         acc += cur.imdbID + "-";
         return acc;
       },
-      `${process.env.REACT_APP_BASE_URL}/nominations?data=${username}-`
+      `${process.env.REACT_APP_BASE_URL}/nominations?user=${username}&ids=`
     );
     setShareLink(newShareLink.slice(0, newShareLink.length - 1));
   }, [nominations]);

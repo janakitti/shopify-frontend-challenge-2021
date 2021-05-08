@@ -22,8 +22,9 @@ const NominationsPage = () => {
   };
 
   useEffect(() => {
-    const data = query.get("data")?.split("-");
-    const [username, ids] = [data?.[0], data?.slice(1, data?.length)];
+    const username = query.get("user");
+    const ids = query.get("ids")?.split("-");
+    console.log({ username, ids });
     if (username && ids) {
       (async () => {
         const metaResuts = await Promise.all(
