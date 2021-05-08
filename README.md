@@ -105,6 +105,43 @@ the-shoppies-fall-2021.netlify.app/nominations?data=janakitti-tt0076759-tt008068
 
 This was my first time using the Framer Motion API and I had really great time playing around with the different animation parameters. I decided to keep the animations on the site minimal with a snappy scale animation for when major components render. Since I reused the same animation on multiple components, I decided to extract it animation logic into a wrapper called `PopAnimationWrapper` that takes in an optional parameter for delay.
 
+## Implementation Notes
+
+```
+├── ...
+├── src
+│   ├── components
+│   |	├── Card              				# Custom Polaris-like card
+│   |	├── Header              			# For logo and user avatar
+│   |	├── Motion              			# Framer animation wrappers
+│   |	|	├── PopAnimationWrapper.tsx
+│   |	├── NominationsCol              	# Nominations list on HomePage
+│   |	|	├── NominationCard
+│   |	├── SearchCol             			# Search column on HomePage
+│   |	|	├── MovieCard              		
+│   |	├── ShareCard              			# Card for nominations submission/sharing
+│   |	├── SharedNominationItem            # Nomination item for shared links page
+│   |	├── UserAvatar              		# Avatar
+│   ├── pages             					
+│   |	├── HomePage              			# For searching/nominating
+│   |	├── LoginPage              			# Root page
+│   |	├── NominationsPage              	# For share links
+│   ├── services            				# API services
+│   |	├── movie.service.ts              	# OMDb API service
+│   ├── shared            					# Constants, interfaces, util funcs
+│   ├── styles
+│   ├── App.tsx            					
+│   ├── UserContext.tsx            			# Context for user + nominations
+│   └── ...
+└── ...
+```
+
+### Styling
+
+I chose to keep all the stylesheets with their respective component/feature folders. I find this makes the code easier to grasp in the case that other developers begin to work on the project. In future, testing files can also be included in this feature grouping.
+
+For my SCSS class names, I chose to try out the [BEM](http://getbem.com/) (Block Element Modifier) methodology. Using BEM, each selector is made up of a Block (standalone entity), Element (element of/semantically tied to its Block), and a Modifier (a flag on the Block or Element to modify its appearance), all put together like this: `block__element--modifier`. For example: `side-nav__nav-link--selected`. I found that this naming strategy allowed me to write more meaningful class and id names, and make it much easier for future developers to quickly understand their purpose.
+
 ## Challenges
 
 ### Responsiveness & Mobile-compatibility
