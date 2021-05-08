@@ -1,5 +1,13 @@
 import { useCallback, useState, useEffect, useContext } from "react";
-import { Toast, Frame, Modal, TextContainer, Caption } from "@shopify/polaris";
+import {
+  Toast,
+  Frame,
+  Modal,
+  TextContainer,
+  Caption,
+  Icon,
+} from "@shopify/polaris";
+import { PlayCircleMajor } from "@shopify/polaris-icons";
 import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
 import { IMovieDetails } from "../../shared/interfaces";
@@ -97,6 +105,18 @@ const HomePage = () => {
 
   // Logic for rendering movie details for modal
   const generateMovieInfo = ((): JSX.Element => {
+    const poster =
+      !currentMovie?.Poster || currentMovie?.Poster === "N/A" ? (
+        <div className="poster-container">
+          <Icon source={PlayCircleMajor} color="subdued" />
+        </div>
+      ) : (
+        <img
+          className="poster-container"
+          src={currentMovie?.Poster}
+          alt={`${currentMovie?.Title} poster`}
+        />
+      );
     const imdbRating =
       !currentMovie?.imdbRating || currentMovie?.imdbRating === "N/A"
         ? "No rating"
@@ -131,13 +151,7 @@ const HomePage = () => {
         : currentMovie?.Plot;
     return (
       <div className="details-modal__inner-container">
-        <div className="poster-col">
-          <img
-            className="poster-container"
-            src={currentMovie?.Poster}
-            alt={`${currentMovie?.Title} poster`}
-          />
-        </div>
+        <div className="poster-col">{poster}</div>
         <div className="info-col">
           <div>
             <h1 className="movie-title">{currentMovie?.Title}</h1>
