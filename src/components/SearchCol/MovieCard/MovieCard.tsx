@@ -19,25 +19,24 @@ const MovieCard = ({
   toggleNominatedToast,
   displayMovieDetails,
 }: IMovieCardProps) => {
-  const { user: nominations, dispatchUser: dispatchNominations } = useContext(
-    UserContext
-  );
+  const {
+    user: { nominations },
+    dispatchUser,
+  } = useContext(UserContext);
   const [isNominationComplete, setIsNominationComplete] = useState(false);
 
   useEffect(() => {
-    setIsNominationComplete(
-      nominations.nominations.length === NOMINATION_NUMBER
-    );
+    setIsNominationComplete(nominations.length === NOMINATION_NUMBER);
   }, [nominations]);
 
   const nominateMovie = async () => {
     const movieDetails = await getMovieDetails(movie.imdbID);
     if (isIMovieMeta(movieDetails)) {
-      if (nominations.nominations.length < NOMINATION_NUMBER - 1) {
+      if (nominations.length < NOMINATION_NUMBER - 1) {
         toggleNominatedToast();
       }
 
-      dispatchNominations({
+      dispatchUser({
         type: UserReducerActions.ADD_MOVIE,
         payload: {
           movie: movieDetails,
@@ -46,7 +45,7 @@ const MovieCard = ({
     }
   };
   const removeNominatedMovie = () => {
-    dispatchNominations({
+    dispatchUser({
       type: UserReducerActions.REMOVE_MOVIE,
       payload: {
         id: movie.imdbID,
@@ -55,7 +54,7 @@ const MovieCard = ({
   };
 
   const generateNominateButton = ((): JSX.Element => {
-    const isNominated = checkIfNominated(movie, nominations.nominations);
+    const isNominated = checkIfNominated(movie, nominations);
     return (
       <Button
         primary
