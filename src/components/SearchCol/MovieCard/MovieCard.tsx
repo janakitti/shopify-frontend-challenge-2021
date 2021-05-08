@@ -3,7 +3,7 @@ import { Button, ButtonGroup, Icon } from "@shopify/polaris";
 import { PlayCircleMajor } from "@shopify/polaris-icons";
 import CustomCard from "../../Card/Card";
 import { IMovieSearch } from "../../../shared/interfaces";
-import { checkIfNominated, isIMovieMeta } from "../../../shared/utils";
+import { checkIfNominated, isIMovieDetails } from "../../../shared/utils";
 import { NOMINATION_NUMBER } from "../../../shared/constants";
 import { UserContext, UserReducerActions } from "../../../UserContext";
 import { getMovieDetails } from "../../../services/movie.service";
@@ -34,7 +34,7 @@ const MovieCard = ({
   // Fetch movie data and add nomination to the store
   const nominateMovie = async () => {
     const movieDetails = await getMovieDetails(movie.imdbID);
-    if (isIMovieMeta(movieDetails)) {
+    if (isIMovieDetails(movieDetails)) {
       if (nominations.length < NOMINATION_NUMBER - 1) {
         toggleNominatedToast();
       }

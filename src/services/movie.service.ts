@@ -5,7 +5,7 @@ import {
   IMovieDetails,
   IError,
 } from "../shared/interfaces";
-import { isIError, isIMovieMeta } from "../shared/utils";
+import { isIError, isIMovieDetails } from "../shared/utils";
 
 export const queryMovies = async (query: string): Promise<IMovieSearch[]> => {
   const res = await fetch(

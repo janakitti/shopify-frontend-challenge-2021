@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { IMovieDetails } from "../../shared/interfaces";
 import { getMovieDetails } from "../../services/movie.service";
 import SharedNominationItem from "../../components/SharedNominationItem/SharedNominationItem";
-import { isIMovieMeta } from "../../shared/utils";
+import { isIMovieDetails } from "../../shared/utils";
 import { Button, Spinner } from "@shopify/polaris";
 import { useHistory } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const NominationsPage = () => {
           ids?.map((id: string) => getMovieDetails(id))
         );
         const items = metaResuts
-          .filter(isIMovieMeta)
+          .filter(isIMovieDetails)
           .map((movie: IMovieDetails, index: number) => (
             <SharedNominationItem
               movie={movie}

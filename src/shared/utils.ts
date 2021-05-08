@@ -5,9 +5,11 @@ export const checkIfNominated = (
   nominations: IMovieSearch[]
 ) => nominations.some((m: IMovieSearch) => movie.imdbID === m.imdbID);
 
-export const isIMovieMeta = (
+// IMovieDetails type guard
+export const isIMovieDetails = (
   movie: IMovieDetails | undefined
 ): movie is IMovieDetails => !!movie;
 
+// IError type guard
 export const isIError = (res: IError | IMovieDetails): res is IError =>
   (res as IError).Error !== undefined;
