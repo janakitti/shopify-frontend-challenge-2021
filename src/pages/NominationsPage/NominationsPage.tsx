@@ -22,10 +22,9 @@ const NominationsPage = () => {
   };
 
   useEffect(() => {
-    const username = query.get("user");
+    const user = query.get("user");
     const ids = query.get("ids")?.split("-");
-    console.log({ username, ids });
-    if (username && ids) {
+    if (user && ids) {
       (async () => {
         const metaResuts = await Promise.all(
           ids?.map((id: string) => getMovieDetails(id))
@@ -39,29 +38,67 @@ const NominationsPage = () => {
               index={index}
             />
           ));
-        setUsername(username);
+        setUsername(user);
         setNominations(items);
       })();
     }
   }, []);
 
+  const renderPage = ((): JSX.Element => {
+    if (username && nominations.length) {
+      return (
+        <>
+          <div className="shared-nominations__title-container">
+            <div className="shared-nominations__logo-container">
+              <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
+              <h1 className="logo__name">the shoppies</h1>
+            </div>
+            <h1 className="title">{username}'s Nominations</h1>
+          </div>
+          <div className="shared-nominations__container">{nominations}</div>
+          <div className="shared-nominations__button-container">
+            <Button primary size="slim" onClick={handleClick}>
+              Submit your own nominations!
+            </Button>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className="shared-nominations__title-container">
+            <div className="shared-nominations__logo-container">
+              <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
+              <h1 className="logo__name">the shoppies</h1>
+            </div>
+            <div className="shared-nominations__graphic">
+              <img
+                src="./invalid_share_link.svg"
+                height={300}
+                width={300}
+                alt="Search for movies"
+              ></img>
+              <h1>We weren't able to find the nominations for this link</h1>
+              <p>
+                If you would like, you can submit you own nominations by
+                clicking the button below.
+              </p>
+            </div>
+          </div>
+          <div className="shared-nominations__container">{nominations}</div>
+          <div className="shared-nominations__button-container">
+            <Button primary size="slim" onClick={handleClick}>
+              Get nominating!
+            </Button>
+          </div>
+        </>
+      );
+    }
+  })();
+
   return (
     <div className="shared-nominations__page-wrapper">
-      <div>
-        <div className="shared-nominations__title-container">
-          <div className="shared-nominations__logo-container">
-            <img src="./shopify_logo.svg" className="logo__img" alt="logo" />
-            <h1 className="logo__name">the shoppies</h1>
-          </div>
-          <h1 className="title">{username}'s Nominations</h1>
-        </div>
-        <div className="shared-nominations__container">{nominations}</div>
-        <div className="shared-nominations__button-container">
-          <Button primary size="slim" onClick={handleClick}>
-            Cast your own nominations!
-          </Button>
-        </div>
-      </div>
+      <div>{renderPage}</div>
     </div>
   );
 };
