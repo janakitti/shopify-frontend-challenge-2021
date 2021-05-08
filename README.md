@@ -8,6 +8,8 @@ You can learn more about the challenge from the [challenge description](UX Devel
 
 #### [Grab some popcorn and view my submission!](https://the-shoppies-fall-2021.netlify.app/) 🍿  (Login Password: `shoppies`)
 
+![search](https://github.com/janakitti/shopify-frontend-challenge-2021/blob/main/demo_assets/home.png)
+
 ## Table of Contents
 
 - [Quick Summary](#Quick-Summary)
@@ -19,6 +21,8 @@ You can learn more about the challenge from the [challenge description](UX Devel
   - [Login](#Login)
   - [Shareable Links](#Shareable-Links)
   - [Animations](#Animations)
+- [Implementation Notes](#Implementation-Notes)
+  - [Styling](#Styling)
 - [Challenges](#Challenges)
   - [Responsiveness & Mobile Compatibility](#responsiveness--mobile-compatibility)
   - [Unique Movie IDs](#Unique-Movie-IDs)
