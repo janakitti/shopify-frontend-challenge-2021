@@ -44,14 +44,6 @@ const MovieCard = ({
       });
     }
   };
-  const removeNominatedMovie = () => {
-    dispatchUser({
-      type: UserReducerActions.REMOVE_MOVIE,
-      payload: {
-        id: movie.imdbID,
-      },
-    });
-  };
 
   const generateNominateButton = ((): JSX.Element => {
     const isNominated = checkIfNominated(movie, nominations);
