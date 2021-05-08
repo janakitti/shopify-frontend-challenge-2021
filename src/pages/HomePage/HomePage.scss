@@ -12,21 +12,10 @@
 }
 
 .details-modal__inner-container {
-  // display: flex;
-  // flex-direction: row;
-  // & > div {
-  //   padding: 1em;
-  // }
-
   display: grid;
   grid-template-columns: 1fr;
   @include breakpoint-min($screen-width-lg) {
     grid-template-columns: 30% 70%;
-  }
-  .poster-col {
-    // @include breakpoint-max($screen-width-xl) {
-    //   display: none;
-    // }
   }
   .poster-container {
     display: flex;
@@ -54,7 +43,7 @@
     }
     .plot {
       @include body-text;
-      margin-bottom: 1em;
+      margin: 1em 0;
     }
     .rating-container {
       display: flex;

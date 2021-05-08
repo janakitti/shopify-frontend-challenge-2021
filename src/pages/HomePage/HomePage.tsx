@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useContext,
 } from "react";
-import { Toast, Frame, Modal, TextContainer } from "@shopify/polaris";
+import { Toast, Frame, Modal, TextContainer, Caption } from "@shopify/polaris";
 import Header from "../../components/Header/Header";
 import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
@@ -96,11 +96,37 @@ const HomePage = () => {
 
   const generateMovieInfo = ((): JSX.Element => {
     const imdbRating =
-      currentMovie?.imdbRating === "N/A"
+      !currentMovie?.imdbRating || currentMovie?.imdbRating === "N/A"
         ? "No rating"
         : currentMovie?.imdbRating;
     const rated =
-      currentMovie?.Rated === "N/A" ? "Not rated" : currentMovie?.Rated;
+      !currentMovie?.Rated || currentMovie?.Rated === "N/A"
+        ? "Not rated"
+        : currentMovie?.Rated;
+    const runtime =
+      !currentMovie?.Runtime || currentMovie?.Runtime === "N/A"
+        ? "Unknown runtime"
+        : currentMovie?.Runtime;
+    const director =
+      !currentMovie?.Director || currentMovie?.Director === "N/A" ? (
+        "Unknown director"
+      ) : (
+        <>
+          <b>Director</b>: {currentMovie?.Director}
+        </>
+      );
+    const actors =
+      !currentMovie?.Actors || currentMovie?.Actors === "N/A" ? (
+        "Unknown actor(s)"
+      ) : (
+        <>
+          <b>Actors</b>: {currentMovie?.Actors}
+        </>
+      );
+    const plot =
+      !currentMovie?.Plot || currentMovie?.Plot === "N/A"
+        ? "No plot description available."
+        : currentMovie?.Plot;
     return (
       <div className="details-modal__inner-container">
         <div className="poster-col">
@@ -119,11 +145,13 @@ const HomePage = () => {
             <div className="rating-container">
               <img src="./star.svg" alt="movie rating" className="star" />
               <span>
-                {imdbRating} &bull; {rated}
+                {imdbRating} &bull; {rated} &bull; {runtime}
               </span>
             </div>
+            <Caption>{director}</Caption>
+            <Caption>{actors}</Caption>
             <div className="plot-container">
-              <p className="plot">{currentMovie?.Plot}</p>
+              <p className="plot">{plot}</p>
             </div>
           </div>
         </div>
