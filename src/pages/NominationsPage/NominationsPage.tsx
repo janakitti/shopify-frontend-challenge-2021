@@ -4,7 +4,7 @@ import { IMovieDetails } from "../../shared/interfaces";
 import { getMovieDetails } from "../../services/movieservice";
 import SharedNominationItem from "../../components/SharedNominationItem/SharedNominationItem";
 import { isIMovieMeta } from "../../shared/utils";
-import { Button } from "@shopify/polaris";
+import { Button, Spinner } from "@shopify/polaris";
 import { useHistory } from "react-router-dom";
 
 const useQuery = () => {
@@ -15,6 +15,7 @@ const NominationsPage = () => {
   let history = useHistory();
   const [nominations, setNominations] = useState<JSX.Element[]>([]);
   const [username, setUsername] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const query = useQuery();
 
   const handleClick = () => {
@@ -40,12 +41,17 @@ const NominationsPage = () => {
           ));
         setUsername(user);
         setNominations(items);
+        setIsLoading(false);
       })();
+    } else {
+      setIsLoading(false);
     }
   }, []);
 
   const renderPage = ((): JSX.Element => {
-    if (username && nominations.length) {
+    if (isLoading) {
+      return <Spinner />;
+    } else if (username && nominations.length) {
       return (
         <>
           <div className="shared-nominations__title-container">
