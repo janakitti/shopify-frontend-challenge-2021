@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Avatar, Button } from "@shopify/polaris";
-import { UserContext, UserReducerActions } from "../../AppContext";
+import { UserContext, UserReducerActions } from "../../UserContext";
 import { useHistory } from "react-router-dom";
 
 const UserAvatar = () => {

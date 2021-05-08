@@ -6,7 +6,7 @@ import enTranslations from "@shopify/polaris/locales/en.json";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import HomePage from "./pages/HomePage/HomePage";
 import NominationsPage from "./pages/NominationsPage/NominationsPage";
-import StateProvider from "./AppContext";
+import UserProvider from "./UserContext";
 
 import "./styles/main.scss";
 import "@shopify/polaris/dist/styles.css";
@@ -14,7 +14,7 @@ import "@shopify/polaris/dist/styles.css";
 function App() {
   return (
     <div className="app-wrapper">
-      <StateProvider>
+      <UserProvider>
         <Router>
           <AppProvider i18n={enTranslations}>
             <Switch>
@@ -24,7 +24,7 @@ function App() {
             </Switch>
           </AppProvider>
         </Router>
-      </StateProvider>
+      </UserProvider>
     </div>
   );
 }

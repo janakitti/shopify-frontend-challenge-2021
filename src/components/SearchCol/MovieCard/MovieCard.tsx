@@ -5,7 +5,7 @@ import CustomCard from "../../Card/Card";
 import { IMovieSearch } from "../../../shared/interfaces";
 import { checkIfNominated, isIMovieMeta } from "../../../shared/utils";
 import { NOMINATION_NUMBER } from "../../../shared/constants";
-import { UserContext, UserReducerActions } from "../../../AppContext";
+import { UserContext, UserReducerActions } from "../../../UserContext";
 import { getMovieDetails } from "../../../services/movie.service";
 
 interface IMovieCardProps {

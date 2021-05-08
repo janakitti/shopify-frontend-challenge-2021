@@ -3,7 +3,7 @@ import CustomCard from "../../components/Card/Card";
 import { TextField, Button, Form, InlineError } from "@shopify/polaris";
 import { MAX_USERNAME_LENGTH, USER_PASSWORD } from "../../shared/constants";
 import { useHistory } from "react-router-dom";
-import { UserContext, UserReducerActions } from "../../AppContext";
+import { UserContext, UserReducerActions } from "../../UserContext";
 import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 
 const LoginPage = () => {

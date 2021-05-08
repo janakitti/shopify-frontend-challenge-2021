@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Card from "../../Card/Card";
 import { IMovieDetails } from "../../../shared/interfaces";
-import { UserContext, UserReducerActions } from "../../../AppContext";
+import { UserContext, UserReducerActions } from "../../../UserContext";
 import PopAnimationWrapper from "../../../components/Motion/PopAnimationWrapper";
 
 interface INominationCardProps {

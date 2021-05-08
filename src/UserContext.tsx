@@ -76,7 +76,7 @@ interface IAppContextProps {
   children: React.ReactNode;
 }
 
-const AppProvider = ({ children }: IAppContextProps) => {
+const UserProvider = ({ children }: IAppContextProps) => {
   const [user, dispatchUser] = useReducer(userReducer, INITIAL_USER_STATE);
   return (
     <UserContext.Provider value={{ user, dispatchUser }}>
@@ -85,4 +85,4 @@ const AppProvider = ({ children }: IAppContextProps) => {
   );
 };
 
-export default AppProvider;
+export default UserProvider;

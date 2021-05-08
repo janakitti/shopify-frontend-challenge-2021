@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button, TextField, Icon } from "@shopify/polaris";
 import { ClipboardMinor } from "@shopify/polaris-icons";
 import CustomCard from "../Card/Card";
-import { UserContext, UserReducerActions } from "../../AppContext";
+import { UserContext, UserReducerActions } from "../../UserContext";
 import { IMovieSearch } from "../../shared/interfaces";
 
 interface IShareCardProps {

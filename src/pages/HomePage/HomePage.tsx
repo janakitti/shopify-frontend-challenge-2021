@@ -12,7 +12,7 @@ import SearchCol from "../../components/SearchCol/SearchCol";
 import NominationsCol from "../../components/NominationsCol/NominationsCol";
 import { IMovieDetails } from "../../shared/interfaces";
 import { NOMINATION_NUMBER, SCREEN_WIDTH_LG } from "../../shared/constants";
-import { UserContext, UserReducerActions } from "../../AppContext";
+import { UserContext, UserReducerActions } from "../../UserContext";
 import useScreenWidth from "../../shared/useScreenWidth";
 import { getMovieDetails } from "../../services/movie.service";
 

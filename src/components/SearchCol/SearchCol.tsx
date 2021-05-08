@@ -8,7 +8,7 @@ import Header from "../Header/Header";
 import useDebounce from "../../shared/useDebounce";
 import { NOMINATION_NUMBER } from "../../shared/constants";
 import ShareCard from "../ShareCard/ShareCard";
-import { UserContext } from "../../AppContext";
+import { UserContext } from "../../UserContext";
 import UserAvatar from "../UserAvatar/UserAvatar";
 import PopAnimationWrapper from "../../components/Motion/PopAnimationWrapper";
 

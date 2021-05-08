@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import NominationCard from "../NominationsCol/NominationCard/NominationCard";
 import { IMovieDetails } from "../../shared/interfaces";
-import { UserContext } from "../../AppContext";
+import { UserContext } from "../../UserContext";
 import Header from "../Header/Header";
 import UserAvatar from "../UserAvatar/UserAvatar";
 import { NOMINATION_NUMBER } from "../../shared/constants";
