@@ -53,7 +53,7 @@ const SearchCol = ({
       ));
       setMovieCards(cards);
     })();
-  }, [searchResults]);
+  }, [searchResults, toggleNominatedToast, displayMovieDetails]);
 
   // Debounce search input
   const debouncedSearch = useDebounce(searchInput, 500);
