@@ -20,7 +20,7 @@ You can learn more about the challenge from the [challenge description](UX Devel
   - [Shareable Links](#Shareable-Links)
   - [Animations](#Animations)
 - [Challenges](#Challenges)
-  - [Responsiveness & Mobile Compatibility](#Responsiveness-&-Mobile-compatibility)
+  - [Responsiveness & Mobile Compatibility](#responsiveness--mobile-compatibility)
   - [Unique Movie IDs](#Unique-Movie-IDs)
 - [Next Steps](#Next-Steps)
 
@@ -44,8 +44,8 @@ You can learn more about the challenge from the [challenge description](UX Devel
 * React
 * TypeScript
 * React Router
-* Framer Motion
 * Shopify Polaris
+* Framer Motion
 * Feather Icons
 * UnDraw
 * Figma
@@ -65,6 +65,10 @@ I went through a couple of design ideas before settling on the one you see in th
 
 ### Search
 
+![search](C:\Users\JRatana\Documents\GitHub\shopify-fall-2021-challenge\the-shoppies\demo_assets\search.gif)
+
+![view](C:\Users\JRatana\Documents\GitHub\shopify-fall-2021-challenge\the-shoppies\demo_assets\view.gif)
+
 I created `services/movieservice.ts` to handle fetching movie data using the OMDb API with the native Fetch API. 
 
 The OMDb API offers 2 types of calls: a search by movie title, which returns a list of matching entries with just a few properties, and a call for an exact movie, which returns the full metadata. In my initial design of the app (which can be seen right above the final design in the [Figma](https://www.figma.com/file/OVc9F9vBECAi3jKlr68Gs7/The-Shoppies-Mockups?node-id=0%3A1)), I wanted to display the movie genre, ratings, and plot on each card in the results list. This meant I needed to make an extra call for each result that was returned from the initial search call. I thought that presenting more information to the user would improve the overall UX, and since the number of results return at a time is < 10, this would justify the extra calls. After reflecting on this more, I realized that this is not a scalable approach for presenting results. It also demands a higher bandwidth, which can pose issues for mobile users. In the end, I settled with only running the search call to grab a list of results, and then implementing a modal feature that would fetch the extra metadata only for the movies the user wanted to read more about.
@@ -73,17 +77,23 @@ In order to allow updates to the search terms to automatically update the result
 
 ### Nominations List
 
+![nominate](C:\Users\JRatana\Documents\GitHub\shopify-fall-2021-challenge\the-shoppies\demo_assets\nominate.gif)
+
 To manage the state of the nominations, I used a combination of `useReducer` and context, and provided the state from `App.tsx`. The reason why I chose context was because the list of nominations needed to be accessible by multiple components at different levels of the React tree. I decided it would make sense to store nomination data within a global User State because the currently selected nominations should tie in with the currently logged in user (more on the User State in the following section). With a reducer, I was able to extract out the logic for common state updates such as `ADD_NOMINATION`, `REMOVE_NOMINATION`, `CLEAR_NOMINATION`, and `SET_NOMINATION` from my components.
 
 The `useReducer` and context setup I used (which I learned from [here](https://dev.to/elisealcala/react-context-with-usereducer-and-typescript-4obm)) is very similar to a Redux setup. The reason why I chose to use context over Redux however, is because I wasn't handling a large amount of global state and there aren't any high-frequency state updates in the app. The size of the app also didn't justify the addition of another depenency.
 
 ### Login
 
+![login](C:\Users\JRatana\Documents\GitHub\shopify-fall-2021-challenge\the-shoppies\demo_assets\login.gif)
+
 I added a mock login feature as part of my Shareable Link feature. The login feature doesn't use any authentication technology, it's simply used as a fun way for users to attatch their name to their nominations for their shareable links.
 
 The username from the login is kept in the context store, so that it can be accessible throughout the app.
 
 ### Shareable Links
+
+![share](C:\Users\JRatana\Documents\GitHub\shopify-fall-2021-challenge\the-shoppies\demo_assets\share.gif)
 
 Once the user has selected 5 nominations, they are presented with a shareable link. This link takes users to a page that displays the nominator's username along with their 5 nominations in a visually appealing layout. Since I didn't implement a backend for this project, the username and nominated movie `imdbID`s are stored in a `data` query parameter in the shareable link, delimited by hyphens:
 
