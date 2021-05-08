@@ -65,9 +65,9 @@ I went through a couple of design ideas before settling on the one you see in th
 
 ### Search
 
-![search](C:\Users\JRatana\Documents\GitHub\shopify-fall-2021-challenge\the-shoppies\demo_assets\search.gif)
+![search](https://github.com/janakitti/shopify-frontend-challenge-2021/blob/main/demo_assets/search.gif)
 
-![view](C:\Users\JRatana\Documents\GitHub\shopify-fall-2021-challenge\the-shoppies\demo_assets\view.gif)
+![view](https://github.com/janakitti/shopify-frontend-challenge-2021/blob/main/demo_assets/view.gif)
 
 I created `services/movieservice.ts` to handle fetching movie data using the OMDb API with the native Fetch API. 
 
@@ -77,7 +77,7 @@ In order to allow updates to the search terms to automatically update the result
 
 ### Nominations List
 
-![nominate](C:\Users\JRatana\Documents\GitHub\shopify-fall-2021-challenge\the-shoppies\demo_assets\nominate.gif)
+![nominate](https://github.com/janakitti/shopify-frontend-challenge-2021/blob/main/demo_assets/nominate.gif)
 
 To manage the state of the nominations, I used a combination of `useReducer` and context, and provided the state from `App.tsx`. The reason why I chose context was because the list of nominations needed to be accessible by multiple components at different levels of the React tree. I decided it would make sense to store nomination data within a global User State because the currently selected nominations should tie in with the currently logged in user (more on the User State in the following section). With a reducer, I was able to extract out the logic for common state updates such as `ADD_NOMINATION`, `REMOVE_NOMINATION`, `CLEAR_NOMINATION`, and `SET_NOMINATION` from my components.
 
@@ -93,7 +93,7 @@ The username from the login is kept in the context store, so that it can be acce
 
 ### Shareable Links
 
-![share](C:\Users\JRatana\Documents\GitHub\shopify-fall-2021-challenge\the-shoppies\demo_assets\share.gif)
+![share](https://github.com/janakitti/shopify-frontend-challenge-2021/blob/main/demo_assets/share.gif)
 
 Once the user has selected 5 nominations, they are presented with a shareable link. This link takes users to a page that displays the nominator's username along with their 5 nominations in a visually appealing layout. Since I didn't implement a backend for this project, the username and nominated movie `imdbID`s are stored in a `data` query parameter in the shareable link, delimited by hyphens:
 
