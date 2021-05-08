@@ -80,22 +80,16 @@ const MovieCard = ({
     }
   })();
 
-  const generateMovieInfo = ((): JSX.Element => {
-    return (
-      <div className="movie-card__info-col-top">
-        <h1 className="title">{movie.Title}</h1>
-        <h2 className="year">{movie.Year}</h2>
-      </div>
-    );
-  })();
-
   return (
     <div className="movie-card__container">
       <CustomCard>
         <div className="movie-card">
           <div className="movie-card__poster-col">{generateMoviePoster}</div>
           <div className="movie-card__info-col">
-            {generateMovieInfo}
+            <div className="movie-card__info-col-top">
+              <h1 className="title">{movie.Title}</h1>
+              <h2 className="year">{movie.Year}</h2>
+            </div>
             <div className="movie-card__button-group">
               <ButtonGroup>
                 <Button
