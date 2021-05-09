@@ -55,7 +55,7 @@ I created a mobile-friendly React web app where users can log in and search for 
 * Shopify Polaris
 * Framer Motion (for component animations)
 * Feather Icons
-* UnDraw (for SVG graphics)
+* unDraw (for SVG graphics)
 * Figma (for designing mockups)
 * Netlify (for deployment)
 
