@@ -6,7 +6,7 @@ This is my submission for **Shopify's UX Developer Intern & Web Developer Intern
 
 You can learn more about the challenge from the [challenge description](https://docs.google.com/document/d/1SdR9rQpocsH5rPTOcxr9noqHRld5NJlylKO9Hf94U8U/edit#heading=h.31w9woubunro).
 
-#### [Now, grab some popcorn and check out my submission!](https://the-shoppies-fall-2021.netlify.app/) 🍿  (Username: any name, Password: `shoppies`)
+### [Now, grab some popcorn and check out my submission!](https://the-shoppies-fall-2021.netlify.app/) 🍿  (Username: any name, Password: `shoppies`)
 
 ![search](https://github.com/janakitti/shopify-frontend-challenge-2021/blob/main/demo_assets/home.png)
 
