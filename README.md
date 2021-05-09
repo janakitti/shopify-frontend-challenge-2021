@@ -4,7 +4,7 @@
 
 This is my submission for **Shopify's UX Developer Intern & Web Developer Intern Challenge** for Fall 2021! In this challenge, we were tasked to build an app to help manage movie nominations for the upcoming Shoppies, the movie awards for entrepreneurs.
 
-You can learn more about the challenge from the [challenge description](UX Developer Intern & Web Developer Intern Challenge - Fall 2021).
+You can learn more about the challenge from the [challenge description](https://docs.google.com/document/d/1SdR9rQpocsH5rPTOcxr9noqHRld5NJlylKO9Hf94U8U/edit#heading=h.31w9woubunro).
 
 #### [Now, grab some popcorn and check out my submission!](https://the-shoppies-fall-2021.netlify.app/) 🍿  (Login Password: `shoppies`)
 
@@ -19,6 +19,7 @@ You can learn more about the challenge from the [challenge description](UX Devel
   - [Search](#Search)
   - [Nominations List](#Nominations-List)
   - [Login](#Login)
+  - [Persistency](#Persistency)
   - [Shareable Links](#Shareable-Links)
   - [Animations](#Animations)
 - [Styling](#Styling)
@@ -92,6 +93,10 @@ The `useReducer` and context setup I used (which I learned from [here](https://d
 ![login](https://github.com/janakitti/shopify-frontend-challenge-2021/blob/main/demo_assets/login.gif)
 
 I added a mock login feature that goes together with the Shareable Links feature. The login feature doesn't use any authentication technology, it's simply used as a fun way for users to attatch their name to their nominations for their shareable links. The username from the login is kept in the context store so that it can be accessible throughout the app.
+
+### Persistency
+
+I used `localStorage` to store the username and list of nominations for the currently logged-in user. This allows the user to leave their browser and have their nominations persist when the revisit the app.
 
 ### Shareable Links
 
